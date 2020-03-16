@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">EasyHealth</string>
+    <string name="btnBack">Back to ClientForTrainer</string>
+    <string name="Stat">Statistics</string>
+    <string name="cal">Calories</string>
+    <string name="Wheight">Wheight</string>
+
+    <string-array name="monthGraph">
+        <item>This month</item>
+        <item>3 month ago</item>
+        <item>5 month ago</item>
+        <item>This year</item>
+    </string-array>
 </resources>
