@@ -23,4 +23,35 @@
         android:contentDescription="Back to ClientForTrainer"
         app:srcCompat="@drawable/chevron_left" />
 
+    <com.jjoe64.graphview.GraphView
+    android:id="@+id/monthGraph"
+    android:layout_width="match_parent"
+    android:layout_height="254dp"
+    android:layout_below="@+id/toolbar" />
+
+    <Spinner
+        android:id="@+id/spinMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/monthGraph" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/compareGraph"
+        android:layout_width="match_parent"
+        android:layout_height="254dp"
+        android:layout_below="@+id/spinMonth" />
+
+    <Spinner
+        android:id="@+id/spinCompare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/compareGraph" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_centerHorizontal="true"
+        android:text="Statistics" />
+
 </RelativeLayout>
