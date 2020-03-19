@@ -4,11 +4,20 @@
     <string name="Stat">Statistics</string>
     <string name="cal">Calories</string>
     <string name="Wheight">Wheight</string>
+    <string name="Breakfast">Breakfast:</string>
+    <string name="Dinner">Dinner</string>
+    <string name="Lunch">Lunch</string>
+    <string name="MkPDiet">Add Personal Diet</string>
 
     <string-array name="monthGraph">
         <item>This month</item>
         <item>3 month ago</item>
         <item>5 month ago</item>
         <item>This year</item>
+    </string-array>
+    <string-array name="lunchs">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
     </string-array>
 </resources>
