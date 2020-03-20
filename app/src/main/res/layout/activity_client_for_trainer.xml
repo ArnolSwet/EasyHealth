@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MakeADiet">
+    tools:context=".ClientForTrainer">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
             android:background="@android:color/holo_blue_light"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -25,10 +26,9 @@
             android:id="@+id/txtMPD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="@string/MkPDiet"
+            android:text="@string/CliFTrainer"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
@@ -53,101 +53,35 @@
 
     </RelativeLayout>
 
-    <Spinner
-        android:id="@+id/spinLunch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:theme="@style/DietSpinner"
-        android:entries="@array/lunchs"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameBreak"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEdBreak"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:theme="@style/EditText">
-
-        </com.google.android.material.textfield.TextInputEditText>
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/calBreak"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/calEdBreak"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="5"
-            android:hint="Cal"
-            android:inputType="numberDecimal"
-            android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:theme="@style/EditText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameBreak">
+            <ImageButton
+                android:id="@+id/btn_ExtraOpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="#14FFFFFF"
+                android:backgroundTint="#3EFFFFFF"
+                android:defaultFocusHighlightEnabled="false"
+                android:paddingTop="55px"
+                android:paddingRight="55px"
+                app:srcCompat="@android:drawable/btn_default" />
 
-        </com.google.android.material.textfield.TextInputEditText>
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/borde">
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="fitCenter"
-            android:background="@android:color/transparent"
-            android:layout_marginTop="50dp"
-            android:tint="@android:color/holo_blue_light"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-        <Button
-            android:id="@+id/btnAddImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="@android:color/holo_blue_light"
-            android:text="ADD IMAGE" />
-    </RelativeLayout>
-
-
+            <ImageView
+                android:id="@+id/image_ClientPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="false"
+                android:layout_gravity="center"
+                android:background="@drawable/black_borde"
+                android:contextClickable="false"
+                tools:srcCompat="@tools:sample/avatars[4]" />
+            android:orientation="vertical" />
+    </ScrollView>
 
 
 </LinearLayout>

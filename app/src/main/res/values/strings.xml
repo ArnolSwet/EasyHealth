@@ -8,6 +8,7 @@
     <string name="Dinner">Dinner</string>
     <string name="Lunch">Lunch</string>
     <string name="MkPDiet">Add Personal Diet</string>
+    <string name="CliFTrainer">My Clients</string>
 
     <string-array name="monthGraph">
         <item>This month</item>
@@ -20,4 +21,5 @@
         <item>Lunch</item>
         <item>Dinner</item>
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
