@@ -58,7 +58,8 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
             <ImageButton
                 android:id="@+id/btn_ExtraOpt"
                 android:layout_width="wrap_content"
@@ -67,21 +68,27 @@
                 android:background="#14FFFFFF"
                 android:backgroundTint="#3EFFFFFF"
                 android:defaultFocusHighlightEnabled="false"
-                android:paddingTop="55px"
-                android:paddingRight="55px"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:tint="@android:color/holo_blue_light"
                 app:srcCompat="@android:drawable/btn_default" />
 
             <ImageView
                 android:id="@+id/image_ClientPic"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="false"
-                android:layout_gravity="center"
                 android:background="@drawable/black_borde"
                 android:contextClickable="false"
                 tools:srcCompat="@tools:sample/avatars[4]" />
-            android:orientation="vertical" />
-    </ScrollView>
 
+            <TextView
+                android:id="@+id/txtClientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/CFT_CliName" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
