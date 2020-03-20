@@ -8,6 +8,7 @@
     <string name="Dinner">Dinner</string>
     <string name="Lunch">Lunch</string>
     <string name="MkPDiet">Add Personal Diet</string>
+    <string name="AddFood">Add Food</string>
 
     <string-array name="monthGraph">
         <item>This month</item>
@@ -19,5 +20,11 @@
         <item>Breakfast</item>
         <item>Lunch</item>
         <item>Dinner</item>
+    </string-array>
+    <string-array name="foods">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snack</item>
     </string-array>
 </resources>
