@@ -9,6 +9,7 @@
     <string name="Lunch">Lunch</string>
     <string name="MkPDiet">Add Personal Diet</string>
     <string name="AddFood">Add Food</string>
+    <string name="Chat">Chat</string>
 
     <string-array name="monthGraph">
         <item>This month</item>
