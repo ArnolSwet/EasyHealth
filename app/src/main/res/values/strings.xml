@@ -22,4 +22,5 @@
     </string-array>
     <string name="title_activity_main">MainActivity</string>
     <string name="CFT_CliName">Michael Adams</string>
+    <string name="CFT_CliLocation">Barcelona, Spain.</string>
 </resources>

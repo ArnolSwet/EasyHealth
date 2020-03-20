@@ -87,7 +87,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:text="@string/CFT_CliName" />
+                android:text="@string/CFT_CliName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="25dp" />ç
+
+            <TextView
+                android:id="@+id/txtClientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/CFT_CliLocation"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp" />
         </LinearLayout>
     </ScrollView>
 
