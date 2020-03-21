@@ -9,6 +9,12 @@
     <string name="Lunch">Lunch</string>
     <string name="MkPDiet">Add Personal Diet</string>
     <string name="AddFood">Add Food</string>
+    <string name="nameHint">Name</string>
+    <string name="calHint">Cal</string>
+    <string name="add_image">ADD IMAGE</string>
+    <string name="addImageDescript">Image of food</string>
+    <string name="yourClass">Your Classes</string>
+    <string name="btnCancel">Button to cancel a Class</string>
 
     <string-array name="monthGraph">
         <item>This month</item>
@@ -26,5 +32,10 @@
         <item>Lunch</item>
         <item>Dinner</item>
         <item>Snack</item>
+    </string-array>
+    <string-array name="classesProvisionals">
+        <item>Objecte1 estil class_layout</item>
+        <item>Objecte2 estil class_layout</item>
+        <item>ObjecteX estil class_layout</item>
     </string-array>
 </resources>
