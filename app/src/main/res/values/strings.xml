@@ -9,6 +9,7 @@
     <string name="Lunch">Lunch</string>
     <string name="MkPDiet">Add Personal Diet</string>
     <string name="CliFTrainer">My Clients</string>
+    <string name="title_activity_client_for_trainer">EasyHealth</string>
     <string-array name="monthGraph">
         <item>This month</item>
         <item>3 month ago</item>
@@ -20,7 +21,22 @@
         <item>Lunch</item>
         <item>Dinner</item>
     </string-array>
-    <string name="title_activity_main">MainActivity</string>
     <string name="CFT_CliName">Michael Adams</string>
     <string name="CFT_CliLocation">Barcelona, Spain.</string>
+    <string name="CFT_CliSubscription">Subscription</string>
+    <string name="CFT_CliSubscriptionType">Basic</string>
+    <string name="CFT_CliHeight">Height (m)</string>
+    <string name="CFT_CliHeightNum">1,84</string>
+    <string name="CFT_CliWeight">Weight (kg)</string>
+    <string name="CFT_CliWeightNum">83,2</string>
+    <string name="CFT_CliMeal">Client Meals</string>
+    <string name="CFT_CliMealBF">American Breakfast</string>
+    <string name="CFT_CliMealLCH">Rice with Chicken</string>
+    <string name="CFT_CliMealAFT">Banana and Coffee</string>
+    <string name="CFT_CliMealDIN">Basilicum Salad</string>
+    <string name="CFT_TrainingOpt">Training Options</string>
+    <string name="CFT_TrainingOptStats">Statistics</string>
+    <string name="CFT_TrainingOptChat">Chat with Client</string>
+    <string name="CFT_TrainingOptDiet">Personal Diet</string>
+
 </resources>
