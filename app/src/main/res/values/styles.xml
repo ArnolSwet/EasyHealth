@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
+    </style> -->
     <style name="EditText" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@android:color/holo_blue_light</item>
         <item name="colorControlActivated">@android:color/holo_green_light</item>
