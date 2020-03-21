@@ -15,6 +15,7 @@
     <string name="add_image">ADD IMAGE</string>
     <string name="addImageDescript">Image of food</string>
     <string name="yourClass">Your Classes</string>
+    <string name="personalDiet">Personal diet</string>
     <string name="btnCancel">Button to cancel a Class</string>
 
     <string-array name="monthGraph">
@@ -38,5 +39,11 @@
         <item>Objecte1 estil class_layout</item>
         <item>Objecte2 estil class_layout</item>
         <item>ObjecteX estil class_layout</item>
+    </string-array>
+
+    <string-array name="dietesProvisionals">
+        <item>Objecte1 estil food_layout</item>
+        <item>Objecte2 estil food_layout</item>
+        <item>Objecte3 estil food_layout</item>
     </string-array>
 </resources>
