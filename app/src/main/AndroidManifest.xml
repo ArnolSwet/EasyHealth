@@ -21,6 +21,8 @@
         <activity android:name=".AddFood" />
         <activity android:name=".MakeADiet" />
         <activity android:name=".Statistics"></activity>
+        <activity android:name=".activity_login"></activity>
+        <activity android:name=".StatisticsClientForTrainer" />
     </application>
 
 </manifest>
