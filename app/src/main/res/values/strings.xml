@@ -97,6 +97,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="AddClient">Add Client Code</string>
     <string name="my_classes">My classes</string>
+    <string name="ClientSettings">Settings</string>
+    <string name="ClientCode">#8944</string>
 
 
     <string name="MT_TrainerProfile">My Profile</string>
@@ -115,5 +117,6 @@
     <string name="MT_Others">Others</string>
     <string name="SettingsTrainer">Settings</string>
 
+    <string name="MT_YourClasses">Your classes</string>
 
 </resources>
