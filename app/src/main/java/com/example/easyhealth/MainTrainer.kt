@@ -25,4 +25,9 @@ class MainTrainer : AppCompatActivity() {
     fun goBack(view: View){
         finish()
     }
+
+    fun goSettings(view: View) {
+        val intent = Intent(this, SettingsTrainer::class.java)
+        startActivity(intent)
+    }
 }

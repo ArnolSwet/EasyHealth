@@ -57,7 +57,7 @@
             android:layout_centerVertical="true"
             android:background="#00FFFFFF"
             android:contentDescription="@string/btnBack"
-            android:onClick="mainClient"
+            android:onClick="goBack"
             app:srcCompat="@drawable/chevron_left" />
 
 

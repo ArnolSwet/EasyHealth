@@ -13,8 +13,7 @@ class MainClient : AppCompatActivity() {
     }
 
     fun goback(view: View) {
-        val intent = Intent(this, Login::class.java)
-        startActivity(intent)
+        finish()
     }
 
     fun gostats(view: View) {
@@ -23,6 +22,15 @@ class MainClient : AppCompatActivity() {
     }
     fun gotochat(view: View) {
         val intent = Intent(this, Chat::class.java)
+        startActivity(intent)
+    }
+
+    fun settingsClient(view: View) {
+        val intent = Intent(this, SettingsClient::class.java)
+        startActivity(intent)
+    }
+    fun personalDiet(view: View) {
+        val intent = Intent(this, PersonalDiet::class.java)
         startActivity(intent)
     }
 }

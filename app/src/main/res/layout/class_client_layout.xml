@@ -27,7 +27,7 @@
                 android:id="@+id/txtClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trainer"
+                android:text="Available"
                 android:textSize="18sp" />
 
         </LinearLayout>

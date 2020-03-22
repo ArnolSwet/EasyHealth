@@ -41,15 +41,6 @@
             android:onClick="goback"
             android:contentDescription="@string/btnBack"
             app:srcCompat="@drawable/chevron_left" />
-        <ImageButton
-            android:id="@+id/btnAccept"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_centerVertical="true"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/btnBack"
-            android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/check" />
 
     </RelativeLayout>
 
@@ -70,6 +61,7 @@
                 android:background="#14FFFFFF"
                 android:backgroundTint="#3EFFFFFF"
                 android:defaultFocusHighlightEnabled="false"
+                android:onClick="settingsClient"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:tint="@android:color/holo_blue_light"
@@ -380,6 +372,7 @@
                     android:layout_below="@+id/txtButtonChat"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:onClick="personalDiet"
                     app:srcCompat="@drawable/client_personaldiet" />
 
                 <TextView

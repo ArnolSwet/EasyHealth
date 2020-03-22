@@ -38,18 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="#00FFFFFF"
+            android:onClick="goBack"
             android:contentDescription="@string/btnBack"
             android:layout_alignParentLeft="true"
             app:srcCompat="@drawable/chevron_left" />
-        <ImageButton
-            android:id="@+id/btnAccept"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_centerVertical="true"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/btnBack"
-            android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/check" />
 
     </RelativeLayout>
 
@@ -62,22 +54,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_ExtraOpt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="#14FFFFFF"
-                android:backgroundTint="#3EFFFFFF"
-                android:defaultFocusHighlightEnabled="false"
-                android:paddingTop="20dp"
-                android:paddingEnd="20dp"
-                android:tint="@android:color/holo_blue_light"
-                app:srcCompat="@android:drawable/btn_default" />
-
             <ImageView
                 android:id="@+id/imageViewAvatar"
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_height="160dp"
                 app:srcCompat="@drawable/empty_avatar" />
 

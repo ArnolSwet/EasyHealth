@@ -13,8 +13,7 @@ class MakeADiet : AppCompatActivity() {
     }
 
 
-    fun personalDietTrainer(view: View) {
-        val intent = Intent(this, MainTrainer::class.java)
-        startActivity(intent)
+    fun goBack(view: View) {
+        finish()
     }
 }

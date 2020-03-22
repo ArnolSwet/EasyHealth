@@ -12,8 +12,7 @@ class SettingsClient : AppCompatActivity() {
         setContentView(R.layout.activity_settings_client)
     }
 
-    fun mainClient(view: View){
-        val intent = Intent(this, MainClient::class.java)
-        startActivity(intent)
+    fun goBack(view: View){
+        finish()
     }
 }

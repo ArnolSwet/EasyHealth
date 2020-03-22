@@ -12,8 +12,7 @@ class PersonalDiet : AppCompatActivity() {
         setContentView(R.layout.activity_personal_diet)
     }
 
-    fun mainClient(view: View){
-        val intent = Intent(this, MainClient::class.java)
-        startActivity(intent)
+    fun goback(view: View){
+        finish()
     }
 }
