@@ -223,7 +223,8 @@
                     android:layout_toRightOf="@+id/txtCliMeals"
                     android:backgroundTint="@android:color/holo_blue_light"
                     android:text="See All"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:onClick="foodClient"/>
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
             </RelativeLayout>
 
@@ -337,7 +338,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/txtTrainingOpt"
                     android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/client_stat" />
+                    app:srcCompat="@drawable/client_stat"
+                    android:onClick="statistics"/>
 
                 <TextView
                     android:id="@+id/txtButtonStats"
@@ -357,6 +359,7 @@
                     android:layout_below="@+id/txtButtonStats"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:onClick="chatClient"
                     app:srcCompat="@drawable/client_chat" />
 
                 <TextView
@@ -377,6 +380,7 @@
                     android:layout_below="@+id/txtButtonChat"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:onClick="personalDietTrainer"
                     app:srcCompat="@drawable/client_personaldiet" />
 
                 <TextView

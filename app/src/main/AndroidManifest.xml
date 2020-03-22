@@ -21,6 +21,7 @@
         <activity android:name=".YourClasses" />
         <activity android:name=".PersonalDietTrainer"/>
         <activity android:name=".FoodClient"/>
+        <activity android:name=".FoodTrainer"/>
         <activity android:name=".Chat" />
         <activity android:name=".AddFood" />
         <activity android:name=".MakeADiet" />
