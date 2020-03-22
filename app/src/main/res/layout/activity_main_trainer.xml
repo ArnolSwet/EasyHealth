@@ -301,7 +301,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/txtTrainingOpt"
                     android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/chat" />
+                    app:srcCompat="@drawable/class_image" />
 
                 <TextView
                     android:id="@+id/txtButtonStats"
@@ -310,7 +310,7 @@
                     android:layout_below="@id/imageButtonStats"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="40dp"
-                    android:text="@string/CFT_TrainingOptChat"
+                    android:text="@string/MT_YourClasses"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="15dp" />
 
