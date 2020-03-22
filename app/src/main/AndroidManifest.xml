@@ -17,8 +17,8 @@
         </activity>
         <activity android:name=".ClassClientLayoutActivity"></activity>
         <activity android:name=".activity_reservedclasses" />
-        <activity android:name=".activity_main_client" />
-        <activity android:name=".activity_signup" />
+        <activity android:name=".MainClient" />
+        <activity android:name=".Signup" />
         <activity android:name=".ClientForTrainer" />
         <activity android:name=".PersonalDiet" />
         <activity android:name=".YourClasses" />
@@ -29,7 +29,7 @@
         <activity android:name=".AddFood" />
         <activity android:name=".MakeADiet" />
         <activity android:name=".Statistics" />
-        <activity android:name=".activity_login"/>
+        <activity android:name=".Login"/>
         <activity android:name=".MainTrainer"/>
     </application>
 

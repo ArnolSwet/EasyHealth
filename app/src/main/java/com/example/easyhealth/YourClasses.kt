@@ -2,6 +2,7 @@ package com.example.easyhealth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 class YourClasses : AppCompatActivity() {
 
@@ -9,4 +10,6 @@ class YourClasses : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_classes)
     }
+
+    fun goback(view: View) {}
 }

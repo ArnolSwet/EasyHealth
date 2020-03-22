@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ClientForTrainer">
+    tools:context=".MainClient">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:background="#00FFFFFF"
+            android:onClick="goback"
             android:contentDescription="@string/btnBack"
             app:srcCompat="@drawable/chevron_left" />
         <ImageButton
@@ -336,6 +337,7 @@
                     android:layout_below="@+id/txtTrainingOpt"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:onClick="gostats"
                     app:srcCompat="@drawable/client_stat" />
 
                 <TextView
@@ -356,6 +358,7 @@
                     android:layout_below="@+id/txtButtonStats"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:onClick="gotochat"
                     app:srcCompat="@drawable/client_chat" />
 
                 <TextView
