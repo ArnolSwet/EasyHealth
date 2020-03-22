@@ -3,10 +3,10 @@ package com.example.easyhealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Statistics : AppCompatActivity() {
+class PersonalDiet : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_statistics)
+        setContentView(R.layout.activity_personal_diet)
     }
 }
