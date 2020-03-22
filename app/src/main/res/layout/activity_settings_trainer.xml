@@ -10,21 +10,41 @@
         android:id="@+id/txtAddClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/AddClient"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="26dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtClientN"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:text="#"
-        android:theme="@style/EditText"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="92dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddClient">
+
+        <EditText
+            android:id="@+id/txtClientN"
+            android:layout_width="160dp"
+            android:layout_height="46dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="#"
+            android:theme="@style/EditText" />
+
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/txtClientN"
+            android:background="#00FFFFFF"
+            android:tint="@android:color/holo_green_light"
+            app:srcCompat="@android:drawable/ic_input_add" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
