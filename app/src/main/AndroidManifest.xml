@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ClientForTrainer"
-            android:label="@string/title_activity_client_for_trainer">
+            android:label="@string/title_activity_client_for_trainer"/>
         <activity android:name=".PersonalDiet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YourClasses"></activity>
+        <activity android:name=".YourClasses" />
         <activity android:name=".Chat" />
         <activity android:name=".AddFood" />
         <activity android:name=".MakeADiet" />
         <activity android:name=".Statistics"></activity>
         <activity android:name=".activity_login"></activity>
-        <activity android:name=".StatisticsClientForTrainer" />
     </application>
 
 </manifest>
