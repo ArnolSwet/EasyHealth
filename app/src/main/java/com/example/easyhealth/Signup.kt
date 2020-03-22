@@ -5,15 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class SettingsClient : AppCompatActivity() {
+class Signup : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings_client)
+        setContentView(R.layout.activity_signup)
     }
 
-    fun mainClient(view: View){
+    fun anarclient(view: View) {
         val intent = Intent(this, MainClient::class.java)
         startActivity(intent)
     }
+
+    fun goback(view: View) {
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+    }
+
+
 }
