@@ -36,10 +36,9 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
             android:background="#00FFFFFF"
             android:contentDescription="@string/btnBack"
-            android:layout_alignParentLeft="true"
             app:srcCompat="@drawable/chevron_left" />
         <ImageButton
             android:id="@+id/btnAccept"
@@ -334,8 +333,8 @@
                     android:id="@+id/imageButtonStats"
                     android:layout_width="173dp"
                     android:layout_height="103dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/txtTrainingOpt"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     app:srcCompat="@drawable/client_stat" />
 
@@ -366,7 +365,7 @@
                     android:layout_below="@id/imageButtonChat"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="40dp"
-                    android:text="@string/CFT_TrainingOptChat"
+                    android:text="@string/chatwith"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="15dp" />
 
@@ -392,7 +391,6 @@
                     android:textSize="15dp" />
 
             </RelativeLayout>
-
 
 
         </LinearLayout>
