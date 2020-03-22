@@ -40,6 +40,7 @@
             android:background="#00FFFFFF"
             android:contentDescription="@string/btnBack"
             android:layout_alignParentLeft="true"
+            android:onClick="goBack"
             app:srcCompat="@drawable/chevron_left" />
         <ImageButton
             android:id="@+id/btnAccept"
@@ -242,6 +243,7 @@
                         android:layout_width="140dp"
                         android:layout_height="100dp"
                         android:layout_gravity="left"
+                        android:onClick="mainClient"
                         app:srcCompat="@drawable/user_icon" />
 
 
@@ -251,7 +253,8 @@
                         android:layout_height="100dp"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageViewClient1"
-                        app:srcCompat="@drawable/user_icon2" />
+                        app:srcCompat="@drawable/user_icon2"
+                        android:onClick="mainClient"/>
 
 
 
@@ -261,7 +264,8 @@
                         android:layout_height="100dp"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageViewClient2"
-                        app:srcCompat="@drawable/user_icon" />
+                        app:srcCompat="@drawable/user_icon"
+                        android:onClick="mainClient"/>
 
 
 
@@ -271,7 +275,8 @@
                         android:layout_height="100dp"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageViewClient3"
-                        app:srcCompat="@drawable/user_icon" />
+                        app:srcCompat="@drawable/user_icon"
+                        android:onClick="mainClient"/>
 
 
                 </RelativeLayout>
@@ -301,7 +306,9 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/txtTrainingOpt"
                     android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/class_image" />
+                    app:srcCompat="@drawable/class_image"
+                    android:onClick="yourClasses"
+                    />
 
                 <TextView
                     android:id="@+id/txtButtonStats"

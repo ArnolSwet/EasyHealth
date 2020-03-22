@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonalDiet">
+    tools:context=".PersonalDietTrainer">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -54,9 +54,10 @@
         android:layout_width="54dp"
         android:layout_height="45dp"
         android:layout_marginTop="320dp"
+        android:layout_marginEnd="30dp"
         android:background="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/classesList"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteX="327dp" />
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
