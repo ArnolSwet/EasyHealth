@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ClientForTrainer">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:background="@android:color/holo_blue_light"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtMPD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/CliFTrainer"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="#00FFFFFF"
+            android:onClick="goBack"
+            android:contentDescription="@string/btnBack"
+            android:layout_alignParentLeft="true"
+            app:srcCompat="@drawable/chevron_left" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="160dp"
+                app:srcCompat="@drawable/empty_avatar" />
+
+            <TextView
+                android:id="@+id/txtClientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/CFT_CliName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/txtCliLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/CFT_CliLocation"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="22dp">
+
+                <TextView
+                    android:id="@+id/txtCliSubscription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/CFT_CliSubscription"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txtCliSubscriptionNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCliSubscription"
+                    android:text="@string/CFT_CliSubscriptionType"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#595454"
+                    android:textSize="23dp" />
+
+                <ImageView
+                    android:id="@+id/imageViewLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/txtCliSubscription"
+                    app:srcCompat="@android:drawable/status_bar_item_background"
+                    tools:srcCompat="#595454" />
+
+                <TextView
+                    android:id="@+id/txtCliHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@+id/imageViewLine"
+                    android:text="@string/CFT_CliHeight"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txtCliHeightNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCliHeight"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/imageViewLine"
+                    android:text="@string/CFT_CliHeightNum"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#595454"
+                    android:textSize="23dp" />
+
+                <ImageView
+                    android:id="@+id/imageViewLine2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/txtCliHeight"
+                    app:srcCompat="@android:drawable/status_bar_item_background"
+                    tools:srcCompat="#595454" />
+
+                <TextView
+                    android:id="@+id/txtCliWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@+id/imageViewLine2"
+                    android:text="@string/CFT_CliWeight"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txtCliWeightNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCliHeight"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/imageViewLine2"
+                    android:text="@string/CFT_CliWeightNum"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#595454"
+                    android:textSize="23dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingRight="22dp">
+
+                <TextView
+                    android:id="@+id/txtCliMeals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:text="@string/CFT_CliMeal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="23dp" />
+
+                <Button
+                    android:id="@+id/buttonAllMeals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="170dp"
+
+                    android:layout_toRightOf="@+id/txtCliMeals"
+                    android:backgroundTint="@android:color/holo_blue_light"
+                    android:text="See All"
+                    android:textColor="@android:color/white"
+                    android:onClick="goFoodClient"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewClientBreakfast"
+                        android:layout_width="127dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="left"
+                        app:srcCompat="@drawable/client_breakfast" />
+
+                    <TextView
+                        android:id="@+id/txtCliMeal1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imageViewClientBreakfast"
+                        android:layout_alignBaseline="@+id/imageViewClientBreakfast"
+                        android:text="@string/CFT_CliMealBF"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:id="@+id/imageViewClientLunch"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imageViewClientBreakfast"
+                        app:srcCompat="@drawable/client_lunch" />
+
+                    <TextView
+                        android:id="@+id/txtCliMeal2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/txtCliMeal1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/txtCliMeal1"
+                        android:text="@string/CFT_CliMealLCH"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:id="@+id/imageViewClientAfternoon"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imageViewClientLunch"
+                        app:srcCompat="@drawable/client_afternoon" />
+
+                    <TextView
+                        android:id="@+id/txtCliMeal3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/txtCliMeal2"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/txtCliMeal2"
+                        android:text="@string/CFT_CliMealAFT"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:id="@+id/imageViewClientDinner"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imageViewClientAfternoon"
+                        app:srcCompat="@drawable/client_dinner" />
+
+                    <TextView
+                        android:id="@+id/txtCliMeal4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/txtCliMeal3"
+                        android:layout_marginLeft="25dp"
+                        android:layout_toRightOf="@+id/txtCliMeal3"
+                        android:text="@string/CFT_CliMealDIN"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textSize="15dp" />
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="22dp">
+
+                <TextView
+                    android:id="@+id/txtTrainingOpt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/CFT_TrainingOpt"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="23dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonStats"
+                    android:layout_width="173dp"
+                    android:layout_height="103dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txtTrainingOpt"
+                    android:layout_marginTop="15dp"
+                    app:srcCompat="@drawable/client_stat"
+                    android:onClick="statistics"/>
+
+                <TextView
+                    android:id="@+id/txtButtonStats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageButtonStats"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/CFT_TrainingOptStats"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonChat"
+                    android:layout_width="176dp"
+                    android:layout_height="134dp"
+                    android:layout_below="@+id/txtButtonStats"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="chatClient"
+                    app:srcCompat="@drawable/client_chat" />
+
+                <TextView
+                    android:id="@+id/txtButtonChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageButtonChat"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/CFT_TrainingOptChat"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonDiet"
+                    android:layout_width="176dp"
+                    android:layout_height="134dp"
+                    android:layout_below="@+id/txtButtonChat"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="personalDietTrainer"
+                    app:srcCompat="@drawable/client_personaldiet" />
+
+                <TextView
+                    android:id="@+id/txtButtonDiet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageButtonDiet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@string/CFT_TrainingOptDiet"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

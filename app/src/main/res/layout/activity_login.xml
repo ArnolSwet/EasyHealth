@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_light"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/txtMPD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="@string/EasyHealth"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameEdBreak"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Username or Email"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:theme="@style/EditText">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/calBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameBreak">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/calEdBreak"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="5"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:theme="@style/EditText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameBreak">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="LOG IN"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="SIGN UP"
+        android:onClick="anarSignup"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+
+    <Button
+        android:id="@+id/btnLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:onClick="anarSignup"
+        android:text="LOG IN"
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calBreak" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
