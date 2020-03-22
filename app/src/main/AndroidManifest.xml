@@ -22,7 +22,6 @@
         <activity android:name=".ClientForTrainer" />
         <activity android:name=".PersonalDiet" />
         <activity android:name=".YourClasses" />
-        <activity android:name=".activity_signup"/>
         <activity android:name=".PersonalDietTrainer"/>
         <activity android:name=".FoodClient"/>
         <activity android:name=".FoodTrainer"/>
@@ -31,6 +30,7 @@
         <activity android:name=".MakeADiet" />
         <activity android:name=".Statistics" />
         <activity android:name=".activity_login"/>
+        <activity android:name=".MainTrainer"/>
     </application>
 
 </manifest>
