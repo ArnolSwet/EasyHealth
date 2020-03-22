@@ -37,8 +37,10 @@
         android:textColorLink="#00574B"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.432" />
 
     <TextView
         android:id="@+id/textsignup"
@@ -48,10 +50,11 @@
         android:layout_marginEnd="179dp"
         android:text="SING UP"
         android:textColor="@color/colorPrimary"
-        android:textSize="36"
+        android:textSize="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="75dp" />
+        tools:layout_editor_absoluteY="75dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/txtname"
@@ -61,23 +64,92 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="104dp"
         android:ems="10"
+        android:hint="Name"
         android:inputType="textPersonName"
-        android:text="Name"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textsignup" />
 
     <EditText
-        android:id="@+id/editsurname"
+        android:id="@+id/txtsurname"
         android:layout_width="182dp"
         android:layout_height="42dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="340dp"
         android:ems="10"
+        android:hint="surname"
         android:inputType="textPersonName"
-        android:text="surname"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="218dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtname"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/txtemail"
+        android:layout_width="182dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="292dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtsurname" />
+
+    <EditText
+        android:id="@+id/txtpsswrd"
+        android:layout_width="182dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="118dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="numberPassword"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtemail" />
+
+    <EditText
+        android:id="@+id/txtcpsswrd"
+        android:layout_width="182dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="118dp"
+        android:ems="10"
+        android:hint="confirm password"
+        android:inputType="numberPassword"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtpsswrd" />
+
+    <Button
+        android:id="@+id/buttonconfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="161dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtcpsswrd" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
