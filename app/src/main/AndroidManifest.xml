@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsClient"/>
+        <activity android:name=".SettingsClient">
+        </activity>
         <activity android:name=".SettingsTrainer"/>
-        <activity android:name=".ClassClientLayoutActivity" />
         <activity android:name=".ReservedClasses" />
         <activity android:name=".MainClient" />
         <activity android:name=".Signup" />
