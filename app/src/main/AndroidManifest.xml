@@ -9,18 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsClient">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".SettingsTrainer">
-
-        </activity>
+        <activity android:name=".SettingsClient"/>
+        <activity android:name=".SettingsTrainer"/>
         <activity android:name=".ClassClientLayoutActivity" />
-        <activity android:name=".activity_reservedclasses" />
+        <activity android:name=".ReservedClasses" />
         <activity android:name=".MainClient" />
         <activity android:name=".Signup" />
         <activity android:name=".ClientForTrainer" />
@@ -33,10 +25,14 @@
         <activity android:name=".AddFood" />
         <activity android:name=".MakeADiet" />
         <activity android:name=".Statistics" />
-        <activity android:name=".Login"/>
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainTrainer"/>
-        <activity android:name=".activity_login" />
-        <activity android:name=".MainTrainer" />
     </application>
 
 </manifest>

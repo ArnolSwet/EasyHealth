@@ -13,7 +13,7 @@ class SettingsClient : AppCompatActivity() {
     }
 
     fun mainClient(view: View){
-        val intent = Intent(this, activity_main_client::class.java)
+        val intent = Intent(this, MainClient::class.java)
         startActivity(intent)
     }
 }
