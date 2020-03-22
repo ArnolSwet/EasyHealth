@@ -1,7 +1,9 @@
 package com.example.easyhealth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 class SettingsTrainer : AppCompatActivity() {
 
@@ -9,4 +11,11 @@ class SettingsTrainer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_trainer)
     }
+
+    fun MainTrainer(view: View) {
+        val intent = Intent(this, MainTrainer::class.java)
+        startActivity(intent)
+    }
+
+
 }

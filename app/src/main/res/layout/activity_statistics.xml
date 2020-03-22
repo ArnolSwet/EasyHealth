@@ -24,6 +24,7 @@
         android:background="#00FFFFFF"
         android:contentDescription="@string/btnBack"
         app:layout_constraintStart_toStartOf="parent"
+        android:onClick="goback"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chevron_left" />
 

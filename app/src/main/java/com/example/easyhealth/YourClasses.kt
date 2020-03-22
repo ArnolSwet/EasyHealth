@@ -1,5 +1,6 @@
 package com.example.easyhealth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,5 +12,7 @@ class YourClasses : AppCompatActivity() {
         setContentView(R.layout.activity_your_classes)
     }
 
-    fun goback(view: View) {}
+    fun goback(view: View) {
+        finish()
+    }
 }

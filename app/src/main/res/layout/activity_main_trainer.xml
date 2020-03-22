@@ -41,15 +41,6 @@
             android:contentDescription="@string/btnBack"
             android:layout_alignParentLeft="true"
             app:srcCompat="@drawable/chevron_left" />
-        <ImageButton
-            android:id="@+id/btnAccept"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_centerVertical="true"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/btnBack"
-            android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/check" />
 
     </RelativeLayout>
 
