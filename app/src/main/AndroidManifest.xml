@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_signup"></activity>
+        <activity android:name=".ClassClientLayoutActivity"></activity>
+        <activity android:name=".activity_reservedclasses" />
+        <activity android:name=".activity_main_client" />
+        <activity android:name=".activity_signup" />
         <activity android:name=".ClientForTrainer" />
         <activity android:name=".PersonalDiet" />
         <activity android:name=".YourClasses" />

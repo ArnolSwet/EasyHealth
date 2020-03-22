@@ -64,5 +64,6 @@
     <string name="CFT_TrainingOptStats">Statistics</string>
     <string name="CFT_TrainingOptChat">Chat with Client</string>
     <string name="CFT_TrainingOptDiet">Personal Diet</string>
+    <string name="my_classes">My classes</string>
 
 </resources>
