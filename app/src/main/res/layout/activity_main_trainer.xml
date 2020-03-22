@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainTrainer">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:background="@android:color/holo_blue_light"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtMPD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/MT_TrainerProfile"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/btnBack"
+            android:layout_alignParentLeft="true"
+            android:onClick="goBack"
+            app:srcCompat="@drawable/chevron_left" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btn_ExtraOpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="#14FFFFFF"
+                android:backgroundTint="#3EFFFFFF"
+                android:onClick="goSettings"
+                android:defaultFocusHighlightEnabled="false"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:tint="@android:color/holo_blue_light"
+                app:srcCompat="@android:drawable/btn_default" />
+
+            <ImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                app:srcCompat="@drawable/empty_avatar" />
+
+            <TextView
+                android:id="@+id/txtClientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/MT_TrainerName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/txtCliLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/CFT_CliLocation"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="22dp">
+
+                <TextView
+                    android:id="@+id/txtCliSubscription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/MT_ClassesToday"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txtCliSubscriptionNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCliSubscription"
+                    android:text="@string/MT_NumClases"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#595454"
+                    android:textSize="23dp" />
+
+                <ImageView
+                    android:id="@+id/imageViewLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/txtCliSubscription"
+                    app:srcCompat="@android:drawable/status_bar_item_background"
+                    tools:srcCompat="#595454" />
+
+                <TextView
+                    android:id="@+id/txtCliHeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@+id/imageViewLine"
+                    android:text="@string/MT_Messages"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txtCliHeightNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCliHeight"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/imageViewLine"
+                    android:text="@string/MT_NumMessages"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#595454"
+                    android:textSize="23dp" />
+
+                <ImageView
+                    android:id="@+id/imageViewLine2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/txtCliHeight"
+                    app:srcCompat="@android:drawable/status_bar_item_background"
+                    tools:srcCompat="#595454" />
+
+                <TextView
+                    android:id="@+id/txtCliWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@+id/imageViewLine2"
+                    android:text="@string/MT_Clients"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/txtCliWeightNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtCliHeight"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/imageViewLine2"
+                    android:text="@string/MT_NumClients"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#595454"
+                    android:textSize="23dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:paddingRight="22dp">
+
+                <TextView
+                    android:id="@+id/txtCliMeals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="22dp"
+                    android:text="@string/MT_Cl"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="23dp" /><![CDATA[
+
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            ]]>
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewClient1"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="left"
+                        android:onClick="goClient"
+                        app:srcCompat="@drawable/user_icon" />
+
+
+                    <ImageView
+                        android:id="@+id/imageViewClient2"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imageViewClient1"
+                        app:srcCompat="@drawable/user_icon2"
+                        android:onClick="goClient"/>
+
+
+
+                    <ImageView
+                        android:id="@+id/imageViewClient3"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imageViewClient2"
+                        app:srcCompat="@drawable/user_icon"
+                        android:onClick="goClient"/>
+
+
+
+                    <ImageView
+                        android:id="@+id/imageViewClient4"
+                        android:layout_width="140dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imageViewClient3"
+                        app:srcCompat="@drawable/user_icon"
+                        android:onClick="goClient"/>
+
+
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="22dp">
+
+                <TextView
+                    android:id="@+id/txtTrainingOpt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/MT_Others"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="23dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonStats"
+                    android:layout_width="173dp"
+                    android:layout_height="103dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/txtTrainingOpt"
+                    android:layout_marginTop="15dp"
+                    app:srcCompat="@drawable/class_image"
+                    android:onClick="yourClasses"
+                    />
+
+                <TextView
+                    android:id="@+id/txtButtonStats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageButtonStats"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/MT_YourClasses"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
