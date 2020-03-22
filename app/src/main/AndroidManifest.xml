@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ClassClientLayoutActivity"></activity>
+        <activity android:name=".activity_reservedclasses" />
+        <activity android:name=".activity_main_client" />
+        <activity android:name=".activity_signup" />
         <activity android:name=".ClientForTrainer" />
         <activity android:name=".PersonalDiet" />
         <activity android:name=".YourClasses" />
