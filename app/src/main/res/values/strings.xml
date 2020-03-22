@@ -62,6 +62,13 @@
     </string-array>
 
 
+
+    <string-array name="classAvailability">
+        <item>Morning</item>
+        <item>Afternoon</item>
+        <item>All day</item>
+    </string-array>
+
     <string name="CFT_CliName">Michael Adams</string>
     <string name="CFT_CliLocation">Barcelona, Spain.</string>
     <string name="CFT_CliSubscription">Subscription</string>
@@ -106,5 +113,7 @@
     <string name="MT_C3">Client 3</string>
     <string name="MT_C4">Client 4</string>
     <string name="MT_Others">Others</string>
+    <string name="SettingsTrainer">Settings</string>
+
 
 </resources>
