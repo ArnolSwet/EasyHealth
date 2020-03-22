@@ -79,7 +79,7 @@
                 android:id="@+id/imageViewAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="148dp"
-                app:srcCompat="@drawable/avatar_victorBlowjin" />
+                app:srcCompat="@drawable/avatar_client" />
 
             <TextView
                 android:id="@+id/txtClientName"

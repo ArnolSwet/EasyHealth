@@ -46,6 +46,14 @@
         <item>ObjecteX estil class_layout</item>
     </string-array>
 
+    <string-array name="classesperfilclientprovisionals">
+        <item>Objecte1 estil class client_layout</item>
+        <item>Objecte2 estil class client_layout</item>
+        <item>ObjecteX estil class client_layout</item>
+    </string-array>
+
+
+
     <string-array name="dietesProvisionals">
         <item>Objecte1 estil food_layout</item>
         <item>Objecte2 estil food_layout</item>
