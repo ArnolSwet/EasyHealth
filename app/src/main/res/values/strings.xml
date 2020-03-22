@@ -18,6 +18,7 @@
     <string name="personalDiet">Personal diet</string>
     <string name="btnCancel">Button to cancel a Class</string>
     <string name="CliFTrainer">My Clients</string>
+
     <string name="title_activity_client_for_trainer">EasyHealth</string>
     <string-array name="monthGraph">
         <item>This month</item>
@@ -64,5 +65,21 @@
     <string name="CFT_TrainingOptStats">Statistics</string>
     <string name="CFT_TrainingOptChat">Chat with Client</string>
     <string name="CFT_TrainingOptDiet">Personal Diet</string>
+
+
+    <string name="MT_TrainerProfile">My Profile</string>
+    <string name="MT_TrainerName">David Jones</string>
+    <string name="MT_ClassesToday">Classes today</string>
+    <string name="MT_NumClases">4</string>
+    <string name="MT_Messages">Messages</string>
+    <string name="MT_NumMessages">16</string>
+    <string name="MT_Clients">Clients</string>
+    <string name="MT_NumClients">3</string>
+    <string name="MT_Cl">Clients</string>
+    <string name="MT_C1">Client 1</string>
+    <string name="MT_C2">Client 2</string>
+    <string name="MT_C3">Client 3</string>
+    <string name="MT_C4">Client 4</string>
+    <string name="MT_Others">Others</string>
 
 </resources>
