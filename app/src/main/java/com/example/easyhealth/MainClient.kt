@@ -1,37 +1,28 @@
 package com.example.easyhealth
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Intent
 import android.view.View
 
-class ClientForTrainer : AppCompatActivity() {
+class MainClient : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_client_for_trainer)
+        setContentView(R.layout.activity_main_client)
     }
 
-    fun foodClient(view: View) {
-        val intent = Intent(this, FoodClient::class.java)
+    fun goback(view: View) {
+        val intent = Intent(this, Login::class.java)
         startActivity(intent)
     }
 
-    fun statistics(view: View) {
+    fun gostats(view: View) {
         val intent = Intent(this, Statistics::class.java)
         startActivity(intent)
     }
-
-    fun chatClient(view: View) {
+    fun gotochat(view: View) {
         val intent = Intent(this, Chat::class.java)
         startActivity(intent)
     }
-
-    fun personalDietTrainer(view: View) {
-        val intent = Intent(this, PersonalDietTrainer::class.java)
-        startActivity(intent)
-    }
-
-
-
 }

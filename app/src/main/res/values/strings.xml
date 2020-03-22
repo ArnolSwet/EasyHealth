@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">EasyHealth</string>
     <string name="btnBack">Back to ClientForTrainer</string>
     <string name="Stat">Statistics</string>
@@ -21,6 +21,7 @@
     <string name="foodTrainer">Food Trainer</string>
     <string name="btnCancel">Button to cancel a Class</string>
     <string name="CliFTrainer">My Clients</string>
+    <string name="chatwith">Chat with Trainer</string>
 
     <string name="title_activity_client_for_trainer">EasyHealth</string>
     <string-array name="monthGraph">
@@ -46,11 +47,21 @@
         <item>ObjecteX estil class_layout</item>
     </string-array>
 
+    <string-array name="classesperfilclientprovisionals">
+        <item>Objecte1 estil class client_layout</item>
+        <item>Objecte2 estil class client_layout</item>
+        <item>ObjecteX estil class client_layout</item>
+    </string-array>
+
+
+
     <string-array name="dietesProvisionals">
         <item>Objecte1 estil food_layout</item>
         <item>Objecte2 estil food_layout</item>
         <item>Objecte3 estil food_layout</item>
     </string-array>
+
+
 
     <string-array name="classAvailability">
         <item>Morning</item>
