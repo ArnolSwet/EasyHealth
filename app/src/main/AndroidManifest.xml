@@ -10,23 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ClientForTrainer">
+            android:name=".ClientForTrainer"/>
+        <activity android:name=".PersonalDiet"/>
+        <activity android:name=".YourClasses"/>
+        <activity android:name=".Chat" />
+        <activity android:name=".AddFood" />
+        <activity android:name=".MakeADiet" />
+        <activity android:name=".Statistics"/>
+        <activity android:name=".activity_login">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PersonalDiet">
-
-        </activity>
-        <activity android:name=".YourClasses" />
-        <activity android:name=".Chat" />
-        <activity android:name=".AddFood" />
-        <activity android:name=".MakeADiet" />
-        <activity android:name=".Statistics"></activity>
-        <activity android:name=".activity_login"></activity>
     </application>
 
 </manifest>
