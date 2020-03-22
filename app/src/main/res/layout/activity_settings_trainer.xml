@@ -42,7 +42,7 @@
             android:layout_centerVertical="true"
             android:background="#00FFFFFF"
             android:contentDescription="@string/btnBack"
-            android:onClick="MainTrainer"
+            android:onClick="goBack"
             app:srcCompat="@drawable/chevron_left" />
 
     </RelativeLayout>

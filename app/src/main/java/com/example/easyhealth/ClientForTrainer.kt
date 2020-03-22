@@ -12,8 +12,8 @@ class ClientForTrainer : AppCompatActivity() {
         setContentView(R.layout.activity_client_for_trainer)
     }
 
-    fun foodClient(view: View) {
-        val intent = Intent(this, FoodClient::class.java)
+    fun goFoodClient(view: View) {
+        val intent = Intent(this, FoodTrainer::class.java)
         startActivity(intent)
     }
 

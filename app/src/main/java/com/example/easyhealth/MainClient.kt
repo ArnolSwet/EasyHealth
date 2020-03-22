@@ -33,4 +33,14 @@ class MainClient : AppCompatActivity() {
         val intent = Intent(this, PersonalDiet::class.java)
         startActivity(intent)
     }
+
+    fun reserveClasses(view: View) {
+        val intent = Intent(this, ReservedClasses::class.java)
+        startActivity(intent)
+    }
+
+    fun goFood(view: View) {
+        val intent = Intent(this, FoodClient::class.java)
+        startActivity(intent)
+    }
 }

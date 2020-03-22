@@ -205,19 +205,10 @@
                     android:text="@string/MT_Cl"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@android:color/holo_blue_light"
-                    android:textSize="23dp" />
+                    android:textSize="23dp" /><![CDATA[
 
-                <Button
-                    android:id="@+id/buttonAllMeals"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="170dp"
-
-                    android:layout_toRightOf="@+id/txtCliMeals"
-                    android:backgroundTint="@android:color/holo_blue_light"
-                    android:text="See All"
-                    android:textColor="@android:color/white" />
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            ]]>
             </RelativeLayout>
 
             <HorizontalScrollView
@@ -235,7 +226,7 @@
                         android:layout_width="140dp"
                         android:layout_height="100dp"
                         android:layout_gravity="left"
-                        android:onClick="mainClient"
+                        android:onClick="goClient"
                         app:srcCompat="@drawable/user_icon" />
 
 
@@ -246,7 +237,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageViewClient1"
                         app:srcCompat="@drawable/user_icon2"
-                        android:onClick="mainClient"/>
+                        android:onClick="goClient"/>
 
 
 
@@ -257,7 +248,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageViewClient2"
                         app:srcCompat="@drawable/user_icon"
-                        android:onClick="mainClient"/>
+                        android:onClick="goClient"/>
 
 
 
@@ -268,7 +259,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/imageViewClient3"
                         app:srcCompat="@drawable/user_icon"
-                        android:onClick="mainClient"/>
+                        android:onClick="goClient"/>
 
 
                 </RelativeLayout>

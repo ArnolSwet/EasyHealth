@@ -11,5 +11,7 @@ class FoodTrainer : AppCompatActivity() {
         setContentView(R.layout.activity_food_trainer)
     }
 
-    fun goBack(view: View) {}
+    fun goBack(view: View) {
+        finish()
+    }
 }

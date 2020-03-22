@@ -9,25 +9,23 @@ import kotlinx.android.synthetic.main.activity_signup.*
 
 class Signup : AppCompatActivity() {
 
+    var itsClient = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        switch1.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                val intent = Intent(this, MainTrainer::class.java)
-            } else {
-                val intent = Intent(this, MainClient::class.java)
-            }
+        switch1.setOnCheckedChangeListener { compoundButton, onSwitch ->
+            itsClient = !onSwitch
         }
     }
 
     fun anarmain(view: View) {
-        val intent = Intent(this, MainClient::class.java)
-            if (switch1.isChecked) {
-                val intent = Intent(this, MainTrainer::class.java)
-            } else {
-                val intent = Intent(this, MainClient::class.java)
-            }
+        var intent = Intent(this, MainClient::class.java)
+        if (itsClient) {
+            intent = Intent(this, MainClient::class.java)
+        } else {
+            intent = Intent(this, MainTrainer::class.java)
+        }
         startActivity(intent)
     }
 

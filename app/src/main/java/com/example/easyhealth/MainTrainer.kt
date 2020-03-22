@@ -12,8 +12,8 @@ class MainTrainer : AppCompatActivity() {
         setContentView(R.layout.activity_main_trainer)
     }
 
-    fun mainClient(view: View){
-        val intent = Intent(this, MainClient::class.java)
+    fun goClient(view: View){
+        val intent = Intent(this, ClientForTrainer::class.java)
         startActivity(intent)
     }
 

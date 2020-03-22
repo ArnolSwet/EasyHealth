@@ -204,7 +204,7 @@
                     android:backgroundTint="@android:color/holo_blue_light"
                     android:text="See All"
                     android:textColor="@android:color/white"
-                    android:onClick="foodClient"/>
+                    android:onClick="goFoodClient"/>
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
             </RelativeLayout>
 

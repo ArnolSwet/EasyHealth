@@ -212,7 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="170dp"
-
+                    android:onClick="goFood"
                     android:layout_toRightOf="@+id/txtCliMeals"
                     android:backgroundTint="@android:color/holo_blue_light"
                     android:text="See All"
@@ -384,6 +384,28 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginBottom="30dp"
                     android:text="@string/CFT_TrainingOptDiet"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="15dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonClasses"
+                    android:layout_width="176dp"
+                    android:layout_height="134dp"
+                    android:layout_below="@+id/txtButtonDiet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:onClick="reserveClasses"
+                    app:srcCompat="@drawable/schedule" />
+
+                <TextView
+                    android:id="@+id/txtButtonClasses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageButtonClasses"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="Reserve Classes"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="15dp" />
 
