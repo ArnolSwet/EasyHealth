@@ -16,6 +16,9 @@
     <string name="addImageDescript">Image of food</string>
     <string name="yourClass">Your Classes</string>
     <string name="personalDiet">Personal diet</string>
+    <string name="personalDietTrainer">Personal diet Trainer</string>
+    <string name="foodClient">Food Client</string>
+    <string name="foodTrainer">Food Trainer</string>
     <string name="btnCancel">Button to cancel a Class</string>
     <string name="CliFTrainer">My Clients</string>
     <string name="title_activity_client_for_trainer">EasyHealth</string>
