@@ -16,7 +16,7 @@ public class Client {
     //metodes
 
 
-   
+
 
     public Client(int id, String suscription, float high, float weight, ArrayList<ReservedClasses> classesReservades, boolean notific) {
         this.id = id;
