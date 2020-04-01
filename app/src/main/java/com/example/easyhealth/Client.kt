@@ -2,8 +2,8 @@ package com.example.easyhealth
 
 import android.media.Image
 
-class Client1 constructor(private var id: Int, private var suscription: String, private var high: Float,
-                          private var weight: Float, private var llistaMenjar: ArrayList<Food>, private var classesReservades: ArrayList<ReservedClasses>,   private var notific: Boolean) {
+class Client constructor(private var id: Int, private var suscription: String, private var high: Float,
+                         private var weight: Float, private var llistaMenjar: ArrayList<Food>, private var classesReservades: ArrayList<ReservedClasses>, private var notific: Boolean) {
 
     fun setId(id: Int) {
         this.id = id
