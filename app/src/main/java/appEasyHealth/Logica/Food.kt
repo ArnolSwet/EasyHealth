@@ -1,4 +1,4 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
 import android.media.Image
 

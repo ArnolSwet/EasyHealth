@@ -1,4 +1,4 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
 class Trainer constructor(private var id: Int, private var suscription: String, private var notificacio: Boolean,
                           private var llistaClients: ArrayList<Client>, private var classesReservades: ArrayList<ReservedClasses>) {

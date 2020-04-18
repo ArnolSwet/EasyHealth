@@ -1,9 +1,10 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.view.View
+import com.example.easyhealth.R
 
 class MainClient : AppCompatActivity() {
 

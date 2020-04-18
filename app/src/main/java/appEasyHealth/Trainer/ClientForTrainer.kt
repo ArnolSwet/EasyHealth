@@ -1,9 +1,10 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.easyhealth.R
 
 class ClientForTrainer : AppCompatActivity() {
 

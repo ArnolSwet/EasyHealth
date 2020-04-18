@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/waiting_progress_layout"
-    tools:context=".WaitingProgress">
+    tools:context="com.example.appEasyHealth.WaitingProgress">
 
     <ProgressBar
         android:id="@+id/progressBar"

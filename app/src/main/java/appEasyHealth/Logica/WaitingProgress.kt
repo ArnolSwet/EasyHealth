@@ -1,7 +1,8 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.easyhealth.R
 
 class WaitingProgress : AppCompatActivity() {
 

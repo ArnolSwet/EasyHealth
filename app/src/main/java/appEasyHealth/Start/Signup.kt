@@ -1,4 +1,4 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -15,21 +16,22 @@ import kotlinx.android.synthetic.main.activity_signup.*
 
 class Signup : AppCompatActivity() {
 
-    private lateinit var txtName:TextInputEditText
-    private lateinit var txtUser:TextInputEditText
-    private lateinit var txtEmail:TextInputEditText
-    private lateinit var txtPassword:TextInputEditText
-    private lateinit var txtRepeatPassword:TextInputEditText
-    private lateinit var dbReference:DatabaseReference
-    private lateinit var database:FirebaseDatabase
-    private lateinit var auth:FirebaseAuth
+    /*private lateinit var txtName: TextInputEditText
+    private lateinit var txtUser: TextInputEditText
+    private lateinit var txtEmail: TextInputEditText
+    private lateinit var txtPassword: TextInputEditText
+    private lateinit var txtRepeatPassword: TextInputEditText
+    private lateinit var dbReference: DatabaseReference
+    private lateinit var database: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
     private lateinit var progress: WaitingProgress
+    */
     private var itsClient = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        txtName=findViewById(R.id.txtName)
+        /* txtName=findViewById(R.id.txtName)
         txtUser=findViewById(R.id.txtUser)
         txtEmail=findViewById(R.id.txtEmail)
         txtPassword=findViewById(R.id.txtPass)
@@ -70,8 +72,8 @@ class Signup : AppCompatActivity() {
 
                     if (task.isComplete) {
                         val user:FirebaseUser?=auth.currentUser
-                        verifyEmail(user)
-
+                        // Fins que no es verifica el Email, no continua. Ho comento
+                        // verifyEmail(user)
                         val userBD = dbReference.child(user?.uid!!)
 
                         userBD.child("Name").setValue(name)
@@ -123,6 +125,17 @@ class Signup : AppCompatActivity() {
     fun goback(view: View) {
         finish()
     }
+   */
+    }
 
+    fun anarServei(view: View) {
+        var intent = Intent(this, Signup::class.java)
+        if (itsClient) {
+            intent = Intent(this, Client::class.java)
+        } else {
+            intent = Intent(this, Trainer::class.java)
 
+        }
+        startActivity(intent)
+    }
 }
