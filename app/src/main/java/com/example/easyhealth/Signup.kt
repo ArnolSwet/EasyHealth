@@ -62,11 +62,8 @@ class Signup : AppCompatActivity() {
         val pass:String = txtPassword.text.toString()
         val repeatPass:String = txtRepeatPassword.text.toString()
 
-        if (pass != repeatPass) {
 
-        }
-
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && pass == repeatPass) {
 
             var intentProgress = Intent(this, WaitingProgress::class.java)
             startActivity(intentProgress)
@@ -83,17 +80,19 @@ class Signup : AppCompatActivity() {
                         val userBD = dbReference.child(user?.uid!!)
 
                         userBD.child("Name").setValue(name)
-                        userBD.child("User").setValue(username)
+                        userBD.child("UserName").setValue(username)
                         if (itsClient) {
-                            userBD.child("Service").setValue("Client")
+                            userBD.child("Type").setValue("Client")
                         } else {
-                            userBD.child("Service").setValue("Trainer")
+                            userBD.child("Type").setValue("Trainer")
                         }
                         action()
                     }
 
             }
 
+        } else if (pass != repeatPass) {
+            Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
         }
     }
 
