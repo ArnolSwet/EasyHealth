@@ -35,11 +35,9 @@ class Signup : AppCompatActivity() {
         txtPassword=findViewById(R.id.txtPass)
         txtRepeatPassword=findViewById(R.id.txtRepeatPass)
 
-        progress = WaitingProgress()
-
+        //progress = WaitingProgress()
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
-
         dbReference = database.reference.child("User")
         switch1.setOnCheckedChangeListener { compoundButton, onSwitch ->
             itsClient = !onSwitch
@@ -52,7 +50,7 @@ class Signup : AppCompatActivity() {
 
     private fun createNewAccount() {
         val name:String = txtName.text.toString()
-        val username:String = txtUser.text.toString()
+        val userName:String = txtUser.text.toString()
         val email:String = txtEmail.text.toString()
         val pass:String = txtPassword.text.toString()
         val repeatPass:String = txtRepeatPassword.text.toString()
@@ -61,13 +59,13 @@ class Signup : AppCompatActivity() {
 
         }
 
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
 
-            var intentProgress = Intent(this, WaitingProgress::class.java)
-            startActivity(intentProgress)
+            //var intentProgress = Intent(this, WaitingProgress::class.java)
+            //startActivity(intentProgress)
 
             auth.createUserWithEmailAndPassword(email,pass)
-                .addOnCompleteListener {
+                .addOnCompleteListener(this) {
                     
                     task ->
 
@@ -76,13 +74,12 @@ class Signup : AppCompatActivity() {
                         verifyEmail(user)
 
                         val userBD = dbReference.child(user?.uid!!)
-
                         userBD.child("Name").setValue(name)
-                        userBD.child("User").setValue(username)
+                        userBD.child("lastName").setValue(userName)
                         if (itsClient) {
-                            userBD.child("Service").setValue("Client")
+                            userBD.child("Type").setValue("Client")
                         } else {
-                            userBD.child("Service").setValue("Trainer")
+                            userBD.child("Type").setValue("Trainer")
                         }
                         action()
                     }
@@ -93,37 +90,31 @@ class Signup : AppCompatActivity() {
     }
 
     private fun action() {
-
-        var intent = Intent(this, MainClient::class.java)
+        print("estic aqui")
         if (itsClient) {
-            intent = Intent(this, MainClient::class.java)
+            var intent = Intent(this, MainClient::class.java)
         } else {
-            intent = Intent(this, MainTrainer::class.java)
+            var intent = Intent(this, MainTrainer::class.java)
         }
         startActivity(intent)
 
     }
 
     private fun verifyEmail(user:FirebaseUser?){
-
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
                 task ->
-
                 if (task.isComplete) {
                     Toast.makeText(this,"Email enviado", Toast.LENGTH_LONG).show()
                 }
                 else {
-                    Toast.makeText(this,"error al enviar el mail", Toast.LENGTH_LONG).show()
-
+                    Toast.makeText(this,"Error al enviar el email", Toast.LENGTH_LONG).show()
                 }
             }
-
     }
 
     fun goback(view: View) {
         finish()
     }
-
 
 }
