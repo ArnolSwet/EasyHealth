@@ -35,7 +35,7 @@ class Signup : AppCompatActivity() {
         txtPassword=findViewById(R.id.txtPass)
         txtRepeatPassword=findViewById(R.id.txtRepeatPass)
 
-        //progress = WaitingProgress()
+        progress = WaitingProgress()
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
         dbReference = database.reference.child("User")
@@ -61,8 +61,8 @@ class Signup : AppCompatActivity() {
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
 
-            //var intentProgress = Intent(this, WaitingProgress::class.java)
-            //startActivity(intentProgress)
+            var intentProgress = Intent(this, WaitingProgress::class.java)
+            startActivity(intentProgress)
 
             auth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener(this) {
@@ -75,7 +75,7 @@ class Signup : AppCompatActivity() {
 
                         val userBD = dbReference.child(user?.uid!!)
                         userBD.child("Name").setValue(name)
-                        userBD.child("lastName").setValue(userName)
+                        userBD.child("UserName").setValue(userName)
                         if (itsClient) {
                             userBD.child("Type").setValue("Client")
                         } else {
@@ -90,11 +90,11 @@ class Signup : AppCompatActivity() {
     }
 
     private fun action() {
-        print("estic aqui")
+        var intent = Intent(this, MainClient::class.java)
         if (itsClient) {
-            var intent = Intent(this, MainClient::class.java)
+            intent = Intent(this, MainClient::class.java)
         } else {
-            var intent = Intent(this, MainTrainer::class.java)
+            intent = Intent(this, MainTrainer::class.java)
         }
         startActivity(intent)
 
