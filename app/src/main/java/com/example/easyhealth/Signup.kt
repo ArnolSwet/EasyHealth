@@ -36,8 +36,10 @@ class Signup : AppCompatActivity() {
         txtRepeatPassword=findViewById(R.id.txtRepeatPass)
 
         progress = WaitingProgress()
+
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
+
         dbReference = database.reference.child("User")
         switch1.setOnCheckedChangeListener { compoundButton, onSwitch ->
             itsClient = !onSwitch
@@ -50,22 +52,19 @@ class Signup : AppCompatActivity() {
 
     private fun createNewAccount() {
         val name:String = txtName.text.toString()
-        val userName:String = txtUser.text.toString()
+        val username:String = txtUser.text.toString()
         val email:String = txtEmail.text.toString()
         val pass:String = txtPassword.text.toString()
         val repeatPass:String = txtRepeatPassword.text.toString()
 
-        if (pass != repeatPass) {
 
-        }
-
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && pass == repeatPass) {
 
             var intentProgress = Intent(this, WaitingProgress::class.java)
             startActivity(intentProgress)
 
             auth.createUserWithEmailAndPassword(email,pass)
-                .addOnCompleteListener(this) {
+                .addOnCompleteListener {
                     
                     task ->
 
@@ -74,8 +73,9 @@ class Signup : AppCompatActivity() {
                         verifyEmail(user)
 
                         val userBD = dbReference.child(user?.uid!!)
+
                         userBD.child("Name").setValue(name)
-                        userBD.child("UserName").setValue(userName)
+                        userBD.child("UserName").setValue(username)
                         if (itsClient) {
                             userBD.child("Type").setValue("Client")
                         } else {
@@ -86,10 +86,13 @@ class Signup : AppCompatActivity() {
 
             }
 
+        } else if (pass != repeatPass) {
+            Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun action() {
+
         var intent = Intent(this, MainClient::class.java)
         if (itsClient) {
             intent = Intent(this, MainClient::class.java)
@@ -101,20 +104,25 @@ class Signup : AppCompatActivity() {
     }
 
     private fun verifyEmail(user:FirebaseUser?){
+
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
                 task ->
+
                 if (task.isComplete) {
                     Toast.makeText(this,"Email enviado", Toast.LENGTH_LONG).show()
                 }
                 else {
-                    Toast.makeText(this,"Error al enviar el email", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"error al enviar el mail", Toast.LENGTH_LONG).show()
+
                 }
             }
+
     }
 
     fun goback(view: View) {
         finish()
     }
+
 
 }
