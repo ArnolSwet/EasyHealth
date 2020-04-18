@@ -121,14 +121,8 @@ class Signup : AppCompatActivity() {
 
     fun anarServei(view: View) {
         createNewAccount()
-        var intent = Intent(this, Signup::class.java)
-        if (itsClient) {
-            intent = Intent(this, MainClient::class.java)
-        } else {
-            intent = Intent(this, MainTrainer::class.java)
-        }
+        var intent = Intent(this, Login::class.java)
         startActivity(intent)
-        itsClient = true;
     }
 
     fun goback(view: View) {
