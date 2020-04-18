@@ -228,7 +228,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="@android:color/holo_blue_light"
-        android:onClick="signup"
+        android:onClick="anarServei"
         android:text="@string/SignUp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"

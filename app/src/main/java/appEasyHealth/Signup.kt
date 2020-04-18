@@ -1,11 +1,11 @@
 package com.example.appEasyHealth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -14,9 +14,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_signup.*
 
+
 class Signup : AppCompatActivity() {
 
-    /*private lateinit var txtName: TextInputEditText
+    private lateinit var txtName: TextInputEditText
     private lateinit var txtUser: TextInputEditText
     private lateinit var txtEmail: TextInputEditText
     private lateinit var txtPassword: TextInputEditText
@@ -25,31 +26,27 @@ class Signup : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var progress: WaitingProgress
-    */
+
     private var itsClient = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        /* txtName=findViewById(R.id.txtName)
-        txtUser=findViewById(R.id.txtUser)
-        txtEmail=findViewById(R.id.txtEmail)
-        txtPassword=findViewById(R.id.txtPass)
-        txtRepeatPassword=findViewById(R.id.txtRepeatPass)
-
-        progress = WaitingProgress()
-
-        database = FirebaseDatabase.getInstance()
-        auth = FirebaseAuth.getInstance()
-
-        dbReference = database.reference.child("User")
         switch1.setOnCheckedChangeListener { compoundButton, onSwitch ->
             itsClient = !onSwitch
-        }
-    }
 
-    fun signup(view: View) {
-        createNewAccount()
+            txtName = findViewById(R.id.txtName)
+            txtUser = findViewById(R.id.txtUser)
+            txtEmail = findViewById(R.id.txtEmail)
+            txtPassword = findViewById(R.id.txtPass)
+            txtRepeatPassword = findViewById(R.id.txtRepeatPass)
+
+            progress = WaitingProgress()
+
+            database = FirebaseDatabase.getInstance()
+            auth = FirebaseAuth.getInstance()
+            dbReference = database.reference.child("User")
+        }
     }
 
     private fun createNewAccount() {
@@ -105,7 +102,7 @@ class Signup : AppCompatActivity() {
 
     }
 
-    private fun verifyEmail(user:FirebaseUser?){
+    private fun verifyEmail(user: FirebaseUser?){
 
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
@@ -122,20 +119,19 @@ class Signup : AppCompatActivity() {
 
     }
 
-    fun goback(view: View) {
-        finish()
-    }
-   */
-    }
-
     fun anarServei(view: View) {
+        createNewAccount()
         var intent = Intent(this, Signup::class.java)
         if (itsClient) {
-            intent = Intent(this, Client::class.java)
+            intent = Intent(this, MainClient::class.java)
         } else {
-            intent = Intent(this, Trainer::class.java)
-
+            intent = Intent(this, MainTrainer::class.java)
         }
         startActivity(intent)
+        itsClient = true;
+    }
+
+    fun goback(view: View) {
+        finish()
     }
 }
