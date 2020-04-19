@@ -32,6 +32,7 @@ class Signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+
         switch1.setOnCheckedChangeListener { compoundButton, onSwitch ->
             itsClient = !onSwitch
 
@@ -70,9 +71,9 @@ class Signup : AppCompatActivity() {
                     if (task.isComplete) {
                         val user:FirebaseUser?=auth.currentUser
                         // Fins que no es verifica el Email, no continua. Ho comento
-                        // verifyEmail(user)
-                        val userBD = dbReference.child(user?.uid!!)
+                        sendEmail(user)
 
+                        val userBD = dbReference.child(user?.uid!!)
                         userBD.child("Name").setValue(name)
                         userBD.child("UserName").setValue(username)
                         if (itsClient) {
@@ -80,7 +81,8 @@ class Signup : AppCompatActivity() {
                         } else {
                             userBD.child("Type").setValue("Trainer")
                         }
-                        action()
+                    } else {
+                        Toast.makeText(this,"Error en Registre", Toast.LENGTH_LONG).show()
                     }
 
             }
@@ -90,20 +92,8 @@ class Signup : AppCompatActivity() {
         }
     }
 
-    private fun action() {
-
-        var intent = Intent(this, MainClient::class.java)
-        if (itsClient) {
-            intent = Intent(this, MainClient::class.java)
-        } else {
-            intent = Intent(this, MainTrainer::class.java)
-        }
-        startActivity(intent)
-
-    }
-
-    private fun verifyEmail(user: FirebaseUser?){
-
+    private fun sendEmail(user: FirebaseUser?){
+        Toast.makeText(this,"Enviant email", Toast.LENGTH_SHORT).show()
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
                 task ->
@@ -112,8 +102,7 @@ class Signup : AppCompatActivity() {
                     Toast.makeText(this,"Email enviado", Toast.LENGTH_LONG).show()
                 }
                 else {
-                    Toast.makeText(this,"error al enviar el mail", Toast.LENGTH_LONG).show()
-
+                    Toast.makeText(this,"Error al enviar el mail", Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -121,7 +110,7 @@ class Signup : AppCompatActivity() {
 
     fun anarServei(view: View) {
         createNewAccount()
-        var intent = Intent(this, Login::class.java)
+        var intent = Intent(this, FoodClient::class.java)
         startActivity(intent)
     }
 
