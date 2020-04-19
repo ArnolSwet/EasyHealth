@@ -1,6 +1,4 @@
-package com.example.easyhealth
-
-import android.media.Image
+package com.example.appEasyHealth
 
 class Client constructor(private var id: Int, private var suscription: String, private var high: Float,
                          private var weight: Float, private var llistaMenjar: ArrayList<Food>, private var classesReservades: ArrayList<ReservedClasses>, private var notific: Boolean) {

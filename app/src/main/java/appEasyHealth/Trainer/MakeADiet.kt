@@ -1,15 +1,18 @@
-package com.example.easyhealth
+package com.example.appEasyHealth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.easyhealth.R
 
-class FoodTrainer : AppCompatActivity() {
+class MakeADiet : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_trainer)
+        setContentView(R.layout.activity_make_adiet)
     }
+
 
     fun goBack(view: View) {
         finish()
