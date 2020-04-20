@@ -14,7 +14,7 @@
         <activity android:name="com.example.appEasyHealth.SettingsTrainer"/>
         <activity android:name="com.example.appEasyHealth.ReservedClasses" />
         <activity android:name="com.example.appEasyHealth.MainClient" />
-        <activity android:name="com.example.appEasyHealth.Signup" />
+        <activity android:name="appEasyHealth.Signup" />
         <activity android:name="com.example.appEasyHealth.ClientForTrainer" />
         <activity android:name="com.example.appEasyHealth.PersonalDiet" />
         <activity android:name="com.example.appEasyHealth.YourClasses" />
