@@ -60,8 +60,8 @@ class Signup : AppCompatActivity() {
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && pass == repeatPass) {
 
-            var intentProgress = Intent(this, WaitingProgress::class.java)
-            startActivity(intentProgress)
+            //var intentProgress = Intent(this.progress.intent)
+            //startActivity(intentProgress)
 
             auth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener {
@@ -71,47 +71,56 @@ class Signup : AppCompatActivity() {
                     if (task.isComplete) {
                         val user:FirebaseUser?=auth.currentUser
                         // Fins que no es verifica el Email, no continua. Ho comento
-                        sendEmail(user)
-
-                        val userBD = dbReference.child(user?.uid!!)
-                        userBD.child("Name").setValue(name)
-                        userBD.child("UserName").setValue(username)
-                        if (itsClient) {
-                            userBD.child("Type").setValue("Client")
-                        } else {
-                            userBD.child("Type").setValue("Trainer")
+                        if(sendEmail(user)) {
+                            val userBD = dbReference.child(user?.uid!!)
+                            userBD.child("Name").setValue(name)
+                            userBD.child("UserName").setValue(username)
+                            if (itsClient) {
+                                userBD.child("Type").setValue("Client")
+                            } else {
+                                userBD.child("Type").setValue("Trainer")
+                            }
                         }
                     } else {
-                        Toast.makeText(this,"Error en Registre", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this.progress,"Error en Registre", Toast.LENGTH_LONG).show()
                     }
 
             }
 
         } else if (pass != repeatPass) {
-            Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
+            Toast.makeText(this.progress,"Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun sendEmail(user: FirebaseUser?){
-        Toast.makeText(this,"Enviant email", Toast.LENGTH_SHORT).show()
+    private fun sendEmail(user: FirebaseUser?): Boolean {
+        Toast.makeText(this.progress,"Enviando email", Toast.LENGTH_SHORT).show()
+        var correctEmail : Boolean = false
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
                 task ->
 
                 if (task.isComplete) {
-                    Toast.makeText(this,"Email enviado", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this.progress,"Email enviado", Toast.LENGTH_LONG).show()
+                    correctEmail = true
                 }
                 else {
-                    Toast.makeText(this,"Error al enviar el mail", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this.progress,"Error al enviar el mail", Toast.LENGTH_LONG).show()
+                    correctEmail = false
                 }
             }
+        return correctEmail
 
     }
 
     fun anarServei(view: View) {
         createNewAccount()
-        var intent = Intent(this, FoodClient::class.java)
-        startActivity(intent)
+        if (itsClient) {
+            var intent = Intent(this,MainClient::class.java)
+            startActivity(intent)
+        } else {
+            var intent = Intent(this,MainTrainer::class.java)
+            startActivity(intent)
+        }
     }
 
     fun goback(view: View) {
