@@ -77,6 +77,11 @@ class Signup : AppCompatActivity() {
                         val userBD = dbReference.child(user?.uid!!)
                         userBD.child("Name").setValue(name)
                         userBD.child("UserName").setValue(username)
+                        if(itsClient){
+                            userBD.child("Type").setValue("Client")
+                        }else {
+                            userBD.child("Type").setValue("Trainer")
+                        }
                         var intent = Intent(this, Login::class.java)
                         startActivity(intent)
 
