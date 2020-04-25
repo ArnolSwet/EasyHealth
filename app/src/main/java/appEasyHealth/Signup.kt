@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appEasyHealth.Login
 import com.example.appEasyHealth.MainClient
 import com.example.appEasyHealth.MainTrainer
 import com.example.appEasyHealth.WaitingProgress
@@ -60,8 +62,8 @@ class Signup : AppCompatActivity() {
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && pass == repeatPass) {
 
-            //var intentProgress = Intent(this.progress.intent)
-            //startActivity(intentProgress)
+            var intentProgress = Intent(this,WaitingProgress::class.java)
+            startActivity(intentProgress)
 
             auth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener {
@@ -70,42 +72,38 @@ class Signup : AppCompatActivity() {
 
                     if (task.isComplete) {
                         val user:FirebaseUser?=auth.currentUser
-                        // Fins que no es verifica el Email, no continua. Ho comento
-                        sendEmail(user)
-                        val userBD = dbReference.child(user?.uid!!)
-                        userBD.child("Name").setValue(name)
-                        userBD.child("UserName").setValue(username)
-                        if (itsClient) {
-                            userBD.child("Type").setValue("Client")
-                            var intent = Intent(this, MainClient::class.java)
-                            startActivity(intent)
-                        } else {
-                            userBD.child("Type").setValue("Trainer")
-                            var intent = Intent(this, MainTrainer::class.java)
-                            startActivity(intent)
+                        // Fins que no s'envia correctament el Email, no continua. Ho comento
+                        if(sendEmail(user)) {
+                            val userBD = dbReference.child(user?.uid!!)
+                            userBD.child("Name").setValue(name)
+                            userBD.child("UserName").setValue(username)
                         }
+                        var intent = Intent(this, Login::class.java)
+                        startActivity(intent)
 
                     }
             }
 
-        } else if (pass != repeatPass) {
-            Toast.makeText(this,"Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
+        }else if(pass != repeatPass){
+            Toast.makeText(applicationContext,"Passwords does not match", Toast.LENGTH_SHORT).show()
+        } else{
+            Toast.makeText(applicationContext,"Please fill all the fields", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun sendEmail(user: FirebaseUser?): Boolean {
-        Toast.makeText(this,"Enviando email", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext,"Sending mail", Toast.LENGTH_SHORT).show()
         var correctEmail : Boolean = false
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
                 task ->
 
                 if (task.isComplete) {
-                    Toast.makeText(this,"Email enviado", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"Verify your mail", Toast.LENGTH_LONG).show()
                     correctEmail = true
                 }
                 else {
-                    Toast.makeText(this,"Error al enviar el mail", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"Error sending the mail", Toast.LENGTH_LONG).show()
                     correctEmail = false
                 }
             }
