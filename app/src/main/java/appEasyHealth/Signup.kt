@@ -73,11 +73,10 @@ class Signup : AppCompatActivity() {
                     if (task.isComplete) {
                         val user:FirebaseUser?=auth.currentUser
                         // Fins que no s'envia correctament el Email, no continua. Ho comento
-                        if(sendEmail(user)) {
-                            val userBD = dbReference.child(user?.uid!!)
-                            userBD.child("Name").setValue(name)
-                            userBD.child("UserName").setValue(username)
-                        }
+                        sendEmail(user)
+                        val userBD = dbReference.child(user?.uid!!)
+                        userBD.child("Name").setValue(name)
+                        userBD.child("UserName").setValue(username)
                         var intent = Intent(this, Login::class.java)
                         startActivity(intent)
 
