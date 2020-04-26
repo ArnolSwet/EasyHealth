@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:text="Victor Bolwjin"
+                android:text="@string/client_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="25dp" />
@@ -116,7 +116,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliSubscription"
-                    android:text="Advanced"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/subscriptionClient"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#595454"
                     android:textSize="23dp" />
@@ -126,8 +129,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="51dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@+id/txtCliSubscription"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/txtCliSubscription"
                     app:srcCompat="@android:drawable/status_bar_item_background"
                     tools:srcCompat="#595454" />
 
@@ -135,32 +138,31 @@
                     android:id="@+id/txtCliHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="6dp"
-                    android:layout_toRightOf="@+id/imageViewLine"
                     android:text="@string/CFT_CliHeight"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtCliHeightNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliHeight"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@+id/imageViewLine"
-                    android:text="1,77"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/client_height"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#595454"
-                    android:textSize="23dp" />
+                    android:textSize="23sp" />
 
                 <ImageView
                     android:id="@+id/imageViewLine2"
                     android:layout_width="wrap_content"
                     android:layout_height="51dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@+id/txtCliHeight"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/txtCliHeight"
                     app:srcCompat="@android:drawable/status_bar_item_background"
                     tools:srcCompat="#595454" />
 
@@ -168,24 +170,25 @@
                     android:id="@+id/txtCliWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="6dp"
-                    android:layout_toRightOf="@+id/imageViewLine2"
+                    android:layout_toEndOf="@+id/imageViewLine2"
                     android:text="@string/CFT_CliWeight"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtCliWeightNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliHeight"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@+id/imageViewLine2"
-                    android:text="80"
+                    android:layout_marginStart="60dp"
+                    android:layout_toEndOf="@+id/imageViewLine2"
+                    android:text="@string/client_weight"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#595454"
-                    android:textSize="23dp" />
+                    android:textSize="23sp" />
 
             </RelativeLayout>
 

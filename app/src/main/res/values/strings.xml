@@ -122,5 +122,9 @@
     <string name="height">ND</string>
     <string name="weight">ND</string>
     <string name="availability">ND</string>
+    <string name="client_name">Not Defined</string>
+    <string name="subscriptionClient">--</string>
+    <string name="client_height">--</string>
+    <string name="client_weight">--</string>
 
 </resources>
