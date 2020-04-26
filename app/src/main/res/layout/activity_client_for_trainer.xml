@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ClientForTrainer">
+    tools:context="com.example.appEasyHealth.ClientForTrainer">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,8 +57,8 @@
             <ImageView
                 android:id="@+id/imageViewAvatar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_height="160dp"
+                android:layout_marginTop="20dp"
                 app:srcCompat="@drawable/empty_avatar" />
 
             <TextView
@@ -202,9 +202,9 @@
 
                     android:layout_toRightOf="@+id/txtCliMeals"
                     android:backgroundTint="@android:color/holo_blue_light"
+                    android:onClick="goFoodClient"
                     android:text="See All"
-                    android:textColor="@android:color/white"
-                    android:onClick="goFoodClient"/>
+                    android:textColor="@android:color/white" />
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
             </RelativeLayout>
 
@@ -315,11 +315,11 @@
                     android:id="@+id/imageButtonStats"
                     android:layout_width="173dp"
                     android:layout_height="103dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/txtTrainingOpt"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/client_stat"
-                    android:onClick="statistics"/>
+                    android:onClick="statistics"
+                    app:srcCompat="@drawable/client_stat" />
 
                 <TextView
                     android:id="@+id/txtButtonStats"
@@ -376,7 +376,6 @@
                     android:textSize="15dp" />
 
             </RelativeLayout>
-
 
 
         </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/signup_layout"
-    tools:context=".Signup">
+    tools:context="appEasyHealth.Signup">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -89,7 +89,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEdBreak"
+            android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Name"
@@ -116,7 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameBreak">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userEdBreak"
+            android:id="@+id/txtUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="5"
@@ -147,7 +147,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEdBreak"
+            android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Email"
@@ -174,7 +174,7 @@
     app:layout_constraintTop_toBottomOf="@+id/emailBreak">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/passEdBreak"
+        android:id="@+id/txtPass"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:ems="5"
@@ -204,7 +204,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passBreak">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pass2EdBreak"
+            android:id="@+id/txtRepeatPass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="5"
@@ -228,7 +228,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="@android:color/holo_blue_light"
-        android:onClick="anarmain"
+        android:onClick="anarServei"
         android:text="@string/SignUp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"

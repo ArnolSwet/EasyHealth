@@ -8,31 +8,32 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".SettingsClient">
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="com.example.appEasyHealth.SettingsClient">
         </activity>
-        <activity android:name=".SettingsTrainer"/>
-        <activity android:name=".ReservedClasses" />
-        <activity android:name=".MainClient" />
-        <activity android:name=".Signup" />
-        <activity android:name=".ClientForTrainer" />
-        <activity android:name=".PersonalDiet" />
-        <activity android:name=".YourClasses" />
-        <activity android:name=".PersonalDietTrainer" />
-        <activity android:name=".FoodClient" />
-        <activity android:name=".FoodTrainer" />
-        <activity android:name=".Chat" />
-        <activity android:name=".AddFood" />
-        <activity android:name=".MakeADiet" />
-        <activity android:name=".Statistics" />
-        <activity android:name=".Login">
+        <activity android:name="com.example.appEasyHealth.SettingsTrainer"/>
+        <activity android:name="com.example.appEasyHealth.ReservedClasses" />
+        <activity android:name="com.example.appEasyHealth.MainClient" />
+        <activity android:name="appEasyHealth.Signup" />
+        <activity android:name="com.example.appEasyHealth.ClientForTrainer" />
+        <activity android:name="com.example.appEasyHealth.PersonalDiet" />
+        <activity android:name="com.example.appEasyHealth.YourClasses" />
+        <activity android:name="com.example.appEasyHealth.PersonalDietTrainer" />
+        <activity android:name="com.example.appEasyHealth.FoodClient" />
+        <activity android:name="com.example.appEasyHealth.FoodTrainer" />
+        <activity android:name="com.example.appEasyHealth.Chat" />
+        <activity android:name="com.example.appEasyHealth.AddFood" />
+        <activity android:name="com.example.appEasyHealth.MakeADiet" />
+        <activity android:name="com.example.appEasyHealth.Statistics" />
+        <activity android:name="com.example.appEasyHealth.WaitingProgress" />
+        <activity android:name="com.example.appEasyHealth.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainTrainer"/>
+        <activity android:name="com.example.appEasyHealth.MainTrainer"/>
     </application>
 
 </manifest>

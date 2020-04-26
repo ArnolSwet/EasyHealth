@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <MultiSelectListPreference
+        android:dialogTitle="Select your availability"
+        android:entries="@array/classAvailability"
+        android:entryValues="@array/classAvailability"
+        android:key="availability"
+        android:title="Class availability"
+        android:summary="@string/availability"/>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="notif"
+        android:title="Allow Notifications" />
+
+</PreferenceScreen>
