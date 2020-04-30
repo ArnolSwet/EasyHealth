@@ -8,13 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.example.appEasyHealth.SettingsClient">
         </activity>
         <activity android:name="com.example.appEasyHealth.SettingsTrainer"/>
         <activity android:name="com.example.appEasyHealth.ReservedClasses" />
         <activity android:name="com.example.appEasyHealth.MainClient" />
-        <activity android:name="com.example.appEasyHealth.Signup" />
+        <activity android:name="appEasyHealth.Signup" />
         <activity android:name="com.example.appEasyHealth.ClientForTrainer" />
         <activity android:name="com.example.appEasyHealth.PersonalDiet" />
         <activity android:name="com.example.appEasyHealth.YourClasses" />

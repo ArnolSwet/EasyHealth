@@ -66,7 +66,6 @@
     <string-array name="classAvailability">
         <item>Morning</item>
         <item>Afternoon</item>
-        <item>All day</item>
     </string-array>
 
     <string name="CFT_CliName">Michael Adams</string>
@@ -120,5 +119,12 @@
     <string name="MT_YourClasses">Your classes</string>
     <string name="EasyHealth">EASY HEALTH</string>
     <string name="SignUp">Sign Up</string>
+    <string name="height">ND</string>
+    <string name="weight">ND</string>
+    <string name="availability">ND</string>
+    <string name="client_name">Not Defined</string>
+    <string name="subscriptionClient">--</string>
+    <string name="client_height">--</string>
+    <string name="client_weight">--</string>
 
 </resources>

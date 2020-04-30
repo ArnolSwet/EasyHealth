@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import appEasyHealth.Signup
 import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class Login : AppCompatActivity() {
 
@@ -34,15 +36,20 @@ class Login : AppCompatActivity() {
                 .addOnCompleteListener(this){
                     task ->
                     if(task.isSuccessful){
-                        action()
+                        val user: FirebaseUser? = auth.currentUser
+                        if (user?.isEmailVerified!!){
+                            action(user)
+                        }else {
+                            Toast.makeText(this,"Please, verify you email",Toast.LENGTH_LONG).show()
+                        }
                     }else{
-                        Toast.makeText(this,"Error en la autenticación",Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,"Error on authentication",Toast.LENGTH_LONG).show()
                     }
                 }
         }
     }
 
-    private fun action() {
+    private fun action(user: FirebaseUser?) {
         val intent = Intent(this, MainClient::class.java)
         startActivity(intent)
     }
@@ -50,7 +57,5 @@ class Login : AppCompatActivity() {
     fun anarSignup(view: View) {
         val intent = Intent(this, Signup::class.java)
         startActivity(intent)
-        txtName = findViewById(R.id.nameEdBreak)
-        txtUser = findViewById(R.id.calEdBreak)
     }
 }

@@ -1,5 +1,8 @@
 package com.example.appEasyHealth
 
+import appEasyHealth.Logica.Usuari
+
+
 class Trainer constructor(private var id: Int, private var suscription: String, private var notificacio: Boolean,
                           private var llistaClients: ArrayList<Client>, private var classesReservades: ArrayList<ReservedClasses>) {
 
