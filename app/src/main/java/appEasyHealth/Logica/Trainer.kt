@@ -1,47 +1,51 @@
 package com.example.appEasyHealth
 
+import android.content.Context
+import android.widget.Toast
 import appEasyHealth.Logica.Usuari
+import com.google.firebase.database.*
 
 
-class Trainer constructor(private var id: Int, private var suscription: String, private var notificacio: Boolean,
-                          private var llistaClients: ArrayList<Client>, private var classesReservades: ArrayList<ReservedClasses>) {
+data class Trainer (
+    override var name: String? = "",
+    override var username: String? = "",
+    override var email: String? = "",
+    override var id: String? = "",
+    override var notif : Boolean? = false,
+    var disponibility : String? = "All",
+    var llistaClients: MutableList<Client>? = ArrayList()
+    ) : Usuari(name, username, email, id) {
 
-    fun setId(id: Int) {
-        this.id = id
+    fun addClient(id: String) : Boolean {
+        var pass : Boolean = false
+        var database : FirebaseDatabase = FirebaseDatabase.getInstance()
+        var reference :DatabaseReference = database.getReference("User")
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                println("Failed to add Client: " + p0.code)
+                pass = false
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                for (snapshot : DataSnapshot in p0.children) {
+                    var client : Client = snapshot.getValue() as Client
+                    if (client.id == id) {
+                        llistaClients?.plusAssign(client)
+                        pass = true
+                        break
+                    } else {
+                         pass = false
+                    }
+                }
+            }
+        })
+        return pass
     }
 
-    fun getId(): Int {
-        return this.id
+    fun deleteClient(client: Client) {
+        this.llistaClients?.remove(client)
     }
 
-    fun setSuscription(id: String) {
-        this.suscription = suscription
-    }
-
-    fun getSuscription(): String {
-        return this.suscription
-    }
-
-    fun setLlistaClients(llistaClients: ArrayList<Client>) {
-        this.llistaClients = llistaClients
-    }
-
-    fun getLlistaClients(): ArrayList<Client> {
-        return this.llistaClients
-    }
-
-    fun setClassesReservades(classesReservades: ArrayList<ReservedClasses>) {
-        this.classesReservades = classesReservades
-    }
-
-    fun getClassesReservades(): ArrayList<ReservedClasses> {
-        return this.classesReservades
-    }
-
-    // fun addClient
-    // fun deleteClient
-    // fun addClassesRev
-    // fun deleteClassesRev
     // fun addPersonalDiet
     // fun removePersonalDiet
 

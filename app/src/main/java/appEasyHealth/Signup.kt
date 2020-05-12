@@ -7,10 +7,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.appEasyHealth.Login
-import com.example.appEasyHealth.MainClient
-import com.example.appEasyHealth.MainTrainer
-import com.example.appEasyHealth.WaitingProgress
+import appEasyHealth.Logica.Usuari
+import com.example.appEasyHealth.*
 import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -72,15 +70,13 @@ class Signup : AppCompatActivity() {
 
                     if (task.isComplete) {
                         val user:FirebaseUser?=auth.currentUser
-                        // Fins que no s'envia correctament el Email, no continua. Ho comento
                         sendEmail(user)
-                        val userBD = dbReference.child(user?.uid!!)
-                        userBD.child("Name").setValue(name)
-                        userBD.child("UserName").setValue(username)
                         if(itsClient){
-                            userBD.child("Type").setValue("Client")
+                            val userDB = Client(name,username,email, user?.uid?.subSequence(0,4).toString())
+                            dbReference.child(user!!.uid).setValue(userDB)
                         }else {
-                            userBD.child("Type").setValue("Trainer")
+                            val userDB = Trainer(name,username,email, user?.uid?.subSequence(0,4).toString())
+                            dbReference.child(user!!.uid).setValue(userDB)
                         }
                         var intent = Intent(this, Login::class.java)
                         startActivity(intent)
