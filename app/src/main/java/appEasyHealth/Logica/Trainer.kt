@@ -28,8 +28,8 @@ data class Trainer (
 
             override fun onDataChange(p0: DataSnapshot) {
                 for (snapshot : DataSnapshot in p0.children) {
-                    var client : Client = snapshot.getValue() as Client
-                    if (client.id == id) {
+                    val client = snapshot.getValue(Client::class.java)
+                    if (client?.id == id) {
                         llistaClients?.plusAssign(client)
                         pass = true
                         break

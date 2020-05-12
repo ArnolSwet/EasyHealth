@@ -25,11 +25,11 @@ data class Client(
         this.foodlist?.remove(food)
     }
     fun addReservedClass(hora:String, date: String) {
-        val gymClass : GymClass? = this.trainer?.let { GymClass(hora,date, it,this) }
-        if (gymClass != null) {
+        val gymClass : GymClass? = GymClass(hora,date, this.trainer,this)
+        if (gymClass?.trainer != null) {
             super.addReservedClass(gymClass)
         }else {
-            println("No trainer select")
+            println("No trainer syncronized")
         }
     }
 
