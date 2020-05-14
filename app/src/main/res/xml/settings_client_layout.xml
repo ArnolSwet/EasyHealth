@@ -6,8 +6,9 @@
         android:dialogTitle="Enter your Height"
         android:key="height"
         android:theme="@style/EditText"
-        android:inputType="numberDecimal"
+        android:inputType="textPassword"
         android:summary="@string/height"
+        android:defaultValue="ND"
         android:layout_width="match_parent"
         android:title="Height(m)" />
 
@@ -15,6 +16,7 @@
         android:id="@+id/txtWeightSet"
         android:dialogTitle="Enter your Weight"
         android:key="weight"
+        android:defaultValue="ND"
         android:theme="@style/EditText"
         android:inputType="numberDecimal"
         android:summary="@string/weight"

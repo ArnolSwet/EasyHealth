@@ -3,6 +3,7 @@ package com.example.appEasyHealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.media.Image
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -21,6 +22,7 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
+    private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,10 @@ class MainClient : AppCompatActivity() {
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+        var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
+        var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
+        foodList.plusAssign(food)
+        foodList.plusAssign(food2)
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
@@ -41,7 +47,9 @@ class MainClient : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val client  = p0.getValue(Client::class.java)
+                val client  = p0.getValue(Client::class.java)!!
+                userDB.child("foodlist").setValue(foodList)
+
                 if (client?.name != null) {
                     txtName.text = client.name
                 }

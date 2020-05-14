@@ -157,8 +157,9 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
         private fun bindPreferenceSummaryToValue(
             preference: Preference
         ) {
-
+            PreferenceManager.setDefaultValues(preference.context,R.xml.settings_client_layout,true)
             preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
+
 
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     PreferenceManager

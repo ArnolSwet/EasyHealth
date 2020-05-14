@@ -33,6 +33,16 @@ data class Client(
         }
     }
 
+    fun getFoodListonDay(date: String) : List<Food> {
+        val foodForDay : MutableList<Food> = ArrayList()
+        for (food in this.foodlist!!) {
+            if (food.date == date) {
+                foodForDay += food
+            }
+        }
+        return foodForDay
+    }
+
 }
 
 

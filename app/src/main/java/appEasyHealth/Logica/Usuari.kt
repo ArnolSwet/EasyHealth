@@ -11,7 +11,6 @@ open class Usuari(
     open var id: String? = "",
     open var notif: Boolean? = false
 ) {
-
     private val classesReservades: MutableList<GymClass> = ArrayList()
 
     open fun addReservedClass(rClass:GymClass){
