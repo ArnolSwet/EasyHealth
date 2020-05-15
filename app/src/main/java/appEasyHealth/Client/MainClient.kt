@@ -3,6 +3,7 @@ package com.example.appEasyHealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.media.Image
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -17,10 +18,11 @@ class MainClient : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var name:  TextView
-    private lateinit var suscription: TextView
-    private lateinit var weight: TextView
-    private lateinit var height: TextView
+    private lateinit var txtName:  TextView
+    private lateinit var txtSuscription: TextView
+    private lateinit var txtWeight: TextView
+    private lateinit var txtHeight: TextView
+    private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,46 +30,38 @@ class MainClient : AppCompatActivity() {
         databaseReference = database.getReference("User")
         auth = FirebaseAuth.getInstance()
         val user:FirebaseUser? = auth.currentUser
-        val userdB = databaseReference.child(user?.uid!!)
-        val nameClient = userdB.child("Name")
-        val weightClient = userdB.child("Weight")
-        val heightClient = userdB.child("Height")
+        val userDB = databaseReference.child(user?.uid!!)
         setContentView(R.layout.activity_main_client)
-        name = findViewById(R.id.txtClientName)
-        suscription = findViewById(R.id.txtCliSubscriptionNum)
-        weight = findViewById(R.id.txtCliWeightNum)
-        height = findViewById(R.id.txtCliHeightNum)
-        nameClient.addValueEventListener(object : ValueEventListener {
+        txtName = findViewById(R.id.txtClientName)
+        txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
+        txtWeight = findViewById(R.id.txtCliWeightNum)
+        txtHeight = findViewById(R.id.txtCliHeightNum)
+        var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
+        var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
+        foodList.plusAssign(food)
+        foodList.plusAssign(food2)
+        userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
 
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                if (p0.value != null) {
-                    name.text = p0.value.toString()
+                val client  = p0.getValue(Client::class.java)!!
+                userDB.child("foodlist").setValue(foodList)
+
+                if (client?.name != null) {
+                    txtName.text = client.name
                 }
-            }
-        })
-        weightClient.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
-
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0.value != null) weight.text = p0.value.toString()
-
-            }
-        })
-        heightClient.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
-
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0.value != null)height.text = p0.value.toString()
+                if (client?.weight != null) {
+                    txtWeight.text = client.weight.toString()
+                }
+                if (client?.height != null) {
+                    txtHeight.text = client.height.toString()
+                }
+                if (client?.suscription != null) {
+                    txtSuscription.text = client.suscription
+                }
             }
         })
     }

@@ -2,23 +2,28 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
+        android:id="@+id/txtHeightSet"
         android:dialogTitle="Enter your Height"
         android:key="height"
         android:theme="@style/EditText"
-        android:inputType="numberDecimal"
+        android:inputType="textPassword"
         android:summary="@string/height"
+        android:defaultValue="ND"
         android:layout_width="match_parent"
         android:title="Height(m)" />
 
     <EditTextPreference
+        android:id="@+id/txtWeightSet"
         android:dialogTitle="Enter your Weight"
         android:key="weight"
+        android:defaultValue="ND"
         android:theme="@style/EditText"
         android:inputType="numberDecimal"
         android:summary="@string/weight"
         android:title="Weight(Kg)" />
 
     <SwitchPreference
+        android:id="@+id/swNotifSet"
         android:defaultValue="false"
         android:key="notif"
         android:title="Allow Notifications" />

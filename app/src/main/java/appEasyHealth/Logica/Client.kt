@@ -1,62 +1,47 @@
 package com.example.appEasyHealth
 
-class Client constructor(private var id: Int, private var suscription: String, private var high: Float,
-                         private var weight: Float, private var llistaMenjar: ArrayList<Food>, private var classesReservades: ArrayList<ReservedClasses>, private var notific: Boolean) {
+import appEasyHealth.Logica.GymClass
+import appEasyHealth.Logica.Usuari
 
-    fun setId(id: Int) {
-        this.id = id
+data class Client(
+    override var name: String? = "",
+    override var username: String? = "",
+    override var email: String? = "",
+    override var id: String? = "",
+    var suscription: String? = "Basic",
+    val trainer: Trainer? = null,
+    var height: Double? = null,
+    var weight: Double? = null,
+    override var notif: Boolean? = false,
+    var foodlist: MutableList<Food>? = ArrayList()
+    ) : Usuari(name, username, email, id) {
+
+
+    fun addFood(food: Food) {
+        this.foodlist?.plusAssign(food)
     }
 
-    fun getId(): Int {
-        return this.id
+    fun deleteFood(food: Food) {
+        this.foodlist?.remove(food)
+    }
+    fun addReservedClass(hora:String, date: String) {
+        val gymClass : GymClass? = GymClass(hora,date, this.trainer,this)
+        if (gymClass?.trainer != null) {
+            super.addReservedClass(gymClass)
+        }else {
+            println("No trainer syncronized")
+        }
     }
 
-    fun setSuscription(id: String) {
-        this.suscription = suscription
+    fun getFoodListonDay(date: String) : List<Food> {
+        val foodForDay : MutableList<Food> = ArrayList()
+        for (food in this.foodlist!!) {
+            if (food.date == date) {
+                foodForDay += food
+            }
+        }
+        return foodForDay
     }
-
-    fun getSuscription(): String {
-        return this.suscription
-    }
-
-
-    fun setHigh(high: Float) {
-        this.high = high
-    }
-
-    fun getHigh(): Float {
-        return this.high
-    }
-
-    fun setWeight(weight: Float) {
-        this.weight = weight
-    }
-
-    fun getWeight(): Float {
-        return this.weight
-    }
-
-    fun setNotif(notific: Boolean) {
-        this.notific = notific
-    }
-
-    fun getNotific(): Boolean {
-        return this.notific
-    }
-
-    // fun addFood
-    // fun deleteFood
-    // fun addClasses
-    // fun removeClasses
-
-
-
-
-
-
-
-
-
 
 }
 
