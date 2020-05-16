@@ -123,8 +123,6 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
 
     }
 
-
-
     fun goBack(view: View) {
         finish()
     }
