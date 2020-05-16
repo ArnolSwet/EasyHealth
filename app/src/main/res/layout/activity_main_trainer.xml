@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliSubscription"
-                    android:text="@string/MT_NumClases"
+                    android:text="--"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#595454"
                     android:textSize="23dp" />
@@ -149,7 +149,7 @@
                     android:layout_below="@+id/txtCliHeight"
                     android:layout_marginLeft="30dp"
                     android:layout_toRightOf="@+id/imageViewLine"
-                    android:text="@string/MT_NumMessages"
+                    android:text="--"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#595454"
                     android:textSize="23dp" />
