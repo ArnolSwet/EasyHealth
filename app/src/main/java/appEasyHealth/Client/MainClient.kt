@@ -36,10 +36,12 @@ class MainClient : AppCompatActivity() {
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+
         var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
         var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
         foodList.plusAssign(food)
         foodList.plusAssign(food2)
+
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()

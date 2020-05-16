@@ -19,7 +19,7 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtMssgs:  TextView
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
-    private val llistaClients: ArrayList<Client> = ArrayList()
+    //private val llistaClients: ArrayList<Client> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +30,23 @@ class MainTrainer : AppCompatActivity() {
         val userDB = databaseReference.child(user?.uid!!)
         setContentView(R.layout.activity_main_trainer)
 
-        R.string.MT_NumClients
-
         // Canviar Nom Variables arreglar
+        txtName = findViewById(R.id.txtClientName)
         txtNumClass = findViewById(R.id.txtCliSubscriptionNum)
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
 
-        var client1 = Client("erni", "theboss" ,"ernietheboss@gmail.com", "322", "Premium", null, null, null, false, null)
-        var client2 = Client("viki", "elvikingo" ,"veikingo@gmail.com", "32322", "Standard", null, null, null, false, null)
-        llistaClients.plusAssign(client1)
-        llistaClients.plusAssign(client2)
+        userDB.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val trainer = p0.getValue(Trainer::class.java)!!
+                trainer.addClient("5Cby")
+            }
+        })
+
 
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -48,22 +54,11 @@ class MainTrainer : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val trainer  = p0.getValue(Trainer::class.java)!!
-                userDB.child("clientList").setValue(llistaClients)
-                /*
+                val trainer = p0.getValue(Trainer::class.java)!!
+                txtNumClients.text = trainer.llistaClients?.size.toString()
                 if (trainer?.name != null) {
-                    txtName.text = client.name
+                    txtName.text = trainer.name
                 }
-                if (client?.weight != null) {
-                    txtWeight.text = client.weight.toString()
-                }
-                if (client?.height != null) {
-                    txtHeight.text = client.height.toString()
-                }
-                if (client?.suscription != null) {
-                    txtSuscription.text = client.suscription
-                }
-                */
             }
         })
     }

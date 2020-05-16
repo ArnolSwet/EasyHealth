@@ -3,6 +3,8 @@ package com.example.appEasyHealth
 import android.content.Context
 import android.widget.Toast
 import appEasyHealth.Logica.Usuari
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 
@@ -21,7 +23,11 @@ data class Trainer (
         var pass : Boolean = false
         var database : FirebaseDatabase = FirebaseDatabase.getInstance()
         var reference :DatabaseReference = database.getReference("User")
-        reference.addValueEventListener(object : ValueEventListener {
+        // Afegir client a usuari trainer
+        var auth : FirebaseAuth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth.currentUser
+        var userTrainer = reference.child(user?.uid!!)
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 println("Failed to add Client: " + p0.code)
                 pass = false
@@ -32,13 +38,12 @@ data class Trainer (
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == id) {
                         llistaClients?.plusAssign(client)
+                        userTrainer.child("llistaClients").setValue(llistaClients)
                         val userDB = reference.child(snapshot.key!!)
                         userDB.child("trainer").setValue(this@Trainer)
                         pass = true
-                        break
-                    } else {
-                         pass = false
                     }
+                    if (pass) break
                 }
             }
         })
