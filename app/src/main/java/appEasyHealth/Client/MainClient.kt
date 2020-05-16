@@ -62,6 +62,9 @@ class MainClient : AppCompatActivity() {
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
                 }
+                if (client?.trainer != null) {
+                    Toast.makeText(applicationContext, client?.trainer!!.name, Toast.LENGTH_SHORT).show()
+                }
             }
         })
     }

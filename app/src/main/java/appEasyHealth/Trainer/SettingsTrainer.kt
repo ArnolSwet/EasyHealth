@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.preference.EditTextPreference
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
@@ -15,15 +17,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
-class SettingsTrainer : AppCompatActivity() {
+class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var trainer: Trainer
     private lateinit var userDB: DatabaseReference
-    private lateinit var txtID: TextInputEditText
-    private val TAG_TITLE = "SETTINGS_TRAINER"
+    private lateinit var txtID: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,21 @@ class SettingsTrainer : AppCompatActivity() {
                 trainer  = p0.getValue(Trainer::class.java)!!
             }
         })
+
+        if(savedInstanceState == null){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.content_settings, SettingsTrainer.TrainerPreference())
+                .commit()
+        }else{
+            title = savedInstanceState.getCharSequence(SettingsTrainer.TAG_TITLE)
+        }
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount == 0){
+                setTitle(R.string.ClientSettings)
+            }
+        }
 
     }
 
@@ -74,6 +90,38 @@ class SettingsTrainer : AppCompatActivity() {
         }
     }
 
+    override fun onPreferenceStartFragment(
+        caller: PreferenceFragmentCompat?,
+        pref: Preference?
+    ): Boolean {
+
+        val args = pref?.extras
+        val fragment = pref?.fragment?.let {
+            supportFragmentManager.fragmentFactory.instantiate(
+                classLoader,
+                it
+            ).apply {
+                arguments = args
+                setTargetFragment(caller,0)
+            }
+        }
+
+        fragment?.let {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.content_settings,it)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        title = pref?.title
+        return true
+    }
+
+    companion object {
+
+        private val TAG_TITLE = "SETTINGS_TRAINER"
+
+    }
 
 
 

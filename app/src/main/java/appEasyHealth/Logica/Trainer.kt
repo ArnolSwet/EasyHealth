@@ -12,6 +12,7 @@ data class Trainer (
     override var email: String? = "",
     override var id: String? = "",
     override var notif : Boolean? = false,
+    override var type: String? = "Trainer",
     var disponibility : String? = "All",
     var llistaClients: MutableList<Client>? = ArrayList()
     ) : Usuari(name, username, email, id) {
@@ -31,7 +32,8 @@ data class Trainer (
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == id) {
                         llistaClients?.plusAssign(client)
-                        client?.trainer = this@Trainer //com guardar aixo a la db?
+                        val userDB = reference.child(snapshot.key!!)
+                        userDB.child("trainer").setValue(this@Trainer)
                         pass = true
                         break
                     } else {

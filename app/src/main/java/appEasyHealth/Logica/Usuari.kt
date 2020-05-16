@@ -9,7 +9,8 @@ open class Usuari(
     open var username: String? = "",
     open var email: String? = "",
     open var id: String? = "",
-    open var notif: Boolean? = false
+    open var notif: Boolean? = false,
+    open var type: String? = ""
 ) {
     private val classesReservades: MutableList<GymClass> = ArrayList()
 

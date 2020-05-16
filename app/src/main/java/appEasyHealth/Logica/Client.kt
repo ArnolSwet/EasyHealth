@@ -8,6 +8,7 @@ data class Client(
     override var username: String? = "",
     override var email: String? = "",
     override var id: String? = "",
+    override var type: String? = "Client",
     var suscription: String? = "Basic",
     var trainer: Trainer? = null,
     var height: Double? = null,
