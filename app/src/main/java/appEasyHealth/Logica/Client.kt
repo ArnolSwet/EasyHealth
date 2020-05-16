@@ -9,7 +9,7 @@ data class Client(
     override var email: String? = "",
     override var id: String? = "",
     var suscription: String? = "Basic",
-    val trainer: Trainer? = null,
+    var trainer: Trainer? = null,
     var height: Double? = null,
     var weight: Double? = null,
     override var notif: Boolean? = false,

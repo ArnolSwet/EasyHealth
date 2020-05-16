@@ -31,6 +31,7 @@ data class Trainer (
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == id) {
                         llistaClients?.plusAssign(client)
+                        client?.trainer = this@Trainer //com guardar aixo a la db?
                         pass = true
                         break
                     } else {
