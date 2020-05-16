@@ -10,17 +10,16 @@ import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+
 class MainTrainer : AppCompatActivity() {
-    //atributs
-    /* txtname, llistaclients, txtnumclass, txtdisponib*/
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var txtName:  TextView
-    private lateinit var txtmssgs:  TextView
-    private lateinit var txtnumclas: TextView
-    private lateinit var txtnumclients: TextView
-    private val clientList: ArrayList<Client> = ArrayList()
+    private lateinit var txtMssgs:  TextView
+    private lateinit var txtNumClass: TextView
+    private lateinit var txtNumClients: TextView
+    private val llistaClients: ArrayList<Client> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +30,28 @@ class MainTrainer : AppCompatActivity() {
         val userDB = databaseReference.child(user?.uid!!)
         setContentView(R.layout.activity_main_trainer)
 
-        txtmssgs = findViewById(R.id.txtCliHeightNum)
-        txtnumclas = findViewById(R.id.txtCliSubscriptionNum)
-        txtnumclients = findViewById(R.id.txtCliWeightNum)
-        var client1 = Client("erni", "theboss" ,"ernietheboss@gmail.com", "322", "Premium", "", "Client.", "", "", "")
-        var client2 = Client("viki", "elvikingo" ,"veikingo@gmail.com", "32322", "Standard", "", "Client.", "", "", "")
-        clientList.plusAssign(client1)
-        clientList.plusAssign(client2)
+        R.string.MT_NumClients
+
+        // Canviar Nom Variables arreglar
+        txtNumClass = findViewById(R.id.txtCliSubscriptionNum)
+        txtMssgs = findViewById(R.id.txtCliHeightNum)
+        txtNumClients = findViewById(R.id.txtCliWeightNum)
+
+        var client1 = Client("erni", "theboss" ,"ernietheboss@gmail.com", "322", "Premium", null, null, null, false, null)
+        var client2 = Client("viki", "elvikingo" ,"veikingo@gmail.com", "32322", "Standard", null, null, null, false, null)
+        llistaClients.plusAssign(client1)
+        llistaClients.plusAssign(client2)
 
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
-
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val client  = p0.getValue(Client::class.java)!!
-                userDB.child("foodlist").setValue(foodList)
-
-                if (client?.name != null) {
+                val trainer  = p0.getValue(Trainer::class.java)!!
+                userDB.child("clientList").setValue(llistaClients)
+                /*
+                if (trainer?.name != null) {
                     txtName.text = client.name
                 }
                 if (client?.weight != null) {
@@ -61,52 +63,9 @@ class MainTrainer : AppCompatActivity() {
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
                 }
+                */
             }
         })
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_trainer)
     }
 
     fun goClient(view: View){
