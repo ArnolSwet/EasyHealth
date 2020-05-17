@@ -1,6 +1,5 @@
 package com.example.appEasyHealth
 
-import android.widget.Toast
 import appEasyHealth.Logica.GymClass
 import appEasyHealth.Logica.Usuari
 import com.google.firebase.auth.FirebaseAuth
@@ -73,6 +72,26 @@ data class Trainer (
         if (!exists) {
             this.classesReservades?.plusAssign(rClass)
         }
+    }
+
+    fun getReservedClassesOnDay(date: String) : List<GymClass> {
+        val reservedClasses: MutableList<GymClass> = ArrayList()
+        for (gymClass in super.getClassesOnDay(date)) {
+            if (!(gymClass.clientID?.equals("")!!)) {
+                reservedClasses += gymClass
+            }
+        }
+        return reservedClasses
+    }
+
+    fun cancelReservedClass(gymClass: GymClass) {
+        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        var reference : DatabaseReference = database.getReference("User")
+        var auth : FirebaseAuth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth.currentUser
+        var userDB = reference.child(user?.uid!!)
+        addReservedClass(gymClass)
+        userDB.setValue(this)
     }
 
 

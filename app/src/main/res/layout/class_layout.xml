@@ -33,15 +33,16 @@
 
         </LinearLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnCancel"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginEnd="8dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/btnCancel"
             android:tint="@android:color/holo_blue_light"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-            android:contentDescription="@string/btnCancel" />
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
     </RelativeLayout>
 </RelativeLayout>

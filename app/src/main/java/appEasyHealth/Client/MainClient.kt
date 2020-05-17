@@ -23,7 +23,6 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
-    private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +73,6 @@ class MainClient : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val client  = p0.getValue(Client::class.java)!!
-                userDB.child("foodlist").setValue(foodList)
 
                 if (client?.name != null) {
                     txtName.text = client.name
@@ -87,9 +85,6 @@ class MainClient : AppCompatActivity() {
                 }
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
-                }
-                if (client?.trainer != null) {
-                    Toast.makeText(applicationContext, client?.trainer!!.name, Toast.LENGTH_SHORT).show()
                 }
             }
         })
