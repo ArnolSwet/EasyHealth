@@ -18,8 +18,8 @@ data class Trainer (
     var llistaClients: MutableList<Client>? = ArrayList()
     ) : Usuari(name, username, email, id) {
 
-    fun addClient(id: String) : Boolean {
-        var pass : Boolean = false
+    fun addClient(id: String) : Int {
+        var pass : Int = 0
         var database : FirebaseDatabase = FirebaseDatabase.getInstance()
         var reference :DatabaseReference = database.getReference("User")
         // Afegir client a usuari trainer
@@ -29,7 +29,8 @@ data class Trainer (
         reference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 println("Failed to add Client: " + p0.code)
-                pass = false
+                // Case 0; error en la actualització, o simplement no actualització
+                pass = 0
             }
 
             override fun onDataChange(p0: DataSnapshot) {
@@ -41,12 +42,14 @@ data class Trainer (
                             userTrainer.child("llistaClients").setValue(llistaClients)
                             val userDB = reference.child(snapshot.key!!)
                             userDB.child("trainer").setValue(this@Trainer)
+                            // Case 1; actualizació correcte
+                            pass = 1
                         } else {
-                            //Toast.makeText(this,"This Client already has a Trainer ", Toast.LENGTH_SHORT).show()
+                            // Case 2: no s'ha actualitzat, client existent
+                            pass = 2
                         }
-                        pass = true
                     }
-                    if (pass) break
+                    if (pass != 0) break
                 }
             }
         })

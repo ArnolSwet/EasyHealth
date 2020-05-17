@@ -26,7 +26,7 @@ class MainTrainer : AppCompatActivity() {
     //private val llistaClients: ArrayList<Client> = ArrayList()
 
     // llista de noms client + codi
-    private var clientNames = ArrayList<String>()
+    //private var clientNames = ArrayList<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,20 +46,17 @@ class MainTrainer : AppCompatActivity() {
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
 
-        //Per executar recycleView
-        getClientNames()
-
+        /* PER AFEGIR UN CLIENT AL PRINCIPI DE PROVA
         userDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val trainer = p0.getValue(Trainer::class.java)!!
+                trainer = p0.getValue(Trainer::class.java)!!
                 trainer.addClient("5Cby")
             }
-        })
-
+        })*/
 
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -68,24 +65,28 @@ class MainTrainer : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val trainer = p0.getValue(Trainer::class.java)!!
+                var clientNames = ArrayList<String>()
                 txtNumClients.text = trainer.llistaClients?.size.toString()
                 if (trainer?.name != null) {
                     txtName.text = trainer.name
+                }
+                if (trainer.llistaClients?.size ?: 0 != 0) {
+                    getClientNames(trainer,clientNames)
                 }
             }
         })
     }
 
-    fun getClientNames() {
-        clientNames.add("Joel #45lF")
-        clientNames.add("Arnau #476i")
-        clientNames.add("Victor #0000")
-        clientNames.add("Nachin #A456")
-
-        initReyclerView()
+    fun getClientNames(trainer :Trainer, clientNames :ArrayList<String>) {
+        for (client in trainer.llistaClients!!) {
+            var string = ""
+            string = client.name.toString() + " #" + client.id.toString()
+            if (!clientNames.contains(string)) clientNames.add(string)
+        }
+        initReyclerView(clientNames)
     }
 
-    fun initReyclerView() {
+    fun initReyclerView(clientNames: ArrayList<String>) {
         var managerLayout = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
         var recyclerView =findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = managerLayout

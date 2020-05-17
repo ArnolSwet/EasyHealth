@@ -62,7 +62,19 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
     //Va fora del onCreate?
     fun addClient(view: View){
         val txtClientID:String = txtID.text.toString()
-        trainer.addClient(txtClientID)
+        var res = trainer.addClient(txtClientID)
+
+        /* GESTIO DE TOAST PER COMUNICACIÓ ,ERROR D'EXECUCIO SIMULATNIA ... no envia el toast alhora correcte
+        if (res == 0) {
+            Toast.makeText(this,"Malament...", Toast.LENGTH_SHORT).show()
+        }
+        if (res == 1) {
+            Toast.makeText(this,"Client added succesfully!", Toast.LENGTH_SHORT).show()
+        }
+        if (res == 2) {
+            Toast.makeText(this,"Client already has a Trainer assigned!", Toast.LENGTH_LONG).show()
+        }
+        */
         txtID.text.clear()
     }
 
