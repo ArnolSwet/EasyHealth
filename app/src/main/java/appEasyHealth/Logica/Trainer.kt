@@ -1,6 +1,5 @@
 package com.example.appEasyHealth
 
-import android.content.Context
 import android.widget.Toast
 import appEasyHealth.Logica.Usuari
 import com.google.firebase.auth.FirebaseAuth
@@ -37,10 +36,14 @@ data class Trainer (
                 for (snapshot : DataSnapshot in p0.children) {
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == id) {
-                        llistaClients?.plusAssign(client)
-                        userTrainer.child("llistaClients").setValue(llistaClients)
-                        val userDB = reference.child(snapshot.key!!)
-                        userDB.child("trainer").setValue(this@Trainer)
+                        if (client.trainer == null) {
+                            llistaClients?.plusAssign(client)
+                            userTrainer.child("llistaClients").setValue(llistaClients)
+                            val userDB = reference.child(snapshot.key!!)
+                            userDB.child("trainer").setValue(this@Trainer)
+                        } else {
+                            //Toast.makeText(this,"This Client already has a Trainer ", Toast.LENGTH_SHORT).show()
+                        }
                         pass = true
                     }
                     if (pass) break

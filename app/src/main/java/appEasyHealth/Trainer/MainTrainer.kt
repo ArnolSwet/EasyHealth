@@ -1,15 +1,19 @@
 package com.example.appEasyHealth
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import appEasyHealth.Logica.ClientForTrainerAdapter
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.util.*
 
 class MainTrainer : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
@@ -21,20 +25,29 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtNumClients: TextView
     //private val llistaClients: ArrayList<Client> = ArrayList()
 
+    // llista de noms client + codi
+    private var clientNames = ArrayList<String>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_trainer)
+
         database = FirebaseDatabase.getInstance()
         databaseReference = database.getReference("User")
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
-        setContentView(R.layout.activity_main_trainer)
+
 
         // Canviar Nom Variables arreglar
         txtName = findViewById(R.id.txtClientName)
         txtNumClass = findViewById(R.id.txtCliSubscriptionNum)
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
+
+        //Per executar recycleView
+        getClientNames()
 
         userDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -61,6 +74,23 @@ class MainTrainer : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    fun getClientNames() {
+        clientNames.add("Joel #45lF")
+        clientNames.add("Arnau #476i")
+        clientNames.add("Victor #0000")
+        clientNames.add("Nachin #A456")
+
+        initReyclerView()
+    }
+
+    fun initReyclerView() {
+        var managerLayout = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = managerLayout
+        var adapter = ClientForTrainerAdapter(this, clientNames)
+        recyclerView.adapter = adapter
     }
 
     fun goClient(view: View){
