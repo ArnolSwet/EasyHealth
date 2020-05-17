@@ -25,7 +25,6 @@ class ReservedClasses : AppCompatActivity() {
     private lateinit var dpd : DatePickerDialog
     private lateinit var client: Client
     private lateinit var listClassClient: ListView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance()
@@ -48,7 +47,6 @@ class ReservedClasses : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
 
-
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
@@ -57,6 +55,20 @@ class ReservedClasses : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 client  = p0.getValue(Client::class.java)!!
                 if (client.trainer != null) {
+                    databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                            Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            for (snapshot : DataSnapshot in p0.children) {
+                                val trainerDB = snapshot.getValue(Trainer::class.java)
+                                if (trainerDB?.id == client.trainer!!.id) {
+                                    userDB.child("trainer").setValue(trainerDB)
+                                }
+                            }
+                        }
+                    })
                     classList = client.trainer!!.getClassesOnDay("$formattedDay/$formattedMonth/$formattedYear")
                     listClassClient.adapter = GymAdapterClient(this@ReservedClasses,classList,client)
                 } else {

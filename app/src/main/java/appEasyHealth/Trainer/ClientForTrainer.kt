@@ -21,6 +21,7 @@ class ClientForTrainer : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
+    private lateinit var clientDB: DatabaseReference
     private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,14 +32,14 @@ class ClientForTrainer : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance()
         databaseReference = database.getReference("User")
-        var userDB = databaseReference
+        clientDB = databaseReference
 
         txtName = findViewById(R.id.txtClientName)
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
 
-        userDB.addValueEventListener(object : ValueEventListener {
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
             }
@@ -47,20 +48,29 @@ class ClientForTrainer : AppCompatActivity() {
                 for (snapshot : DataSnapshot in p0.children) {
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == clientID) {
-                        userDB = databaseReference.child(snapshot.key!!)
-                        if (client?.name != null) {
-                            txtName.text = client.name
-                        }
-                        if (client?.weight != null) {
-                            txtWeight.text = client.weight.toString()
-                        }
-                        if (client?.height != null) {
-                            txtHeight.text = client.height.toString()
-                        }
-                        if (client?.suscription != null) {
-                            txtSuscription.text = client.suscription
-                        }
+                        clientDB = databaseReference.child(snapshot.key!!)
                     }
+                }
+            }
+        })
+        clientDB.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val client = p0.getValue(Client::class.java)
+                if (client?.name != null) {
+                    txtName.text = client.name
+                }
+                if (client?.weight != null) {
+                    txtWeight.text = client.weight.toString()
+                }
+                if (client?.height != null) {
+                    txtHeight.text = client.height.toString()
+                }
+                if (client?.suscription != null) {
+                    txtSuscription.text = client.suscription
                 }
             }
         })

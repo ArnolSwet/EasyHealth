@@ -1,15 +1,16 @@
-package com.example.appEasyHealth
+package appEasyHealth.Client
 
 import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.core.view.plusAssign
 import appEasyHealth.Logica.FoodAdapter
+import com.example.appEasyHealth.AddFood
+import com.example.appEasyHealth.Client
+import com.example.appEasyHealth.Food
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -17,7 +18,6 @@ import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class FoodClient : AppCompatActivity() {
 

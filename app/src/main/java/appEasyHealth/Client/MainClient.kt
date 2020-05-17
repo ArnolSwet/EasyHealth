@@ -3,11 +3,10 @@ package com.example.appEasyHealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import android.media.Image
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import appEasyHealth.Client.FoodClient
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -51,12 +50,12 @@ class MainClient : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val client  = p0.getValue(Client::class.java)!!
+                val client = p0.getValue(Client::class.java)!!
                 if (client.getFoodListonDay(formatted).isEmpty()) {
                     var food = Food("Macarrons",25.6,formatted, "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
                     var food2 = Food("Amanida",15.3,formatted, "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
-                    client.foodlist?.plusAssign(food)
-                    client.foodlist?.plusAssign(food2)
+                    client.addFood(food)
+                    client.addFood(food2)
                     userDB.setValue(client)
                 }
 
