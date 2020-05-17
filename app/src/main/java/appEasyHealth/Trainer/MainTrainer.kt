@@ -23,11 +23,6 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtMssgs:  TextView
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
-    //private val llistaClients: ArrayList<Client> = ArrayList()
-
-    // llista de noms client + codi
-    //private var clientNames = ArrayList<String>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

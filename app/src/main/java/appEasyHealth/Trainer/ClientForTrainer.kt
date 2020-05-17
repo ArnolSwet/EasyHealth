@@ -33,7 +33,12 @@ class ClientForTrainer : AppCompatActivity() {
         databaseReference = database.getReference("User")
         var userDB = databaseReference
 
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+        txtName = findViewById(R.id.txtClientName)
+        txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
+        txtWeight = findViewById(R.id.txtCliWeightNum)
+        txtHeight = findViewById(R.id.txtCliHeightNum)
+
+        userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
             }
@@ -43,52 +48,23 @@ class ClientForTrainer : AppCompatActivity() {
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == clientID) {
                         userDB = databaseReference.child(snapshot.key!!)
-                        Toast.makeText(applicationContext, userDB.toString(), Toast.LENGTH_SHORT).show()
+                        if (client?.name != null) {
+                            txtName.text = client.name
+                        }
+                        if (client?.weight != null) {
+                            txtWeight.text = client.weight.toString()
+                        }
+                        if (client?.height != null) {
+                            txtHeight.text = client.height.toString()
+                        }
+                        if (client?.suscription != null) {
+                            txtSuscription.text = client.suscription
+                        }
                     }
                 }
             }
         })
-
-
-        txtName = findViewById(R.id.txtClientName)
-        txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
-        txtWeight = findViewById(R.id.txtCliWeightNum)
-        txtHeight = findViewById(R.id.txtCliHeightNum)
-
-        var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
-        var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
-        foodList.plusAssign(food)
-        foodList.plusAssign(food2)
-
-        userDB.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
-
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                val client  = p0.getValue(Client::class.java)!!
-                userDB.child("foodlist").setValue(foodList)
-
-                if (client?.name != null) {
-                    txtName.text = client.name
-                }
-                if (client?.weight != null) {
-                    txtWeight.text = client.weight.toString()
-                }
-                if (client?.height != null) {
-                    txtHeight.text = client.height.toString()
-                }
-                if (client?.suscription != null) {
-                    txtSuscription.text = client.suscription
-                }
-                if (client?.trainer != null) {
-                    Toast.makeText(applicationContext, client?.trainer!!.name, Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
     }
-
 
     fun goFoodClient(view: View) {
         val intent = Intent(this, FoodTrainer::class.java)
