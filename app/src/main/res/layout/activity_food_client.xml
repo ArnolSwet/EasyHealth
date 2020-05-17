@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.appEasyHealth.FoodClient">
+    tools:context="appEasyHealth.Client.FoodClient">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -43,15 +43,14 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar2" />
 
     <ListView
-        android:id="@+id/classesList"
+        android:id="@+id/foodList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/dietesProvisionals"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imageButtonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -61,5 +60,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/imageButtonCal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
+        android:onClick="calendar"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

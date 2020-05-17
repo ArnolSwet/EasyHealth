@@ -32,14 +32,17 @@
 
         </LinearLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnafegir"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="7dp"
+            android:background="#00FFFFFF"
             android:contentDescription="@string/btnCancel"
+            android:onClick="addClass"
             android:tint="@android:color/holo_blue_light"
             app:srcCompat="@android:drawable/ic_menu_add" />
     </RelativeLayout>

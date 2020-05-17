@@ -65,7 +65,7 @@
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:tint="@android:color/holo_blue_light"
-                app:srcCompat="@android:drawable/btn_default" />
+                app:srcCompat="@drawable/settings" />
 
             <ImageView
                 android:id="@+id/imageViewAvatar"
@@ -117,7 +117,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliSubscription"
                     android:layout_marginTop="1dp"
-                    android:layout_marginLeft="40dp"
                     android:text="@string/subscriptionClient"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -149,7 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliHeight"
-                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/imageViewLine"
                     android:text="@string/client_height"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -182,8 +182,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliHeight"
-                    android:layout_marginStart="60dp"
-                    android:layout_toEndOf="@+id/imageViewLine2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/imageViewLine2"
                     android:text="@string/client_weight"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"

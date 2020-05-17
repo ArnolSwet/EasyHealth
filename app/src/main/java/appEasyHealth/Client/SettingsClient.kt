@@ -5,18 +5,22 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.preference.*
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_statistics.*
 
 class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var txtWeight : EditTextPreference
+    private lateinit var txtClientID : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,35 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
         auth = FirebaseAuth.getInstance()
         val user:FirebaseUser? = auth.currentUser
         userDB = reference.child(user?.uid!!)
+        txtClientID = findViewById(R.id.txtcode)
+        userDB.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val client  = p0.getValue(Client::class.java)
+                if (client?.id != null) {
+                    txtClientID.text = "#" + client.id
+                }
+                /*if (client?.weight != null) {
+                    txtWeight.summary = client.weight.toString()
+                }else {
+                    txtWeight.summary = "ND"
+                }
+                if (client?.height != null) {
+                    txtHeight.summary = client.height.toString()
+                } else {
+                    txtWeight.summary = "ND"
+                }
+                if (client?.notif != null) {
+                    switchNotif.setDefaultValue(client.notif)
+                } else {
+                    switchNotif.setDefaultValue(false)
+                } */
+            }
+        })
 
         if(savedInstanceState == null){
             supportFragmentManager
@@ -97,6 +130,7 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
         private val TAG_TITLE = "SETTINGS_CLIENT"
         private lateinit var userDB: DatabaseReference
 
+
         private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
 
             val stringValue = value.toString()
@@ -105,12 +139,12 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
                 if (!TextUtils.isEmpty(stringValue)) {
                     preference.setSummary(stringValue)
                     if (preference.key == "weight") {
-                        val weight : String = stringValue
-                        userDB.child("Weight").setValue(weight)
+                        val weight = stringValue.toDoubleOrNull()
+                        userDB.child("weight").setValue(weight)
 
                     }else if (preference.key == "height") {
-                        val height : String = stringValue
-                        userDB.child("Height").setValue(height)
+                        val height = stringValue.toDoubleOrNull()
+                        userDB.child("height").setValue(height)
                     }
                 }
             }/*else if (preference is SwitchPreference) {
@@ -123,7 +157,9 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
         private fun bindPreferenceSummaryToValue(
             preference: Preference
         ) {
+            PreferenceManager.setDefaultValues(preference.context,R.xml.settings_client_layout,true)
             preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
+
 
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     PreferenceManager

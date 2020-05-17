@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/empty_avatar" />
+                app:srcCompat="@drawable/user_icon2" />
 
             <TextView
                 android:id="@+id/txtClientName"

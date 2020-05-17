@@ -1,31 +1,37 @@
 package appEasyHealth.Logica
 
+import com.example.appEasyHealth.Client
 import com.example.appEasyHealth.ReservedClasses
+import com.example.appEasyHealth.Trainer
+import com.google.firebase.database.IgnoreExtraProperties
 
-open class Usuari constructor(private var id: Int, private var suscription: String, private var classesReservades: ArrayList<ReservedClasses>, private var notificacio: Boolean) {
+@IgnoreExtraProperties
+open class Usuari(
+    open var name: String? = "",
+    open var username: String? = "",
+    open var email: String? = "",
+    open var id: String? = "",
+    open var notif: Boolean? = false,
+    open var type: String? = "",
+    open var classesReservades : MutableList<GymClass>? = ArrayList()
+) {
 
-    fun setId(id: Int) {
-        this.id = id
+    open fun addReservedClass(rClass:GymClass){
+        this.classesReservades?.plusAssign(rClass)
+
+    }
+    fun deleteReservedClass(rClass: GymClass) {
+        this.classesReservades?.remove(rClass)
     }
 
-    fun getId(): Int {
-        return this.id
-    }
-
-    fun setSuscription(suscription: String) {
-        this.suscription = suscription
-    }
-
-    fun getSuscription(): String {
-        return this.suscription
-    }
-
-    fun setReservedClasses(classesReservades: ArrayList<ReservedClasses>){
-        this.classesReservades = classesReservades
-    }
-
-    fun getReservedClasses(): ArrayList<ReservedClasses>{
-        return this.classesReservades
+    fun getClassesOnDay(date: String): List<GymClass>{
+        val classForDay : MutableList<GymClass> = ArrayList()
+        for (gymClass in this.classesReservades!!) {
+            if (gymClass.date == date) {
+                classForDay += gymClass
+            }
+        }
+        return classForDay
     }
 
 }
