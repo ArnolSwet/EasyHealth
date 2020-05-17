@@ -32,6 +32,7 @@ class MainClient : AppCompatActivity() {
         val user:FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
         setContentView(R.layout.activity_main_client)
+
         txtName = findViewById(R.id.txtClientName)
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)

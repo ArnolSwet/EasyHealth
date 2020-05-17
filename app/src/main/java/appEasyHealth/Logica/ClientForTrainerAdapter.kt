@@ -1,11 +1,14 @@
 package appEasyHealth.Logica
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appEasyHealth.ClientForTrainer
 import com.example.easyhealth.R
@@ -14,7 +17,6 @@ import java.util.*
 
 class ClientForTrainerAdapter(
     private val cContext: Context,
-    //Variables
     private val clientNames: ArrayList<String>
 ) : RecyclerView.Adapter<ClientForTrainerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
@@ -34,7 +36,9 @@ class ClientForTrainerAdapter(
         holder.image.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
                 Toast.makeText(cContext, clientNames[position], Toast.LENGTH_SHORT).show()
-
+                var intent = Intent(cContext, ClientForTrainer::class.java)
+                intent.putExtra("Client", clientNames[position])
+                startActivity(cContext, intent, Bundle())
             }
         })
     }

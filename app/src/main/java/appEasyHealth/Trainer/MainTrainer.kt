@@ -83,10 +83,10 @@ class MainTrainer : AppCompatActivity() {
             string = client.name.toString() + " #" + client.id.toString()
             if (!clientNames.contains(string)) clientNames.add(string)
         }
-        initReyclerView(clientNames)
+        initReyclerView(trainer, clientNames)
     }
 
-    fun initReyclerView(clientNames: ArrayList<String>) {
+    fun initReyclerView(trainer :Trainer, clientNames: ArrayList<String>) {
         var managerLayout = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
         var recyclerView =findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = managerLayout
@@ -94,7 +94,7 @@ class MainTrainer : AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
-    fun goClient(view: View){
+    fun goClient(){
         val intent = Intent(this, ClientForTrainer::class.java)
         startActivity(intent)
     }
