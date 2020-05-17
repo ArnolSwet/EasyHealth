@@ -2,6 +2,7 @@ package com.example.appEasyHealth
 
 import android.content.Context
 import android.widget.Toast
+import appEasyHealth.Logica.GymClass
 import appEasyHealth.Logica.Usuari
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -16,8 +17,9 @@ data class Trainer (
     override var notif : Boolean? = false,
     override var type: String? = "Trainer",
     var disponibility : String? = "All",
-    var llistaClients: MutableList<Client>? = ArrayList()
-    ) : Usuari(name, username, email, id) {
+    var llistaClients: MutableList<Client>? = ArrayList(),
+    override var classesReservades: MutableList<GymClass>? = ArrayList()
+    ) : Usuari(name, username, email, id, notif,type, classesReservades) {
 
     fun addClient(id: String) : Boolean {
         var pass : Boolean = false
@@ -53,6 +55,20 @@ data class Trainer (
     fun deleteClient(client: Client) {
         this.llistaClients?.remove(client)
     }
+
+    override fun addReservedClass(rClass: GymClass) {
+        var exists: Boolean = false
+        for (gymClass in this.classesReservades!!) {
+            if ((gymClass.date == rClass.date) && (gymClass.hora == rClass.hora)) {
+                this.classesReservades!![this.classesReservades!!.indexOf(gymClass)] = rClass
+                exists = true
+            }
+        }
+        if (!exists) {
+            this.classesReservades?.plusAssign(rClass)
+        }
+    }
+
 
     // fun addPersonalDiet
     // fun removePersonalDiet

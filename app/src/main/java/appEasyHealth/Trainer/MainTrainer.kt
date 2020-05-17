@@ -6,10 +6,13 @@ import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import appEasyHealth.Logica.GymClass
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MainTrainer : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
@@ -19,7 +22,6 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtMssgs:  TextView
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
-    //private val llistaClients: ArrayList<Client> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +31,13 @@ class MainTrainer : AppCompatActivity() {
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
         setContentView(R.layout.activity_main_trainer)
-
         // Canviar Nom Variables arreglar
+
+        val currentDate = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val formatted = currentDate.format(formatter)
+
         txtName = findViewById(R.id.txtClientName)
         txtNumClass = findViewById(R.id.txtCliSubscriptionNum)
         txtMssgs = findViewById(R.id.txtCliHeightNum)
@@ -44,6 +51,18 @@ class MainTrainer : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 val trainer = p0.getValue(Trainer::class.java)!!
                 trainer.addClient("5Cby")
+                if (trainer.getClassesOnDay(formatted).isEmpty()) {
+                    val gymClass1 = GymClass("08:00",formatted,user?.uid)
+                    val gymClass2 = GymClass("11:00",formatted,user?.uid)
+                    val gymClass3 = GymClass("17:00",formatted,user?.uid)
+                    val gymClass4 = GymClass("20:00",formatted,user?.uid)
+                    trainer.addReservedClass(gymClass1)
+                    trainer.addReservedClass(gymClass2)
+                    trainer.addReservedClass(gymClass3)
+                    trainer.addReservedClass(gymClass4)
+                    userDB.setValue(trainer)
+                }
+
             }
         })
 

@@ -12,6 +12,8 @@ import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MainClient : AppCompatActivity() {
 
@@ -36,11 +38,33 @@ class MainClient : AppCompatActivity() {
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+        val currentDate = LocalDateTime.now()
 
-        var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
-        var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
-        foodList.plusAssign(food)
-        foodList.plusAssign(food2)
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val formatted = currentDate.format(formatter)
+
+        userDB.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val client  = p0.getValue(Client::class.java)!!
+                if (client.getFoodListonDay(formatted).isEmpty()) {
+                    var food = Food("Macarrons",25.6,formatted, "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
+                    var food2 = Food("Amanida",15.3,formatted, "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
+                    client.foodlist?.plusAssign(food)
+                    client.foodlist?.plusAssign(food2)
+                    userDB.setValue(client)
+                }
+
+                if (client?.trainer != null) {
+                    Toast.makeText(applicationContext, "Your Trainer is: " + client?.trainer!!.name, Toast.LENGTH_LONG).show()
+                }
+            }
+        })
+
 
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
