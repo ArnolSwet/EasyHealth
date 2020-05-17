@@ -1,18 +1,14 @@
 package com.example.appEasyHealth
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.easyhealth.R
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -66,7 +62,20 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
     //Va fora del onCreate?
     fun addClient(view: View){
         val txtClientID:String = txtID.text.toString()
-        trainer.addClient(txtClientID)
+        var res = trainer.addClient(txtClientID)
+
+        /* GESTIO DE TOAST PER COMUNICACIÓ ,ERROR D'EXECUCIO SIMULATNIA ... no envia el toast alhora correcte
+        if (res == 0) {
+            Toast.makeText(this,"Malament...", Toast.LENGTH_SHORT).show()
+        }
+        if (res == 1) {
+            Toast.makeText(this,"Client added succesfully!", Toast.LENGTH_SHORT).show()
+        }
+        if (res == 2) {
+            Toast.makeText(this,"Client already has a Trainer assigned!", Toast.LENGTH_LONG).show()
+        }
+        */
+        txtID.text.clear()
     }
 
 

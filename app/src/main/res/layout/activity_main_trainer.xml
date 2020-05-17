@@ -211,59 +211,13 @@
             ]]>
             </RelativeLayout>
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="22dp">
+                android:id="@+id/recycler_view"
+                android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/imageViewClient1"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="left"
-                        android:onClick="goClient"
-                        app:srcCompat="@drawable/user_icon" />
-
-
-                    <ImageView
-                        android:id="@+id/imageViewClient2"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imageViewClient1"
-                        app:srcCompat="@drawable/user_icon2"
-                        android:onClick="goClient"/>
-
-
-
-                    <ImageView
-                        android:id="@+id/imageViewClient3"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imageViewClient2"
-                        app:srcCompat="@drawable/user_icon"
-                        android:onClick="goClient"/>
-
-
-
-                    <ImageView
-                        android:id="@+id/imageViewClient4"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imageViewClient3"
-                        app:srcCompat="@drawable/user_icon"
-                        android:onClick="goClient"/>
-
-
-                </RelativeLayout>
-            </HorizontalScrollView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
                 android:layout_width="match_parent"

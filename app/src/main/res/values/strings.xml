@@ -68,14 +68,14 @@
         <item>Afternoon</item>
     </string-array>
 
-    <string name="CFT_CliName">Michael Adams</string>
+    <string name="CFT_CliName">Not Defined</string>
     <string name="CFT_CliLocation">Barcelona, Spain.</string>
     <string name="CFT_CliSubscription">Subscription</string>
-    <string name="CFT_CliSubscriptionType">Basic</string>
+    <string name="CFT_CliSubscriptionType">--</string>
     <string name="CFT_CliHeight">Height (m)</string>
-    <string name="CFT_CliHeightNum">1,84</string>
+    <string name="CFT_CliHeightNum">--</string>
     <string name="CFT_CliWeight">Weight (kg)</string>
-    <string name="CFT_CliWeightNum">83,2</string>
+    <string name="CFT_CliWeightNum">--</string>
     <string name="CFT_CliMeal">Client Meals</string>
     <string name="CFT_CliMealBF">American Breakfast</string>
     <string name="CFT_CliMealLCH">Rice with Chicken</string>

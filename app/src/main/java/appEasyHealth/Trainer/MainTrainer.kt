@@ -1,18 +1,22 @@
 package com.example.appEasyHealth
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import appEasyHealth.Logica.GymClass
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import appEasyHealth.Logica.ClientForTrainerAdapter
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class MainTrainer : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
@@ -31,6 +35,7 @@ class MainTrainer : AppCompatActivity() {
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
         setContentView(R.layout.activity_main_trainer)
+
         // Canviar Nom Variables arreglar
 
         val currentDate = LocalDateTime.now()
@@ -74,15 +79,36 @@ class MainTrainer : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val trainer = p0.getValue(Trainer::class.java)!!
+                var clientNames = ArrayList<String>()
                 txtNumClients.text = trainer.llistaClients?.size.toString()
                 if (trainer?.name != null) {
                     txtName.text = trainer.name
+                }
+                if (trainer.llistaClients?.size ?: 0 != 0) {
+                    getClientNames(trainer,clientNames)
                 }
             }
         })
     }
 
-    fun goClient(view: View){
+    fun getClientNames(trainer :Trainer, clientNames :ArrayList<String>) {
+        for (client in trainer.llistaClients!!) {
+            var string = ""
+            string = client.name.toString() + " #" + client.id.toString()
+            if (!clientNames.contains(string)) clientNames.add(string)
+        }
+        initReyclerView(trainer, clientNames)
+    }
+
+    fun initReyclerView(trainer :Trainer, clientNames: ArrayList<String>) {
+        var managerLayout = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = managerLayout
+        var adapter = ClientForTrainerAdapter(this, clientNames)
+        recyclerView.adapter = adapter
+    }
+
+    fun goClient(){
         val intent = Intent(this, ClientForTrainer::class.java)
         startActivity(intent)
     }
