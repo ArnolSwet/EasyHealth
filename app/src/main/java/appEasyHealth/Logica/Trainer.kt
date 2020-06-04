@@ -15,7 +15,7 @@ data class Trainer (
     override var notif : Boolean? = false,
     override var type: String? = "Trainer",
     var disponibility : String? = "All",
-    var llistaClients: MutableList<Client>? = ArrayList(),
+    var llistaClients: MutableList<String>? = ArrayList(),
     override var classesReservades: MutableList<GymClass>? = ArrayList()
     ) : Usuari(name, username, email, id, notif,type, classesReservades) {
 
@@ -38,11 +38,11 @@ data class Trainer (
                 for (snapshot : DataSnapshot in p0.children) {
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == id) {
-                        if (client.trainer == null) {
-                            llistaClients?.plusAssign(client)
+                        if (client.trainer.equals("")) {
+                            llistaClients?.add(snapshot.key!!)
                             userTrainer.child("llistaClients").setValue(llistaClients)
                             val userDB = reference.child(snapshot.key!!)
-                            userDB.child("trainer").setValue(this@Trainer)
+                            userDB.child("trainer").setValue(user?.uid!!)
                             // Case 1; actualizació correcte
                             pass = 1
                         } else {
@@ -57,7 +57,7 @@ data class Trainer (
         return pass
     }
 
-    fun deleteClient(client: Client) {
+    fun deleteClient(client: String) {
         this.llistaClients?.remove(client)
     }
 

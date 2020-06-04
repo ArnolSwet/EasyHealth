@@ -32,7 +32,11 @@ class GymAdapterClient(private val context: Context, private val dataSource: Lis
             addClass.visibility = View.GONE
         }
         hourTextView.text = gymClass.hora
-        availabilityTextView.text = gymClass.disponibilitat
+        if (client.exists(gymClass)) {
+            availabilityTextView.text = "Reserved"
+        } else{
+            availabilityTextView.text = gymClass.disponibilitat
+        }
         addClass.setOnClickListener{
             gymClass.disponibilitat = "Unavailable" 
             client.addReservedClass(gymClass)

@@ -58,8 +58,20 @@ class MainClient : AppCompatActivity() {
                     userDB.setValue(client)
                 }
 
-                if (client?.trainer != null) {
-                    Toast.makeText(applicationContext, "Your Trainer is: " + client?.trainer!!.name, Toast.LENGTH_LONG).show()
+                if (!client?.trainer.equals("")) {
+                    val trainerDB = databaseReference.child(client?.trainer!!)
+                    trainerDB.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                            Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val trainer = p0.getValue(Trainer::class.java)
+                            Toast.makeText(applicationContext, "Your Trainer is: " + trainer!!.name, Toast.LENGTH_LONG).show()
+                        }
+
+                    })
+
                 }
             }
         })

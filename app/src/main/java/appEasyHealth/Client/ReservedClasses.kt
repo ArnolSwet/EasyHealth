@@ -24,6 +24,7 @@ class ReservedClasses : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dpd : DatePickerDialog
     private lateinit var client: Client
+    private lateinit var trainer: Trainer
     private lateinit var listClassClient: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,23 +55,20 @@ class ReservedClasses : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 client  = p0.getValue(Client::class.java)!!
-                if (client.trainer != null) {
-                    databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                if (!client.trainer.equals("")) {
+                    val trainerDB = databaseReference.child(client.trainer!!)
+                    trainerDB.addValueEventListener(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {
-                            Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
-                        }
+                            Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()                        }
 
                         override fun onDataChange(p0: DataSnapshot) {
-                            for (snapshot : DataSnapshot in p0.children) {
-                                val trainerDB = snapshot.getValue(Trainer::class.java)
-                                if (trainerDB?.id == client.trainer!!.id) {
-                                    userDB.child("trainer").setValue(trainerDB)
-                                }
-                            }
+                            trainer = p0.getValue(Trainer::class.java)!!
+                            classList = trainer!!.getClassesOnDay("$formattedDay/$formattedMonth/$formattedYear")
+                            listClassClient.adapter = GymAdapterClient(this@ReservedClasses,classList,client)
                         }
+
                     })
-                    classList = client.trainer!!.getClassesOnDay("$formattedDay/$formattedMonth/$formattedYear")
-                    listClassClient.adapter = GymAdapterClient(this@ReservedClasses,classList,client)
+
                 } else {
                     Toast.makeText(applicationContext,"Add a Trainer First", Toast.LENGTH_LONG).show()
                 }
@@ -80,13 +78,13 @@ class ReservedClasses : AppCompatActivity() {
 
         dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-            if (client.trainer != null) {
+            if (!client.trainer.equals("")) {
                 var any = year.toString()
                 var mes = (monthOfYear +1).toString()
                 var dia = dayOfMonth.toString()
                 if (mes.length == 1) mes = "0$mes"
                 if (dia.length == 1) dia = "0$dia"
-                classList = client.trainer!!.getClassesOnDay("$dia/$mes/$any")
+                classList = trainer!!.getClassesOnDay("$dia/$mes/$any")
                 listClassClient.adapter = GymAdapterClient(this@ReservedClasses,classList,client)
             } else {
                 Toast.makeText(applicationContext,"Add a Trainer First", Toast.LENGTH_LONG).show()

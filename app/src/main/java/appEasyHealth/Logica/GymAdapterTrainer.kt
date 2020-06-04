@@ -7,12 +7,17 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import com.example.appEasyHealth.Client
 import com.example.appEasyHealth.Trainer
 import com.example.easyhealth.R
+import com.google.firebase.database.*
 
 class GymAdapterTrainer(private val context: Context, private val dataSource: List<GymClass>, private var trainer: Trainer) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private lateinit var database: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView = inflater.inflate(R.layout.class_layout,parent,false)
@@ -25,9 +30,19 @@ class GymAdapterTrainer(private val context: Context, private val dataSource: Li
 
         val gymClass = getItem(position) as GymClass
 
+        var clientDB = databaseReference.child(gymClass.clientID!!)
+        clientDB.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(context,"Fail to read data", Toast.LENGTH_SHORT).show()
+            }
 
+            override fun onDataChange(p0: DataSnapshot) {
+                val client = p0.getValue(Client::class.java)
+                clientTextView.text = client!!.name
+            }
+
+        })
         hourTextView.text = gymClass.hora
-        clientTextView.text = gymClass.disponibilitat
         cancelClass.setOnClickListener{
             gymClass.disponibilitat = "Available"
             gymClass.clientID = ""

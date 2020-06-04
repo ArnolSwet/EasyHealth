@@ -22,6 +22,7 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var client: Client
     private lateinit var txtName:  TextView
     private lateinit var txtMssgs:  TextView
     private lateinit var txtNumClass: TextView
@@ -84,7 +85,7 @@ class MainTrainer : AppCompatActivity() {
                 if (trainer?.name != null) {
                     txtName.text = trainer.name
                 }
-                if (trainer.llistaClients?.size ?: 0 != 0) {
+                if (trainer.llistaClients?.size != 0) {
                     getClientNames(trainer,clientNames)
                 }
             }
@@ -93,11 +94,23 @@ class MainTrainer : AppCompatActivity() {
 
     fun getClientNames(trainer :Trainer, clientNames :ArrayList<String>) {
         for (client in trainer.llistaClients!!) {
-            var string = ""
-            string = client.name.toString() + " #" + client.id.toString()
-            if (!clientNames.contains(string)) clientNames.add(string)
+            var clientDB = databaseReference.child(client)
+            clientDB.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    this@MainTrainer.client = p0.getValue(Client::class.java)!!
+                    var string = this@MainTrainer.client.name + " #" + this@MainTrainer.client.id.toString()
+                    if (!clientNames.contains(string)) clientNames.add(string)
+                    initReyclerView(trainer, clientNames)
+                }
+
+            })
+
         }
-        initReyclerView(trainer, clientNames)
+
     }
 
     fun initReyclerView(trainer :Trainer, clientNames: ArrayList<String>) {
