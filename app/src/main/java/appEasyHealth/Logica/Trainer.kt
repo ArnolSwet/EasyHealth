@@ -1,5 +1,6 @@
 package com.example.appEasyHealth
 
+import android.widget.Toast
 import appEasyHealth.Logica.GymClass
 import appEasyHealth.Logica.Usuari
 import com.google.firebase.auth.FirebaseAuth
@@ -90,8 +91,23 @@ data class Trainer (
         var auth : FirebaseAuth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
         var userDB = reference.child(user?.uid!!)
+        var clientDB = reference.child(gymClass.clientID!!)
+        gymClass.disponibilitat = "Available"
+        gymClass.clientID = ""
         addReservedClass(gymClass)
         userDB.setValue(this)
+        clientDB.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                println("Fail to read data")
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val client = p0.getValue(Client::class.java)
+                client!!.cancelClass(gymClass)
+                clientDB.setValue(client)
+            }
+
+        })
     }
 
 

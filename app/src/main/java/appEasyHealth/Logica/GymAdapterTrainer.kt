@@ -21,6 +21,8 @@ class GymAdapterTrainer(private val context: Context, private val dataSource: Li
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView = inflater.inflate(R.layout.class_layout,parent,false)
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.getReference("User")
 
         val hourTextView = rowView.findViewById(R.id.txtTime) as TextView
 
@@ -44,8 +46,6 @@ class GymAdapterTrainer(private val context: Context, private val dataSource: Li
         })
         hourTextView.text = gymClass.hora
         cancelClass.setOnClickListener{
-            gymClass.disponibilitat = "Available"
-            gymClass.clientID = ""
             trainer.cancelReservedClass(gymClass)
         }
         return rowView

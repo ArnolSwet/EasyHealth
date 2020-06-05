@@ -40,6 +40,7 @@ class GymAdapterClient(private val context: Context, private val dataSource: Lis
         addClass.setOnClickListener{
             gymClass.disponibilitat = "Unavailable" 
             client.addReservedClass(gymClass)
+            availabilityTextView.text = "Reserved"
         }
         return rowView
     }

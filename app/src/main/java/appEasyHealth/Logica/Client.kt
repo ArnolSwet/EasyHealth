@@ -29,6 +29,17 @@ data class Client(
     fun deleteFood(food: Food) {
         this.foodlist?.remove(food)
     }
+
+    fun cancelClass(gymClass: GymClass) {
+        if (classesReservades?.isNotEmpty()!!) {
+            for (gym in classesReservades!!) {
+                if (gym.date == gymClass.date && gym.hora == gymClass.hora){
+                        this.classesReservades!!.remove(gym)
+                    break
+                    }
+            }
+        }
+    }
     override fun addReservedClass(gymClass: GymClass) {
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var reference : DatabaseReference = database.getReference("User")
@@ -75,7 +86,7 @@ data class Client(
     fun exists(gymClass: GymClass) : Boolean {
         if (classesReservades?.isNotEmpty()!!) {
             for (gym in classesReservades!!) {
-                if (gym == GymClass()) {
+                if (gym == gymClass) {
                     return true
                 }
             }

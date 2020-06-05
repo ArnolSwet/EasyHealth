@@ -39,11 +39,11 @@ class YourClasses : AppCompatActivity() {
         classesListTrainer = findViewById(R.id.classesListTrainer)
         val currentDate = LocalDateTime.now()
         val formatterDay = DateTimeFormatter.ofPattern("dd")
-        val formattedDay = currentDate.format(formatterDay)
+        var formattedDay = currentDate.format(formatterDay)
         val formatterMonth = DateTimeFormatter.ofPattern("MM")
-        val formattedMonth = currentDate.format(formatterMonth)
+        var formattedMonth = currentDate.format(formatterMonth)
         val formatterYear = DateTimeFormatter.ofPattern("yyyy")
-        val formattedYear = currentDate.format(formatterYear)
+        var formattedYear = currentDate.format(formatterYear)
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -71,12 +71,12 @@ class YourClasses : AppCompatActivity() {
         dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
             if (trainer.classesReservades?.isNotEmpty()!!) {
-                var any = year.toString()
-                var mes = (monthOfYear +1).toString()
-                var dia = dayOfMonth.toString()
-                if (mes.length == 1) mes = "0$mes"
-                if (dia.length == 1) dia = "0$dia"
-                classList = trainer.getReservedClassesOnDay("$dia/$mes/$any")
+                formattedYear = year.toString()
+                formattedMonth = (monthOfYear +1).toString()
+                formattedDay = dayOfMonth.toString()
+                if (formattedMonth.length == 1) formattedMonth = "0$formattedMonth"
+                if (formattedDay.length == 1) formattedDay = "0$formattedDay"
+                classList = trainer.getReservedClassesOnDay("$formattedDay/$formattedMonth/$formattedYear")
                 classesListTrainer.adapter = GymAdapterTrainer(this,classList,trainer)
             } else {
                 Toast.makeText(applicationContext,"Any Reserved class yet", Toast.LENGTH_LONG).show()
