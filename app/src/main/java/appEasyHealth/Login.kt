@@ -25,7 +25,6 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         database = FirebaseDatabase.getInstance()
         reference = database.getReference("User")
         txtName = findViewById(R.id.nameEdBreak)
@@ -64,6 +63,7 @@ class Login : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 var usuari = p0.getValue(Usuari::class.java)
+                txtUser.setText("")
                 if (usuari?.type.equals("Client")) {
                     val intento = Intent(this@Login, MainClient::class.java)
                     startActivity(intento)
@@ -73,13 +73,13 @@ class Login : AppCompatActivity() {
                 } else {
                     Toast.makeText(applicationContext,"User not defined", Toast.LENGTH_SHORT).show()
                 }
-
             }
 
         })
     }
 
     fun anarSignup(view: View) {
+        txtUser.setText("")
         val intent = Intent(this, Signup::class.java)
         startActivity(intent)
     }

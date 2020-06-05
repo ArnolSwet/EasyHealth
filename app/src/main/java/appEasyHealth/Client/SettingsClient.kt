@@ -19,7 +19,6 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var txtWeight : EditTextPreference
     private lateinit var txtClientID : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,21 +41,6 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
                 if (client?.id != null) {
                     txtClientID.text = "#" + client.id
                 }
-                /*if (client?.weight != null) {
-                    txtWeight.summary = client.weight.toString()
-                }else {
-                    txtWeight.summary = "ND"
-                }
-                if (client?.height != null) {
-                    txtHeight.summary = client.height.toString()
-                } else {
-                    txtWeight.summary = "ND"
-                }
-                if (client?.notif != null) {
-                    switchNotif.setDefaultValue(client.notif)
-                } else {
-                    switchNotif.setDefaultValue(false)
-                } */
             }
         })
 
