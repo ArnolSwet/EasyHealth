@@ -16,6 +16,7 @@ data class Trainer (
     override var notif : Boolean? = false,
     override var type: String? = "Trainer",
     var disponibility : String? = "All",
+    var location: String? = null, //new
     var llistaClients: MutableList<Client>? = ArrayList()
     ) : Usuari(name, username, email, id) {
 

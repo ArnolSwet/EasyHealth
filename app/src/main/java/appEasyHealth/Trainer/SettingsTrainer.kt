@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -122,6 +123,24 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
     companion object {
 
         private val TAG_TITLE = "SETTINGS_TRAINER"
+        private lateinit var userDB: DatabaseReference
+
+        private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
+
+            val stringValue = value.toString()
+
+            if (preference is EditTextPreference) {
+                if (!TextUtils.isEmpty(stringValue)) {
+                    preference.setSummary(stringValue)
+                    //new
+                    if(preference.key == "location"){
+                        val location = stringValue.toString()
+                        userDB.child("location").setValue(location)
+                    }
+                }
+            }
+            true
+        }
 
     }
 

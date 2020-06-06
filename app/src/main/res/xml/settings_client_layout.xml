@@ -29,7 +29,7 @@
         android:defaultValue="ND"
         android:theme="@style/EditText"
         android:inputType="text"
-        android:summary="@string/weight"
+        android:summary="@string/location"
         android:title="Set Location" />
 
     <SwitchPreference

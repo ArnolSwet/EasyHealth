@@ -122,6 +122,7 @@
     <string name="SignUp">Sign Up</string>
     <string name="height">ND</string>
     <string name="weight">ND</string>
+    <string name="location">ND</string>
     <string name="availability">ND</string>
     <string name="client_name">Not Defined</string>
     <string name="subscriptionClient">--</string>

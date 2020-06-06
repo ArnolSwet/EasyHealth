@@ -9,6 +9,16 @@
         android:title="Class availability"
         android:summary="@string/availability"/>
 
+    <EditTextPreference
+        android:id="@+id/txtCountryT"
+        android:dialogTitle="Enter your Location"
+        android:key="location"
+        android:defaultValue="ND"
+        android:theme="@style/EditText"
+        android:inputType="text"
+        android:summary="@string/location"
+        android:title="Set Location" />
+
     <SwitchPreference
         android:defaultValue="false"
         android:key="notif"
