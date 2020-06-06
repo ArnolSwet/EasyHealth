@@ -6,13 +6,18 @@ import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Client.FoodClient
+import appEasyHealth.Logica.ClientForTrainerAdapter
+import appEasyHealth.Logica.FoodForClientAdapter
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.ArrayList
 
 class MainClient : AppCompatActivity() {
 
@@ -98,8 +103,24 @@ class MainClient : AppCompatActivity() {
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
                 }
+                if (client.foodlist?.size != 0) {
+                    var todayFood = client.getFoodListonDay(formatted)
+                    var foodNames = ArrayList<String>()
+                    for (food in todayFood) {
+                        foodNames.add(food.name.toString())
+                    }
+                    initReyclerView(client, foodNames)
+                }
             }
         })
+    }
+
+    fun initReyclerView(client :Client, foodNames: ArrayList<String>) {
+        var managerLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food)
+        recyclerView.layoutManager = managerLayout
+        var adapter = FoodForClientAdapter(this, foodNames)
+        recyclerView.adapter = adapter
     }
 
     fun goback(view: View) {
