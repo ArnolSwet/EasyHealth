@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:text="My profile"
             android:textColor="#FFFFFF"
@@ -205,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="22dp"
-                    android:text="My meals"
+                    android:text="Today's meals"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@android:color/holo_blue_light"
                     android:textSize="23dp" />
@@ -229,84 +230,14 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recycler_view_food"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/imageViewClientBreakfast"
-                        android:layout_width="127dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="left"
-                        app:srcCompat="@drawable/client_breakfast" />
+                </androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:id="@+id/txtCliMeal1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/imageViewClientBreakfast"
-                        android:layout_alignBaseline="@+id/imageViewClientBreakfast"
-                        android:text="@string/CFT_CliMealBF"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="15dp" />
-
-                    <ImageView
-                        android:id="@+id/imageViewClientLunch"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imageViewClientBreakfast"
-                        app:srcCompat="@drawable/client_lunch" />
-
-                    <TextView
-                        android:id="@+id/txtCliMeal2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@+id/txtCliMeal1"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/txtCliMeal1"
-                        android:text="@string/CFT_CliMealLCH"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="15dp" />
-
-                    <ImageView
-                        android:id="@+id/imageViewClientAfternoon"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imageViewClientLunch"
-                        app:srcCompat="@drawable/client_afternoon" />
-
-                    <TextView
-                        android:id="@+id/txtCliMeal3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/txtCliMeal2"
-                        android:layout_marginLeft="30dp"
-                        android:layout_toRightOf="@+id/txtCliMeal2"
-                        android:text="@string/CFT_CliMealAFT"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="15dp" />
-
-                    <ImageView
-                        android:id="@+id/imageViewClientDinner"
-                        android:layout_width="140dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imageViewClientAfternoon"
-                        app:srcCompat="@drawable/client_dinner" />
-
-                    <TextView
-                        android:id="@+id/txtCliMeal4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/txtCliMeal3"
-                        android:layout_marginLeft="25dp"
-                        android:layout_toRightOf="@+id/txtCliMeal3"
-                        android:text="@string/CFT_CliMealDIN"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textSize="15dp" />
-                </RelativeLayout>
             </HorizontalScrollView>
 
             <RelativeLayout
@@ -316,37 +247,6 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="22dp">
 
-                <TextView
-                    android:id="@+id/txtTrainingOpt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/CFT_TrainingOpt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="23dp" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonStats"
-                    android:layout_width="173dp"
-                    android:layout_height="103dp"
-                    android:layout_below="@+id/txtTrainingOpt"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:onClick="gostats"
-                    app:srcCompat="@drawable/client_stat" />
-
-                <TextView
-                    android:id="@+id/txtButtonStats"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/imageButtonStats"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="40dp"
-                    android:text="@string/CFT_TrainingOptStats"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textSize="15dp" />
-
                 <ImageButton
                     android:id="@+id/imageButtonChat"
                     android:layout_width="176dp"
@@ -354,6 +254,7 @@
                     android:layout_below="@+id/txtButtonStats"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:onClick="gotochat"
                     app:srcCompat="@drawable/client_chat" />
 
@@ -368,33 +269,12 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textSize="15dp" />
 
-                <ImageButton
-                    android:id="@+id/imageButtonDiet"
-                    android:layout_width="176dp"
-                    android:layout_height="134dp"
-                    android:layout_below="@+id/txtButtonChat"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:onClick="personalDiet"
-                    app:srcCompat="@drawable/client_personaldiet" />
-
-                <TextView
-                    android:id="@+id/txtButtonDiet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/imageButtonDiet"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginBottom="30dp"
-                    android:text="@string/CFT_TrainingOptDiet"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textSize="15dp" />
 
                 <ImageButton
                     android:id="@+id/imageButtonClasses"
                     android:layout_width="176dp"
                     android:layout_height="134dp"
-                    android:layout_below="@+id/txtButtonDiet"
+                    android:layout_below="@+id/txtButtonChat"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:onClick="reserveClasses"

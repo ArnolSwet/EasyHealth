@@ -106,10 +106,6 @@ class MainClient : AppCompatActivity() {
         finish()
     }
 
-    fun gostats(view: View) {
-        val intent = Intent(this, Statistics::class.java)
-        startActivity(intent)
-    }
     fun gotochat(view: View) {
         val intent = Intent(this, Chat::class.java)
         startActivity(intent)
@@ -117,10 +113,6 @@ class MainClient : AppCompatActivity() {
 
     fun settingsClient(view: View) {
         val intent = Intent(this, SettingsClient::class.java)
-        startActivity(intent)
-    }
-    fun personalDiet(view: View) {
-        val intent = Intent(this, PersonalDiet::class.java)
         startActivity(intent)
     }
 
