@@ -12,6 +12,8 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="notif"
+        android:visibility="invisible"
         android:title="Allow Notifications" />
+
 
 </PreferenceScreen>

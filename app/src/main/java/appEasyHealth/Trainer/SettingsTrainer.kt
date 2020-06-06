@@ -25,6 +25,7 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
     private lateinit var trainer: Trainer
     private lateinit var userDB: DatabaseReference
     private lateinit var txtID: EditText
+    private lateinit var txtTrLocation: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
         val user:FirebaseUser? = auth.currentUser
         txtID = findViewById(R.id.txtClientN)
         userDB = reference.child(user?.uid!!)
+
 
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {

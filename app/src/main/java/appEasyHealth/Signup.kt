@@ -73,6 +73,7 @@ class Signup : AppCompatActivity() {
                         sendEmail(user)
                         if(itsClient){
                             val userDB = Client(name,username,email, user?.uid?.subSequence(0,4).toString())
+
                             dbReference.child(user!!.uid).setValue(userDB)
                         }else {
                             val userDB = Trainer(name,username,email, user?.uid?.subSequence(0,4).toString())

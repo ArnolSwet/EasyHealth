@@ -22,9 +22,20 @@
         android:summary="@string/weight"
         android:title="Weight(Kg)" />
 
+    <EditTextPreference
+        android:id="@+id/txtCountry"
+        android:dialogTitle="Enter your Location"
+        android:key="location"
+        android:defaultValue="ND"
+        android:theme="@style/EditText"
+        android:inputType="text"
+        android:summary="@string/weight"
+        android:title="Set Location" />
+
     <SwitchPreference
         android:id="@+id/swNotifSet"
         android:defaultValue="false"
+        android:visibility="invisible"
         android:key="notif"
         android:title="Allow Notifications" />
 

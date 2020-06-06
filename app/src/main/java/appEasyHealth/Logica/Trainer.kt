@@ -1,12 +1,14 @@
 package com.example.appEasyHealth
 
 import android.content.Context
+import android.widget.TextView
 import android.widget.Toast
 import appEasyHealth.Logica.Usuari
 import com.google.firebase.database.*
 
 
 data class Trainer (
+
     override var name: String? = "",
     override var username: String? = "",
     override var email: String? = "",

@@ -1,9 +1,11 @@
 package com.example.appEasyHealth
 
+import android.widget.TextView
 import appEasyHealth.Logica.GymClass
 import appEasyHealth.Logica.Usuari
 
 data class Client(
+
     override var name: String? = "",
     override var username: String? = "",
     override var email: String? = "",
@@ -13,6 +15,7 @@ data class Client(
     var trainer: Trainer? = null,
     var height: Double? = null,
     var weight: Double? = null,
+    var location: String? = null, //new
     override var notif: Boolean? = false,
     var foodlist: MutableList<Food>? = ArrayList()
     ) : Usuari(name, username, email, id) {

@@ -69,7 +69,7 @@
     </string-array>
 
     <string name="CFT_CliName">Michael Adams</string>
-    <string name="CFT_CliLocation">Barcelona, Spain.</string>
+    <string name="CFT_CliLocation">None.</string>
     <string name="CFT_CliSubscription">Subscription</string>
     <string name="CFT_CliSubscriptionType">Basic</string>
     <string name="CFT_CliHeight">Height (m)</string>

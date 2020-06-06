@@ -22,6 +22,7 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
+    private lateinit var txtLocation: TextView
     private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class MainClient : AppCompatActivity() {
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+        txtLocation = findViewById(R.id.txtCliLocation) //new
         var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
         var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
         foodList.plusAssign(food)
@@ -64,6 +66,10 @@ class MainClient : AppCompatActivity() {
                 }
                 if (client?.trainer != null) {
                     Toast.makeText(applicationContext, client?.trainer!!.name, Toast.LENGTH_SHORT).show()
+                }
+                //new
+                if (client?.location != null){
+                    txtLocation.text = client.location.toString()
                 }
             }
         })

@@ -146,6 +146,11 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
                         val height = stringValue.toDoubleOrNull()
                         userDB.child("height").setValue(height)
                     }
+                    //new
+                    else if(preference.key == "location"){
+                        val location = stringValue.toString()
+                        userDB.child("location").setValue(location)
+                    }
                 }
             }/*else if (preference is SwitchPreference) {
                 val notif : Boolean = preference.isChecked
