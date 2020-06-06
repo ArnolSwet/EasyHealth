@@ -19,7 +19,7 @@
         <activity android:name="com.example.appEasyHealth.PersonalDiet" />
         <activity android:name="com.example.appEasyHealth.YourClasses" />
         <activity android:name="com.example.appEasyHealth.PersonalDietTrainer" />
-        <activity android:name="com.example.appEasyHealth.FoodClient" />
+        <activity android:name="appEasyHealth.Client.FoodClient" />
         <activity android:name="com.example.appEasyHealth.FoodTrainer" />
         <activity android:name="com.example.appEasyHealth.Chat" />
         <activity android:name="com.example.appEasyHealth.AddFood" />

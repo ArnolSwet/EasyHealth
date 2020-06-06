@@ -21,7 +21,6 @@ class ClientForTrainer : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
-    private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +30,13 @@ class ClientForTrainer : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance()
         databaseReference = database.getReference("User")
-        var userDB = databaseReference
 
         txtName = findViewById(R.id.txtClientName)
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
 
-        userDB.addValueEventListener(object : ValueEventListener {
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
             }
@@ -47,7 +45,6 @@ class ClientForTrainer : AppCompatActivity() {
                 for (snapshot : DataSnapshot in p0.children) {
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == clientID) {
-                        userDB = databaseReference.child(snapshot.key!!)
                         if (client?.name != null) {
                             txtName.text = client.name
                         }

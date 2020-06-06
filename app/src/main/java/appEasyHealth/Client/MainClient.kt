@@ -3,15 +3,16 @@ package com.example.appEasyHealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import android.media.Image
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import appEasyHealth.Client.FoodClient
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MainClient : AppCompatActivity() {
 
@@ -22,7 +23,6 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
-    private val foodList: ArrayList<Food> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +37,45 @@ class MainClient : AppCompatActivity() {
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+        val currentDate = LocalDateTime.now()
 
-        var food = Food("Macarrons",25.6,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
-        var food2 = Food("Amanida",15.3,"23/4/2020", "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
-        foodList.plusAssign(food)
-        foodList.plusAssign(food2)
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val formatted = currentDate.format(formatter)
+
+        userDB.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val client = p0.getValue(Client::class.java)!!
+                if (client.getFoodListonDay(formatted).isEmpty()) {
+                    var food = Food("Macarrons",25.6,formatted, "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
+                    var food2 = Food("Amanida",15.3,formatted, "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
+                    client.addFood(food)
+                    client.addFood(food2)
+                    userDB.setValue(client)
+                }
+
+                if (!client?.trainer.equals("")) {
+                    val trainerDB = databaseReference.child(client?.trainer!!)
+                    trainerDB.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                            Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val trainer = p0.getValue(Trainer::class.java)
+                            Toast.makeText(applicationContext, "Your Trainer is: " + trainer!!.name, Toast.LENGTH_LONG).show()
+                        }
+
+                    })
+
+                }
+            }
+        })
+
 
         userDB.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -51,7 +85,6 @@ class MainClient : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val client  = p0.getValue(Client::class.java)!!
-                userDB.child("foodlist").setValue(foodList)
 
                 if (client?.name != null) {
                     txtName.text = client.name
@@ -64,9 +97,6 @@ class MainClient : AppCompatActivity() {
                 }
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
-                }
-                if (client?.trainer != null) {
-                    Toast.makeText(applicationContext, client?.trainer!!.name, Toast.LENGTH_SHORT).show()
                 }
             }
         })
