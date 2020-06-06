@@ -94,6 +94,7 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
             setPreferencesFromResource(R.xml.settings_client_layout,rootKey)
             bindPreferenceSummaryToValue(findPreference("height")!!)
             bindPreferenceSummaryToValue(findPreference("weight")!!)
+            bindPreferenceSummaryToValue(findPreference("location")!!)
             //bindPreferenceSummaryToValue(findPreference("notif")!!)
         }
     }

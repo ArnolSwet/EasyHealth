@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -60,7 +61,7 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
 
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount == 0){
-                setTitle(R.string.ClientSettings)
+                setTitle(R.string.TrainerSettings)
             }
         }
 
@@ -88,6 +89,7 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
     class TrainerPreference() : PreferenceFragmentCompat(){
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.settings_trainer_layout,rootKey)
+            bindPreferenceSummaryToValue(findPreference("location")!!)
             //Faltara l'array amb class availability
             //bindPreferenceSummaryToValue(findPreference("notif")!!)
         }
@@ -140,6 +142,19 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
                 }
             }
             true
+        }
+
+        private fun bindPreferenceSummaryToValue(
+            preference: Preference
+        ) {
+            PreferenceManager.setDefaultValues(preference.context,R.xml.settings_trainer_layout,true)
+            preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
+
+
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                PreferenceManager
+                    .getDefaultSharedPreferences(preference.context)
+                    .getString(preference.key,""))
         }
 
     }
