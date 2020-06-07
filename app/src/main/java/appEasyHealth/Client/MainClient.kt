@@ -3,9 +3,11 @@ package com.example.appEasyHealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.telephony.cdma.CdmaCellLocation
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import appEasyHealth.Client.FoodClient
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +25,8 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
+    private lateinit var txtLocation: TextView
+    private var trainerID: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,7 @@ class MainClient : AppCompatActivity() {
         setContentView(R.layout.activity_main_client)
 
         txtName = findViewById(R.id.txtClientName)
+        txtLocation = findViewById(R.id.txtCliLocation)
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
@@ -59,7 +64,8 @@ class MainClient : AppCompatActivity() {
                 }
 
                 if (!client?.trainer.equals("")) {
-                    val trainerDB = databaseReference.child(client?.trainer!!)
+                    trainerID = client.trainer!!
+                    val trainerDB = databaseReference.child(trainerID)
                     trainerDB.addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {
                             Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
@@ -98,6 +104,9 @@ class MainClient : AppCompatActivity() {
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
                 }
+                if (client?.location != null) {
+                    txtLocation.text = client.location
+                }
             }
         })
     }
@@ -112,7 +121,8 @@ class MainClient : AppCompatActivity() {
     }
     fun gotochat(view: View) {
         val intent = Intent(this, Chat::class.java)
-        startActivity(intent)
+        intent.putExtra("DestinyID",trainerID)
+        ContextCompat.startActivity(this,intent, Bundle())
     }
 
     fun settingsClient(view: View) {

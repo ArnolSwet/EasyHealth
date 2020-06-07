@@ -86,7 +86,7 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/txtCliLocation"
+                android:id="@+id/txtTrainLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

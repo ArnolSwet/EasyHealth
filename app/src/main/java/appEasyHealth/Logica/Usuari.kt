@@ -13,6 +13,7 @@ open class Usuari(
     open var id: String? = "",
     open var notif: Boolean? = false,
     open var type: String? = "",
+    open var location: String? = "",
     open var classesReservades : MutableList<GymClass>? = ArrayList()
 ) {
 

@@ -15,10 +15,11 @@ data class Trainer (
     override var id: String? = "",
     override var notif : Boolean? = false,
     override var type: String? = "Trainer",
+    override var location: String? = "",
     var disponibility : String? = "All",
     var llistaClients: MutableList<String>? = ArrayList(),
     override var classesReservades: MutableList<GymClass>? = ArrayList()
-    ) : Usuari(name, username, email, id, notif,type, classesReservades) {
+    ) : Usuari(name, username, email, id, notif,type,location, classesReservades) {
 
     fun addClient(id: String) : Int {
         var pass : Int = 0

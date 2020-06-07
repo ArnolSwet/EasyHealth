@@ -27,6 +27,7 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtMssgs:  TextView
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
+    private lateinit var txtLocation: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class MainTrainer : AppCompatActivity() {
         txtNumClass = findViewById(R.id.txtCliSubscriptionNum)
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
+        txtLocation = findViewById(R.id.txtTrainLocation)
 
         userDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -87,6 +89,9 @@ class MainTrainer : AppCompatActivity() {
                 }
                 if (trainer.llistaClients?.size != 0) {
                     getClientNames(trainer,clientNames)
+                }
+                if (trainer?.location != null) {
+                    txtLocation.text = trainer.location
                 }
             }
         })

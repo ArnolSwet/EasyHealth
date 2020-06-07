@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -21,12 +22,13 @@ class ClientForTrainer : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
+    private lateinit var clientID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_client_for_trainer)
         val client = getIntent().getSerializableExtra("Client").toString()
-        val clientID = client.subSequence(client.indexOf("#")+1 ,client.length)
+        clientID = client.subSequence(client.indexOf("#")+1 ,client.length).toString()
 
         database = FirebaseDatabase.getInstance()
         databaseReference = database.getReference("User")
@@ -45,6 +47,7 @@ class ClientForTrainer : AppCompatActivity() {
                 for (snapshot : DataSnapshot in p0.children) {
                     val client = snapshot.getValue(Client::class.java)
                     if (client?.id == clientID) {
+                        clientID = snapshot.key!!
                         if (client?.name != null) {
                             txtName.text = client.name
                         }
@@ -75,7 +78,8 @@ class ClientForTrainer : AppCompatActivity() {
 
     fun chatClient(view: View) {
         val intent = Intent(this, Chat::class.java)
-        startActivity(intent)
+        intent.putExtra("DestinyID",clientID)
+        ContextCompat.startActivity(this,intent, Bundle())
     }
 
     fun personalDietTrainer(view: View) {
