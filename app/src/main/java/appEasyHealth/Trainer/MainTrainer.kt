@@ -14,6 +14,7 @@ import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_login.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -138,5 +139,11 @@ class MainTrainer : AppCompatActivity() {
     fun goSettings(view: View) {
         val intent = Intent(this, SettingsTrainer::class.java)
         startActivity(intent)
+    }
+
+    fun gologin(view: View) {
+        val intent = Intent(this, login::class.java)
+        startActivity(intent)
+
     }
 }

@@ -32,6 +32,8 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
+
+
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
@@ -41,6 +43,19 @@
             android:onClick="goback"
             android:contentDescription="@string/btnBack"
             app:srcCompat="@drawable/chevron_left" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txtMPD"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="28dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="LogOut"
+            android:onClick="gologin"
+            />
 
     </RelativeLayout>
 
