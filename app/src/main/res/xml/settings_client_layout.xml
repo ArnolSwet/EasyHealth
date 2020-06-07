@@ -25,7 +25,7 @@
         android:id="@+id/txtCountry"
         android:dialogTitle="Enter your Location"
         android:key="locationCli"
-        android:defaultValue="ND"
+        android:defaultValue="Set Your Location"
         android:theme="@style/EditText"
         android:inputType="text"
         android:summary="@string/Location"

@@ -86,12 +86,17 @@ class AddFood : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 client  = p0.getValue(Client::class.java)!!
-                var calories: Double = txtCalories.getText().toString().toDouble()
-                var meal = Food(txtName.text.toString(), calories, date, typeMeal)
-                client.addFood(meal)
-                userDB.setValue(client)
-                Toast.makeText(applicationContext,"Food added correctly", Toast.LENGTH_SHORT).show()
-                goback(view)
+                if (txtName.text.toString().isEmpty() || txtCalories.text.toString().isEmpty()) {
+                    Toast.makeText(applicationContext,"ERROR: Empty fields", Toast.LENGTH_SHORT).show()
+                } else {
+                    var calories: Double = txtCalories.text.toString().toDouble()
+                    var meal = Food(txtName.text.toString(), calories, date, typeMeal)
+                    client.addFood(meal)
+                    userDB.setValue(client)
+                    Toast.makeText(applicationContext, "Food added correctly", Toast.LENGTH_SHORT)
+                        .show()
+                    goback(view)
+                }
             }
         })
 

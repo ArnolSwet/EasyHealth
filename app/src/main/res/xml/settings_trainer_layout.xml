@@ -5,7 +5,7 @@
         android:id="@+id/txtCountryTrain"
         android:dialogTitle="Enter your Location"
         android:key="locationTrain"
-        android:defaultValue="ND"
+        android:defaultValue="Set Your Location"
         android:theme="@style/EditText"
         android:inputType="text"
         android:summary="@string/Location"

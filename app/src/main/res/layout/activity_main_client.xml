@@ -38,10 +38,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
             android:background="#00FFFFFF"
-            android:onClick="goback"
+            android:backgroundTint="#FFFFFF"
             android:contentDescription="@string/btnBack"
-            app:srcCompat="@drawable/chevron_left" />
+            android:onClick="goback"
+            android:tint="#EDEDED"
+            app:srcCompat="@android:drawable/ic_lock_power_off" />
 
     </RelativeLayout>
 

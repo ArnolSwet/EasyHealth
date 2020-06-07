@@ -36,13 +36,15 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/btnBack"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:background="#00FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:contentDescription="@string/btnBack"
             android:onClick="goBack"
-            app:srcCompat="@drawable/chevron_left" />
-
+            android:tint="#EDEDED"
+            app:srcCompat="@android:drawable/ic_lock_power_off" />
     </RelativeLayout>
 
     <ScrollView
