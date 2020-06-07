@@ -29,6 +29,7 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance()
@@ -55,14 +56,6 @@ class MainClient : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val client = p0.getValue(Client::class.java)!!
-                if (client.getFoodListonDay(formatted).isEmpty()) {
-                    var food = Food("Macarrons",25.6,formatted, "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
-                    var food2 = Food("Amanida",15.3,formatted, "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
-                    client.addFood(food)
-                    client.addFood(food2)
-                    userDB.setValue(client)
-                }
-
                 if (!client?.trainer.equals("")) {
                     val trainerDB = databaseReference.child(client?.trainer!!)
                     trainerDB.addListenerForSingleValueEvent(object : ValueEventListener {

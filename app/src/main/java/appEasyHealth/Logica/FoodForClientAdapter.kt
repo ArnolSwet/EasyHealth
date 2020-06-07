@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Client.FoodClient
+import com.example.appEasyHealth.Client
 import com.example.appEasyHealth.ClientForTrainer
 import com.example.easyhealth.R
 import de.hdodenhof.circleimageview.CircleImageView
@@ -37,7 +38,6 @@ class FoodForClientAdapter(
         holder.image.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
                 var intent = Intent(cContext, FoodClient::class.java)
-                intent.putExtra("Client", foodNames[position])
                 startActivity(cContext, intent, Bundle())
             }
         })
