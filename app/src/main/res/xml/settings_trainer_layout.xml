@@ -2,19 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <EditTextPreference
-        android:id="@+id/txtCountryT"
+        android:id="@+id/txtCountryTrain"
         android:dialogTitle="Enter your Location"
-        android:key="location"
+        android:key="locationTrain"
         android:defaultValue="ND"
         android:theme="@style/EditText"
         android:inputType="text"
         android:summary="@string/Location"
         android:title="Set Location" />
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="notif"
-        android:title="Allow Notifications"
-        android:visibility="invisible" />
 
 </PreferenceScreen>

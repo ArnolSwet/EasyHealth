@@ -43,7 +43,7 @@ class Chat : AppCompatActivity() {
         chatEditText = findViewById(R.id.edittext_chatbox)
         recycler = findViewById(R.id.recyclerChat)
         txtUser = findViewById(R.id.txtDestinyChat)
-        var userDB = reference.child(destinyID)
+        var userDB = reference.child("User").child(destinyID)
         userDB.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()

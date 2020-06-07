@@ -22,7 +22,6 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
     private lateinit var reference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var trainer: Trainer
-    private lateinit var userDB: DatabaseReference
     private lateinit var txtID: EditText
 
 
@@ -98,7 +97,7 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.settings_trainer_layout,rootKey)
             //Faltara l'array amb class availability
-            bindPreferenceSummaryToValue(findPreference("location")!!)
+            bindPreferenceSummaryToValue(findPreference("locationTrain")!!)
         }
     }
 
@@ -142,8 +141,8 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
             if (preference is EditTextPreference) {
                 if (!TextUtils.isEmpty(stringValue)) {
                     preference.setSummary(stringValue)
-                    if (preference.key == "location") {
-                        val location = stringValue.toDoubleOrNull()
+                    if (preference.key == "locationTrain") {
+                        val location = stringValue
                         userDB.child("location").setValue(location)
                     }
                 }

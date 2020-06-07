@@ -78,7 +78,7 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
             setPreferencesFromResource(R.xml.settings_client_layout,rootKey)
             bindPreferenceSummaryToValue(findPreference("height")!!)
             bindPreferenceSummaryToValue(findPreference("weight")!!)
-            bindPreferenceSummaryToValue(findPreference("location")!!)
+            bindPreferenceSummaryToValue(findPreference("locationCli")!!)
             //bindPreferenceSummaryToValue(findPreference("notif")!!)
         }
     }
@@ -130,8 +130,8 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
                     }else if (preference.key == "height") {
                         val height = stringValue.toDoubleOrNull()
                         userDB.child("height").setValue(height)
-                    }else if (preference.key == "location") {
-                        val location = stringValue.toDoubleOrNull()
+                    }else if (preference.key == "locationCli") {
+                        val location = stringValue
                         userDB.child("location").setValue(location)
                     }
                 }
