@@ -12,7 +12,7 @@ data class Client(
     override var email: String? = "",
     override var id: String? = "",
     override var type: String? = "Client",
-    override var location: String? = "",
+    override var location: String? = "Set Your Location",
     var suscription: String? = "Basic",
     var trainer: String? = "",
     var height: Double? = null,
@@ -28,7 +28,13 @@ data class Client(
     }
 
     fun deleteFood(food: Food) {
+        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        var reference : DatabaseReference = database.getReference("User")
+        var auth : FirebaseAuth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth.currentUser
+        var userClient = reference.child(user?.uid!!)
         this.foodlist?.remove(food)
+        userClient.setValue(this)
     }
 
     fun cancelClass(gymClass: GymClass) {

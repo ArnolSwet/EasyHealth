@@ -33,11 +33,12 @@ class AddFood : AppCompatActivity() {
         databaseReference = database.getReference("User")
         auth = FirebaseAuth.getInstance()
 
-        txtName = findViewById(R.id.nameEdBreak)
-        txtCalories = findViewById(R.id.calEdBreak)
+        txtName = findViewById(R.id.nameEdBreakMeal)
+        txtCalories = findViewById(R.id.calEdBreakMeal)
 
         val spinner = findViewById<View>(R.id.spinLunch) as Spinner
         typeMeal = spinner.selectedItem.toString()
+
         val image: ImageView = findViewById<View>(R.id.imageTypeMeal) as ImageView
         val img_bfst: Int = R.drawable.breakfast
         val img_lun: Int = R.drawable.lunch
@@ -49,16 +50,20 @@ class AddFood : AppCompatActivity() {
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 0) {
-                        image.setImageResource(img_bfst)
+                    image.setImageResource(img_bfst)
+                    typeMeal = spinner.selectedItem.toString()
                 }
                 if (position == 1) {
                     image.setImageResource(img_lun)
+                    typeMeal = spinner.selectedItem.toString()
                 }
                 if (position == 2) {
                     image.setImageResource(img_din)
+                    typeMeal = spinner.selectedItem.toString()
                 }
                 if (position == 3) {
                     image.setImageResource(img_sna)
+                    typeMeal = spinner.selectedItem.toString()
                 }
             }
 
@@ -81,11 +86,17 @@ class AddFood : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 client  = p0.getValue(Client::class.java)!!
-                var calories: Double = txtCalories.getText().toString().toDouble()
-                var meal = Food(txtName.toString(), calories, date, typeMeal)
-                client.addFood(meal)
-                Toast.makeText(applicationContext,"Food added correctly", Toast.LENGTH_SHORT).show()
-                goback(view)
+                if (txtName.text.toString().isEmpty() || txtCalories.text.toString().isEmpty()) {
+                    Toast.makeText(applicationContext,"ERROR: Empty fields", Toast.LENGTH_SHORT).show()
+                } else {
+                    var calories: Double = txtCalories.text.toString().toDouble()
+                    var meal = Food(txtName.text.toString(), calories, date, typeMeal)
+                    client.addFood(meal)
+                    userDB.setValue(client)
+                    Toast.makeText(applicationContext, "Food added correctly", Toast.LENGTH_SHORT)
+                        .show()
+                    goback(view)
+                }
             }
         })
 
