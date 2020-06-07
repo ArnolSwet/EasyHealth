@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtCliSubscription"
-                    android:text="--"
+                    android:text="0"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#595454"
                     android:textSize="23dp" />
@@ -222,6 +222,20 @@
                 android:layout_marginRight="22dp">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/nameEmptyTrainer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="22sp"
+                android:text="No items added yet"
+                android:textColor="#000"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                tools:ignore="SmallSp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
