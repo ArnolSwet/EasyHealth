@@ -16,15 +16,11 @@
         <activity android:name="com.example.appEasyHealth.MainClient" />
         <activity android:name="appEasyHealth.Signup" />
         <activity android:name="com.example.appEasyHealth.ClientForTrainer" />
-        <activity android:name="com.example.appEasyHealth.PersonalDiet" />
         <activity android:name="com.example.appEasyHealth.YourClasses" />
-        <activity android:name="com.example.appEasyHealth.PersonalDietTrainer" />
         <activity android:name="appEasyHealth.Client.FoodClient" />
-        <activity android:name="com.example.appEasyHealth.FoodTrainer" />
+        <activity android:name="appEasyHealth.Trainer.FoodTrainer" />
         <activity android:name="com.example.appEasyHealth.Chat" />
         <activity android:name="com.example.appEasyHealth.AddFood" />
-        <activity android:name="com.example.appEasyHealth.MakeADiet" />
-        <activity android:name="com.example.appEasyHealth.Statistics" />
         <activity android:name="com.example.appEasyHealth.WaitingProgress" />
         <activity android:name="com.example.appEasyHealth.Login">
             <intent-filter>

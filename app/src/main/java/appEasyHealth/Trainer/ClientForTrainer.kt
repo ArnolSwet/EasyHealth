@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Logica.FoodForClientAdapter
 import appEasyHealth.Logica.Usuari
+import appEasyHealth.Trainer.FoodTrainer
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -68,6 +69,9 @@ class ClientForTrainer : AppCompatActivity() {
                             }
                             if (client.height != null) {
                                 txtHeight.text = client.height.toString()
+                            }
+                            if (client.location != null) {
+                                txtLocation.text = client.location.toString()
                             }
                             if (client.foodlist?.size != 0) {
                                 var todayFood = client.getFoodListonDay(formatted)

@@ -64,14 +64,18 @@ class MainTrainer : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 val trainer = p0.getValue(Trainer::class.java)!!
                 if (trainer.getClassesOnDay(formatted).isEmpty()) {
-                    val gymClass1 = GymClass("08:00",formatted,user?.uid)
+                    val gymClass1 = GymClass("09:00",formatted,user?.uid)
                     val gymClass2 = GymClass("11:00",formatted,user?.uid)
-                    val gymClass3 = GymClass("17:00",formatted,user?.uid)
-                    val gymClass4 = GymClass("20:00",formatted,user?.uid)
+                    val gymClass3 = GymClass("13:00",formatted,user?.uid)
+                    val gymClass4 = GymClass("16:00",formatted,user?.uid)
+                    val gymClass5 = GymClass("18:00",formatted,user?.uid)
+                    val gymClass6 = GymClass("20:00",formatted,user?.uid)
                     trainer.addReservedClass(gymClass1)
                     trainer.addReservedClass(gymClass2)
                     trainer.addReservedClass(gymClass3)
                     trainer.addReservedClass(gymClass4)
+                    trainer.addReservedClass(gymClass5)
+                    trainer.addReservedClass(gymClass6)
                     userDB.setValue(trainer)
                 }
 
