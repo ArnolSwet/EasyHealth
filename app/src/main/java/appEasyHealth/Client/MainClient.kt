@@ -3,7 +3,6 @@ package com.example.appEasyHealth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import android.telephony.cdma.CdmaCellLocation
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -30,6 +29,8 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
     private lateinit var txtLocation: TextView
+    private lateinit var txtEmpty: TextView
+    private lateinit var recycler: RecyclerView
     private var trainerID: String = ""
 
 
@@ -47,6 +48,8 @@ class MainClient : AppCompatActivity() {
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+        txtEmpty = findViewById(R.id.nameEmptyClient)
+        recycler = findViewById(R.id.recycler_view_food)
         val currentDate = LocalDateTime.now()
 
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
@@ -101,7 +104,12 @@ class MainClient : AppCompatActivity() {
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
                 }
-                if (client.foodlist?.size != 0) {
+                if (client.foodlist.isNullOrEmpty()) {
+                    recycler.setVisibility(View.GONE);
+                    txtEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    recycler.setVisibility(View.VISIBLE);
+                    txtEmpty.setVisibility(View.GONE);
                     var todayFood = client.getFoodListonDay(formatted)
                     var foodNames = ArrayList<String>()
                     var foodTypes = ArrayList<String>()

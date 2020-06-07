@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -32,6 +31,8 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
     private lateinit var txtLocation: TextView
+    private lateinit var txtEmpty: TextView
+    private lateinit var recycler: RecyclerView
     private var clientNames = ArrayList<String>()
     private var yourMessages: List<Message> = ArrayList()
 
@@ -43,18 +44,17 @@ class MainTrainer : AppCompatActivity() {
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child("User").child(user?.uid!!)
         setContentView(R.layout.activity_main_trainer)
-        // Canviar Nom Variables arreglar
 
         val currentDate = LocalDateTime.now()
-
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val formatted = currentDate.format(formatter)
-
         txtName = findViewById(R.id.txtClientName)
         txtNumClass = findViewById(R.id.txtCliSubscriptionNum)
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
         txtLocation = findViewById(R.id.txtTrainLocation)
+        txtEmpty = findViewById(R.id.nameEmptyTrainer)
+        recycler = findViewById(R.id.recycler_view_trainer)
 
         userDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -94,7 +94,12 @@ class MainTrainer : AppCompatActivity() {
                 if (trainer?.name != null) {
                     txtName.text = trainer.name
                 }
-                if (trainer.llistaClients?.size != 0) {
+                if (trainer.llistaClients.isNullOrEmpty()) {
+                    recycler.setVisibility(View.GONE);
+                    txtEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    recycler.setVisibility(View.VISIBLE);
+                    txtEmpty.setVisibility(View.GONE);
                     getClientNames(trainer,clientNames)
                 }
                 if (trainer?.location != null) {
@@ -136,6 +141,7 @@ class MainTrainer : AppCompatActivity() {
         var adapter = ClientForTrainerAdapter(this, clientNames, messages)
         recyclerView.adapter = adapter
     }
+
     private fun createFirebaseListener() {
         val postListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
