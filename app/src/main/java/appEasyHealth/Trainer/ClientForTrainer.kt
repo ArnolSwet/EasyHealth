@@ -9,12 +9,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import appEasyHealth.Logica.FoodForClientAdapter
+import appEasyHealth.Logica.FoodForTrainerAdapter
 import appEasyHealth.Logica.Usuari
 import appEasyHealth.Trainer.FoodTrainer
 import com.example.easyhealth.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -77,12 +75,14 @@ class ClientForTrainer : AppCompatActivity() {
                                 var todayFood = client.getFoodListonDay(formatted)
                                 var foodNames = ArrayList<String>()
                                 var foodTypes = ArrayList<String>()
+                                var foodCalories = ArrayList<String>()
 
                                 for (food in todayFood) {
                                     foodNames.add(food.name.toString())
                                     foodTypes.add(food.tipus.toString())
+                                    foodCalories.add(food.calories.toString())
                                 }
-                                initReyclerView(client, foodNames, foodTypes)
+                                initReyclerView(client, foodNames, foodTypes, foodCalories)
                             }
                             if (client?.suscription != null) {
                                 txtSuscription.text = client.suscription
@@ -98,12 +98,13 @@ class ClientForTrainer : AppCompatActivity() {
     fun initReyclerView(
         client: Client,
         foodNames: ArrayList<String>,
-        foodTypes: ArrayList<String>
+        foodTypes: ArrayList<String>,
+        foodCalories: ArrayList<String>
     ) {
         var managerLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food_trainer)
         recyclerView.layoutManager = managerLayout
-        var adapter = FoodForClientAdapter(this, foodNames, foodTypes)
+        var adapter = FoodForTrainerAdapter(this, foodNames, foodTypes, foodCalories)
         recyclerView.adapter = adapter
     }
 

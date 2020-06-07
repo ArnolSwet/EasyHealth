@@ -17,14 +17,15 @@ import java.util.*
 class FoodForTrainerAdapter(
     private val cContext: Context,
     private val foodNames: ArrayList<String>,
-    private val foodTypes: ArrayList<String>
+    private val foodTypes: ArrayList<String>,
+    private val foodCalories: ArrayList<String>
 ) : RecyclerView.Adapter<FoodForTrainerAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.foodscroll_layout, parent, false)
+            .inflate(R.layout.foodscrolltrainer_layout, parent, false)
         return ViewHolder(view)
     }
 
@@ -33,6 +34,7 @@ class FoodForTrainerAdapter(
         position: Int
     ) {
         holder.name.text = foodNames[position]
+        holder.calories.text = foodCalories[position]
 
         val img_bfst: Int = R.drawable.breakfast
         val img_lun: Int = R.drawable.lunch
@@ -51,13 +53,6 @@ class FoodForTrainerAdapter(
         if (foodTypes[position] == "Snack") {
             holder.image.setImageResource(img_sna)
         }
-
-        holder.image.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                var intent = Intent(cContext, FoodClient::class.java)
-                startActivity(cContext, intent, Bundle())
-            }
-        })
     }
 
     override fun getItemCount(): Int {
@@ -68,10 +63,13 @@ class FoodForTrainerAdapter(
         RecyclerView.ViewHolder(itemView) {
         var image: ImageView
         var name: TextView
+        var calories: TextView
 
         init {
             image = itemView.findViewById(R.id.imageFoodMeals)
             name = itemView.findViewById(R.id.nameFood)
+            calories = itemView.findViewById(R.id.nameFoodCal)
+
         }
     }
 
