@@ -47,7 +47,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_centerVertical="true"
-            android:onClick="goback"
+            android:onClick="addFood"
             android:background="#00FFFFFF"
             android:contentDescription="@string/btnBack"
             android:layout_alignParentEnd="true"
@@ -60,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginLeft="15dp"
         android:theme="@style/DietSpinner"
         android:entries="@array/foods"/>
 
@@ -68,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/toolbar"
         app:layout_constraintHorizontal_bias="1.0"
@@ -121,33 +122,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/borde">
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/imageButtonAdd"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="50dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/addImageDescript"
-            android:scaleType="fitCenter"
-            android:tint="@android:color/holo_blue_light"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+        <ImageView
+            android:id="@+id/imageTypeMeal"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:background="#8B39A8D1"
+            android:padding="20dp"
+            app:srcCompat="@drawable/breakfast" />
 
-        <Button
-            android:id="@+id/btnAddImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:backgroundTint="@android:color/holo_blue_light"
-            android:text="@string/add_image" />
     </RelativeLayout>
 
 

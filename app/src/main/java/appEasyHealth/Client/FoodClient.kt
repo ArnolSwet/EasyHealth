@@ -27,6 +27,7 @@ class FoodClient : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dpd : DatePickerDialog
     private lateinit var client: Client
+    private lateinit var date: String
     private lateinit var listFoodClient: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,15 +37,16 @@ class FoodClient : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
+
         setContentView(R.layout.activity_food_client)
         listFoodClient = findViewById(R.id.foodList)
         val currentDate = LocalDateTime.now()
         val formatterDay = DateTimeFormatter.ofPattern("dd")
-        val formattedDay = currentDate.format(formatterDay)
+        var formattedDay = currentDate.format(formatterDay)
         val formatterMonth = DateTimeFormatter.ofPattern("MM")
-        val formattedMonth = currentDate.format(formatterMonth)
+        var formattedMonth = currentDate.format(formatterMonth)
         val formatterYear = DateTimeFormatter.ofPattern("yyyy")
-        val formattedYear = currentDate.format(formatterYear)
+        var formattedYear = currentDate.format(formatterYear)
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -64,19 +66,22 @@ class FoodClient : AppCompatActivity() {
 
         dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-            var any = year.toString()
-            var mes = (monthOfYear +1).toString()
-            var dia = dayOfMonth.toString()
-            if (mes.length == 1) mes = "0$mes"
-            if (dia.length == 1) dia = "0$dia"
-            foodList = client.getFoodListonDay("$dia/$mes/$any")
+            formattedYear = year.toString()
+            formattedMonth = (monthOfYear +1).toString()
+            formattedDay = dayOfMonth.toString()
+            if (formattedMonth.length == 1) formattedMonth = "0$formattedMonth"
+            if (formattedDay.length == 1) formattedDay = "0$formattedDay"
+            foodList = client.getFoodListonDay("$formattedDay/$formattedMonth/$formattedYear")
             listFoodClient.adapter = FoodAdapter(this,foodList)
 
         }, year, month, day)
+
+        this.date = "$formattedDay/$formattedMonth/$formattedYear"
     }
 
-    fun addFood(view: View) {
+    fun addFoodCalendar(view: View) {
         val intent = Intent(this, AddFood::class.java)
+        intent.putExtra("Date", date)
         startActivity(intent)
     }
     fun goBack(view: View) {

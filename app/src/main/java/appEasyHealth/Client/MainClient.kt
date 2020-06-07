@@ -6,13 +6,18 @@ import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Client.FoodClient
+import appEasyHealth.Logica.ClientForTrainerAdapter
+import appEasyHealth.Logica.FoodForClientAdapter
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.ArrayList
 
 class MainClient : AppCompatActivity() {
 
@@ -23,6 +28,7 @@ class MainClient : AppCompatActivity() {
     private lateinit var txtSuscription: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,14 +56,6 @@ class MainClient : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val client = p0.getValue(Client::class.java)!!
-                if (client.getFoodListonDay(formatted).isEmpty()) {
-                    var food = Food("Macarrons",25.6,formatted, "android.resource://" + packageName + "/" + R.mipmap.macarrons,"Dinner")
-                    var food2 = Food("Amanida",15.3,formatted, "android.resource://" + packageName + "/" + R.mipmap.ensalada,"Lunch")
-                    client.addFood(food)
-                    client.addFood(food2)
-                    userDB.setValue(client)
-                }
-
                 if (!client?.trainer.equals("")) {
                     val trainerDB = databaseReference.child(client?.trainer!!)
                     trainerDB.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -98,18 +96,30 @@ class MainClient : AppCompatActivity() {
                 if (client?.suscription != null) {
                     txtSuscription.text = client.suscription
                 }
+                if (client.foodlist?.size != 0) {
+                    var todayFood = client.getFoodListonDay(formatted)
+                    var foodNames = ArrayList<String>()
+                    for (food in todayFood) {
+                        foodNames.add(food.name.toString())
+                    }
+                    initReyclerView(client, foodNames)
+                }
             }
         })
+    }
+
+    fun initReyclerView(client :Client, foodNames: ArrayList<String>) {
+        var managerLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food)
+        recyclerView.layoutManager = managerLayout
+        var adapter = FoodForClientAdapter(this, foodNames)
+        recyclerView.adapter = adapter
     }
 
     fun goback(view: View) {
         finish()
     }
 
-    fun gostats(view: View) {
-        val intent = Intent(this, Statistics::class.java)
-        startActivity(intent)
-    }
     fun gotochat(view: View) {
         val intent = Intent(this, Chat::class.java)
         startActivity(intent)
@@ -117,10 +127,6 @@ class MainClient : AppCompatActivity() {
 
     fun settingsClient(view: View) {
         val intent = Intent(this, SettingsClient::class.java)
-        startActivity(intent)
-    }
-    fun personalDiet(view: View) {
-        val intent = Intent(this, PersonalDiet::class.java)
         startActivity(intent)
     }
 
