@@ -12,7 +12,6 @@ import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_statistics.*
 
 class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 

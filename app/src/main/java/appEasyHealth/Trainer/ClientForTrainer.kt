@@ -71,20 +71,10 @@ class ClientForTrainer : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun statistics(view: View) {
-        val intent = Intent(this, Statistics::class.java)
-        startActivity(intent)
-    }
-
     fun chatClient(view: View) {
         val intent = Intent(this, Chat::class.java)
         intent.putExtra("DestinyID",clientID)
         ContextCompat.startActivity(this,intent, Bundle())
-    }
-
-    fun personalDietTrainer(view: View) {
-        val intent = Intent(this, PersonalDietTrainer::class.java)
-        startActivity(intent)
     }
 
     fun goBack(view: View) {
