@@ -76,8 +76,9 @@ class Chat : AppCompatActivity() {
     }
 
     private fun sendData() {
-        reference?.child("messages")?.child(java.lang.String.valueOf(System.currentTimeMillis()))?.setValue(
-            Message(chatEditText.text.toString(),originID,destinyID,false)
+        val time = java.lang.String.valueOf(System.currentTimeMillis())
+        reference?.child("messages")?.child(time)?.setValue(
+            Message(chatEditText.text.toString(),originID,destinyID,false,time)
         )
 
         //clear the text

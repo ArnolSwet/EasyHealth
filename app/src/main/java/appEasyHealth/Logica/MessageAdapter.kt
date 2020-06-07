@@ -34,7 +34,8 @@ class MessageAdapter(private val context: Context,private val dataSource: ArrayL
         if (user?.uid!! == message.originID) {
             rowView = inflater.inflate(R.layout.my_message,parent,false)
 
-        } else if (user.uid == message.destinyID) {
+        }
+        if (user.uid == message.destinyID) {
             databaseReference.child(message.timestamp.toString()).child("visto").setValue(true)
 
         }
