@@ -133,4 +133,9 @@ class MainClient : AppCompatActivity() {
         val intent = Intent(this, FoodClient::class.java)
         startActivity(intent)
     }
+
+    fun gologin(view: View) {
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+    }
 }
