@@ -28,7 +28,13 @@ data class Client(
     }
 
     fun deleteFood(food: Food) {
+        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        var reference : DatabaseReference = database.getReference("User")
+        var auth : FirebaseAuth = FirebaseAuth.getInstance()
+        val user: FirebaseUser? = auth.currentUser
+        var userClient = reference.child(user?.uid!!)
         this.foodlist?.remove(food)
+        userClient.setValue(this)
     }
 
     fun cancelClass(gymClass: GymClass) {
