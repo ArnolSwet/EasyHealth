@@ -89,8 +89,7 @@ class AddFood : AppCompatActivity() {
                 if (txtName.text.toString().isEmpty() || txtCalories.text.toString().isEmpty()) {
                     Toast.makeText(applicationContext,"ERROR: Empty fields", Toast.LENGTH_SHORT).show()
                 } else {
-                    var calories: Double = txtCalories.text.toString().toDouble()
-                    var meal = Food(txtName.text.toString(), calories, date, typeMeal)
+                    var meal = Food(txtName.text.toString(), txtCalories.text.toString()+" kcal", date, typeMeal)
                     client.addFood(meal)
                     userDB.setValue(client)
                     Toast.makeText(applicationContext, "Food added correctly", Toast.LENGTH_SHORT)
