@@ -9,10 +9,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.easyhealth.R
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 
 
 class AddFood : AppCompatActivity() {
 
+    private lateinit var database: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+    private lateinit var client: Client
     private lateinit var txtName: TextInputEditText
     private lateinit var txtCalories: TextInputEditText
     private lateinit var typeMeal: String
@@ -21,6 +28,10 @@ class AddFood : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_food)
+
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.getReference("User")
+        auth = FirebaseAuth.getInstance()
 
         txtName = findViewById(R.id.nameEdBreak)
         txtCalories = findViewById(R.id.calEdBreak)
@@ -54,11 +65,29 @@ class AddFood : AppCompatActivity() {
         }
 
         date = getIntent().getSerializableExtra("Date").toString()
-        var clientID = getIntent().getSerializableExtra("Client").toString()
-        Toast.makeText(this,clientID, Toast.LENGTH_LONG).show()
+
     }
 
     fun addFood( view: View) {
+
+        val user: FirebaseUser? = auth.currentUser
+        val userDB = databaseReference.child(user?.uid!!)
+
+        userDB.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                client  = p0.getValue(Client::class.java)!!
+                var calories: Double = txtCalories.getText().toString().toDouble()
+                var meal = Food(txtName.toString(), calories, date, typeMeal)
+                client.addFood(meal)
+                Toast.makeText(applicationContext,"Food added correctly", Toast.LENGTH_SHORT).show()
+                goback(view)
+            }
+        })
 
     }
 

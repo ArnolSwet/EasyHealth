@@ -37,6 +37,7 @@ class FoodClient : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
+
         setContentView(R.layout.activity_food_client)
         listFoodClient = findViewById(R.id.foodList)
         val currentDate = LocalDateTime.now()
@@ -80,7 +81,6 @@ class FoodClient : AppCompatActivity() {
 
     fun addFoodCalendar(view: View) {
         val intent = Intent(this, AddFood::class.java)
-        intent.putExtra("Client", client.id)
         intent.putExtra("Date", date)
         startActivity(intent)
     }
