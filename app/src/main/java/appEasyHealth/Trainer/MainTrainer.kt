@@ -26,12 +26,14 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var client: Client
+    private lateinit var trainer: Trainer
     private lateinit var txtName:  TextView
     private lateinit var txtMssgs:  TextView
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
     private lateinit var txtLocation: TextView
-    private var yourChat: ArrayList<Message> = ArrayList()
+    private var clientNames = ArrayList<String>()
+    private var yourMessages: List<Message> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +55,6 @@ class MainTrainer : AppCompatActivity() {
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
         txtLocation = findViewById(R.id.txtTrainLocation)
-
-        createFirebaseListener()
 
         userDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -89,8 +89,7 @@ class MainTrainer : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                val trainer = p0.getValue(Trainer::class.java)!!
-                var clientNames = ArrayList<String>()
+                trainer = p0.getValue(Trainer::class.java)!!
                 txtNumClients.text = trainer.llistaClients?.size.toString()
                 if (trainer?.name != null) {
                     txtName.text = trainer.name
@@ -106,6 +105,7 @@ class MainTrainer : AppCompatActivity() {
                 }
             }
         })
+        createFirebaseListener()
     }
 
     fun getClientNames(trainer :Trainer, clientNames :ArrayList<String>) {
@@ -120,7 +120,7 @@ class MainTrainer : AppCompatActivity() {
                     this@MainTrainer.client = p0.getValue(Client::class.java)!!
                     var string = this@MainTrainer.client.name + " #" + this@MainTrainer.client.id.toString()
                     if (!clientNames.contains(string)) clientNames.add(string)
-                    initReyclerView(trainer, clientNames)
+                    initReyclerView(trainer, clientNames, yourMessages)
                 }
 
             })
@@ -129,11 +129,11 @@ class MainTrainer : AppCompatActivity() {
 
     }
 
-    fun initReyclerView(trainer :Trainer, clientNames: ArrayList<String>) {
+    fun initReyclerView(trainer :Trainer, clientNames: ArrayList<String>, messages: List<Message>) {
         var managerLayout = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
         var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_trainer)
         recyclerView.layoutManager = managerLayout
-        var adapter = ClientForTrainerAdapter(this, clientNames)
+        var adapter = ClientForTrainerAdapter(this, clientNames, messages)
         recyclerView.adapter = adapter
     }
     private fun createFirebaseListener() {
@@ -158,8 +158,10 @@ class MainTrainer : AppCompatActivity() {
                 toReturn.sortBy { message ->
                     message.timestamp
                 }
+                    yourMessages = getMessages(toReturn)
+                    txtMssgs.text = yourMessages.size.toString()
+                initReyclerView(trainer, clientNames, yourMessages)
 
-                    txtMssgs.text = getMessages(toReturn).size.toString()
             }
 
         }

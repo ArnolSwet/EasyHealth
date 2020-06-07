@@ -43,6 +43,13 @@
                 android:autoSizeMaxTextSize="15sp"
                 android:autoSizeMinTextSize="8sp" />
 
+            <ImageView
+                android:id="@+id/imageNotif"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_notification_overlay" />
+
         </RelativeLayout>
 
 
