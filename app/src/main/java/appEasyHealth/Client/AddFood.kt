@@ -92,8 +92,7 @@ class AddFood : AppCompatActivity() {
                     var meal = Food(txtName.text.toString(), txtCalories.text.toString()+" kcal", date, typeMeal)
                     client.addFood(meal)
                     userDB.setValue(client)
-                    Toast.makeText(applicationContext, "Food added correctly", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(applicationContext, "Food added correctly", Toast.LENGTH_SHORT).show()
                     goback(view)
                 }
             }

@@ -251,11 +251,21 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="22dp">
 
+                <TextView
+                    android:id="@+id/txtTrainingOpt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/CFT_TrainingOpt"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="23dp" />
+
                 <ImageButton
                     android:id="@+id/imageButtonChat"
                     android:layout_width="176dp"
                     android:layout_height="134dp"
-                    android:layout_below="@+id/txtButtonStats"
+                    android:layout_below="@+id/txtTrainingOpt"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
