@@ -16,7 +16,7 @@ data class Trainer (
     override var id: String? = "",
     override var notif : Boolean? = false,
     override var type: String? = "Trainer",
-    override var location: String? = "",
+    override var location: String? = "Set Your Location",
     var disponibility : String? = "All",
     var llistaClients: MutableList<String>? = ArrayList(),
     override var classesReservades: MutableList<GymClass>? = ArrayList()
