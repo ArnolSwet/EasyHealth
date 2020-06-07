@@ -76,7 +76,7 @@
     <string name="CFT_CliHeightNum">--</string>
     <string name="CFT_CliWeight">Weight (kg)</string>
     <string name="CFT_CliWeightNum">--</string>
-    <string name="CFT_CliMeal">Client Meals</string>
+    <string name="CFT_CliMeal">Today\'s Client Meals</string>
     <string name="CFT_CliMealBF">American Breakfast</string>
     <string name="CFT_CliMealLCH">Rice with Chicken</string>
     <string name="CFT_CliMealAFT">Banana and Coffee</string>

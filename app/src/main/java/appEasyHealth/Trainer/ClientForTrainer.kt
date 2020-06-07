@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Logica.FoodForTrainerAdapter
 import appEasyHealth.Logica.Usuari
-import appEasyHealth.Trainer.FoodTrainer
 import com.example.easyhealth.R
 import com.google.firebase.database.*
 import java.time.LocalDateTime
@@ -106,12 +105,6 @@ class ClientForTrainer : AppCompatActivity() {
         recyclerView.layoutManager = managerLayout
         var adapter = FoodForTrainerAdapter(this, foodNames, foodTypes, foodCalories)
         recyclerView.adapter = adapter
-    }
-
-    fun goFoodClient(view: View) {
-        val intent = Intent(this, FoodTrainer::class.java)
-        intent.putExtra("ClientID",clientID)
-        ContextCompat.startActivity(this,intent, Bundle())
     }
 
     fun chatClient(view: View) {
