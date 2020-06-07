@@ -40,5 +40,17 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/btnCancelMeal"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/btnCancel"
+        android:tint="@android:color/holo_red_dark"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
 
 </RelativeLayout>

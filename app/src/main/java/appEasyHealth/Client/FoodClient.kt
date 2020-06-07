@@ -60,7 +60,7 @@ class FoodClient : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 client  = p0.getValue(Client::class.java)!!
                 foodList = client.getFoodListonDay("$formattedDay/$formattedMonth/$formattedYear")
-                listFoodClient.adapter = FoodAdapter(this@FoodClient,foodList)
+                listFoodClient.adapter = FoodAdapter(this@FoodClient,foodList, client)
                 date = "$formattedDay/$formattedMonth/$formattedYear"
             }
         })
@@ -73,7 +73,7 @@ class FoodClient : AppCompatActivity() {
             if (formattedMonth.length == 1) formattedMonth = "0$formattedMonth"
             if (formattedDay.length == 1) formattedDay = "0$formattedDay"
             foodList = client.getFoodListonDay("$formattedDay/$formattedMonth/$formattedYear")
-            listFoodClient.adapter = FoodAdapter(this,foodList)
+            listFoodClient.adapter = FoodAdapter(this,foodList, client)
             this.date = "$formattedDay/$formattedMonth/$formattedYear"
 
         }, year, month, day)

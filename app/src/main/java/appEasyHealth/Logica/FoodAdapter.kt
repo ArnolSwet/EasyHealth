@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.appEasyHealth.Client
 import com.example.appEasyHealth.Food
 import com.example.easyhealth.R
 
-class FoodAdapter(private val context: Context, private val dataSource: List<Food>) : BaseAdapter() {
+class FoodAdapter(private val context: Context, private val dataSource: List<Food>, private val client: Client) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -20,6 +22,7 @@ class FoodAdapter(private val context: Context, private val dataSource: List<Foo
         var nameTextView = rowView.findViewById(R.id.txtNameMeal) as TextView
         var caloriesTextView = rowView.findViewById(R.id.txtCalMeal) as TextView
         var foodImage = rowView.findViewById(R.id.imageFoodMeal) as ImageView
+        var deleteFood = rowView.findViewById(R.id.btnCancelMeal) as ImageButton
         var food = getItem(position) as Food
 
         nameTextView.text = food.name
@@ -42,6 +45,12 @@ class FoodAdapter(private val context: Context, private val dataSource: List<Foo
         if (food.tipus == "Snack") {
             foodImage.setImageResource(img_sna)
         }
+
+        deleteFood.setOnClickListener{
+            client.deleteFood(food)
+
+        }
+
         return rowView
     }
 
