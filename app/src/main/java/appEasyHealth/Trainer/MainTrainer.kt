@@ -155,9 +155,7 @@ class MainTrainer : AppCompatActivity() {
                     message.timestamp
                 }
 
-                if (getMessages(toReturn).isNotEmpty()) {
                     txtMssgs.text = getMessages(toReturn).size.toString()
-                }
             }
 
         }

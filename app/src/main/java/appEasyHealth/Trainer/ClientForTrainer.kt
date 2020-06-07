@@ -85,7 +85,6 @@ class ClientForTrainer : AppCompatActivity() {
                             }
                         }
                     }
-
                 }
             }
         })
