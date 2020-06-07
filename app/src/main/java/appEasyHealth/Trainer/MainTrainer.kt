@@ -169,7 +169,7 @@ class MainTrainer : AppCompatActivity() {
         var user = auth.currentUser
         val yourChat: MutableList<Message> = ArrayList()
         for (message in data) {
-            if (message.destinyID == user?.uid!!) {
+            if ((message.destinyID == user?.uid!!) && !message.visto) {
                 yourChat += message
             }
         }
