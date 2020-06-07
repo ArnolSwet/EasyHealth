@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Logica.ClientForTrainerAdapter
+import appEasyHealth.Logica.Message
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -17,6 +18,8 @@ import com.google.firebase.database.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 class MainTrainer : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
@@ -28,16 +31,16 @@ class MainTrainer : AppCompatActivity() {
     private lateinit var txtNumClass: TextView
     private lateinit var txtNumClients: TextView
     private lateinit var txtLocation: TextView
+    private var yourChat: ArrayList<Message> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = FirebaseDatabase.getInstance()
-        databaseReference = database.getReference("User")
+        databaseReference = database.reference
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
-        val userDB = databaseReference.child(user?.uid!!)
+        val userDB = databaseReference.child("User").child(user?.uid!!)
         setContentView(R.layout.activity_main_trainer)
-
         // Canviar Nom Variables arreglar
 
         val currentDate = LocalDateTime.now()
@@ -50,6 +53,8 @@ class MainTrainer : AppCompatActivity() {
         txtMssgs = findViewById(R.id.txtCliHeightNum)
         txtNumClients = findViewById(R.id.txtCliWeightNum)
         txtLocation = findViewById(R.id.txtTrainLocation)
+
+        createFirebaseListener()
 
         userDB.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -92,13 +97,16 @@ class MainTrainer : AppCompatActivity() {
                 if (trainer?.location != null) {
                     txtLocation.text = trainer.location
                 }
+                if (trainer.getReservedClassesOnDay(formatted).isNotEmpty()) {
+                    txtNumClass.text = trainer.getReservedClassesOnDay(formatted).size.toString()
+                }
             }
         })
     }
 
     fun getClientNames(trainer :Trainer, clientNames :ArrayList<String>) {
         for (client in trainer.llistaClients!!) {
-            var clientDB = databaseReference.child(client)
+            var clientDB = databaseReference.child("User").child(client)
             clientDB.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     Toast.makeText(applicationContext,"Fail to read data", Toast.LENGTH_SHORT).show()
@@ -124,6 +132,49 @@ class MainTrainer : AppCompatActivity() {
         var adapter = ClientForTrainerAdapter(this, clientNames)
         recyclerView.adapter = adapter
     }
+    private fun createFirebaseListener() {
+        val postListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                //log Error
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val toReturn: ArrayList<Message> = ArrayList();
+
+                for (data in p0.children) {
+                    val messageData = data.getValue<Message>(Message::class.java)
+
+                    //unwrap
+                    val message = messageData?.let { it } ?: continue
+
+                    toReturn.add(message)
+                }
+
+                //sort so newest at bottom
+                toReturn.sortBy { message ->
+                    message.timestamp
+                }
+
+                if (getMessages(toReturn).isNotEmpty()) {
+                    txtMssgs.text = getMessages(toReturn).size.toString()
+                }
+            }
+
+        }
+
+        databaseReference?.child("messages")?.addValueEventListener(postListener)
+
+    }
+    fun getMessages(data: ArrayList<Message>): List<Message> {
+        var user = auth.currentUser
+        val yourChat: MutableList<Message> = ArrayList()
+        for (message in data) {
+            if (message.destinyID == user?.uid!!) {
+                yourChat += message
+            }
+        }
+        return yourChat
+    }
 
     fun goClient(){
         val intent = Intent(this, ClientForTrainer::class.java)
@@ -144,3 +195,5 @@ class MainTrainer : AppCompatActivity() {
         startActivity(intent)
     }
 }
+
+

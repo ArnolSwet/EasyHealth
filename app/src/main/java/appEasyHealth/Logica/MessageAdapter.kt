@@ -34,6 +34,8 @@ class MessageAdapter(private val context: Context,private val dataSource: ArrayL
         if (user?.uid!! == message.originID) {
             rowView = inflater.inflate(R.layout.my_message,parent,false)
 
+        } else if (user.uid == message.destinyID) {
+            message.visto = true
         }
         val messageView = rowView.findViewById(R.id.message_body) as TextView
         messageView.text = message.text

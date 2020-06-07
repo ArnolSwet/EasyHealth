@@ -2,6 +2,7 @@ package com.example.appEasyHealth
 
 import android.widget.Toast
 import appEasyHealth.Logica.GymClass
+import appEasyHealth.Logica.Message
 import appEasyHealth.Logica.Usuari
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -111,9 +112,6 @@ data class Trainer (
         })
     }
 
-
-    // fun addPersonalDiet
-    // fun removePersonalDiet
 
 }
 

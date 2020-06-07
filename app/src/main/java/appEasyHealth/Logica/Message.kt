@@ -12,5 +12,6 @@ class Message {
     var originID: String? = ""
     var destinyID: String? = ""
     var text: String? = null
+    var visto: Boolean = false
     var timestamp: Long = System.currentTimeMillis()
 }

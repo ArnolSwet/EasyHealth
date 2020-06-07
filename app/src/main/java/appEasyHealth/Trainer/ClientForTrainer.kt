@@ -7,19 +7,24 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import appEasyHealth.Logica.FoodForClientAdapter
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.ArrayList
 
 class ClientForTrainer : AppCompatActivity() {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
-
     private lateinit var txtName:  TextView
     private lateinit var txtSuscription: TextView
+    private lateinit var txtLocation: TextView
     private lateinit var txtWeight: TextView
     private lateinit var txtHeight: TextView
     private lateinit var clientID: String
@@ -35,8 +40,12 @@ class ClientForTrainer : AppCompatActivity() {
 
         txtName = findViewById(R.id.txtClientName)
         txtSuscription = findViewById(R.id.txtCliSubscriptionNum)
+        txtLocation = findViewById(R.id.txtCliLocation)
         txtWeight = findViewById(R.id.txtCliWeightNum)
         txtHeight = findViewById(R.id.txtCliHeightNum)
+        val currentDate = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val formatted = currentDate.format(formatter)
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -57,6 +66,14 @@ class ClientForTrainer : AppCompatActivity() {
                         if (client?.height != null) {
                             txtHeight.text = client.height.toString()
                         }
+                        if (client.foodlist?.size != 0) {
+                            var todayFood = client.getFoodListonDay(formatted)
+                            var foodNames = ArrayList<String>()
+                            for (food in todayFood) {
+                                foodNames.add(food.name.toString())
+                            }
+                            initReyclerView(client, foodNames)
+                        }
                         if (client?.suscription != null) {
                             txtSuscription.text = client.suscription
                         }
@@ -66,25 +83,24 @@ class ClientForTrainer : AppCompatActivity() {
         })
     }
 
-    fun goFoodClient(view: View) {
-        val intent = Intent(this, FoodTrainer::class.java)
-        startActivity(intent)
+    fun initReyclerView(client :Client, foodNames: ArrayList<String>) {
+        var managerLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food)
+        recyclerView.layoutManager = managerLayout
+        var adapter = FoodForClientAdapter(this, foodNames)
+        recyclerView.adapter = adapter
     }
 
-    fun statistics(view: View) {
-        val intent = Intent(this, Statistics::class.java)
-        startActivity(intent)
+    fun goFoodClient(view: View) {
+        val intent = Intent(this, FoodTrainer::class.java)
+        intent.putExtra("ClientID",clientID)
+        ContextCompat.startActivity(this,intent, Bundle())
     }
 
     fun chatClient(view: View) {
         val intent = Intent(this, Chat::class.java)
         intent.putExtra("DestinyID",clientID)
         ContextCompat.startActivity(this,intent, Bundle())
-    }
-
-    fun personalDietTrainer(view: View) {
-        val intent = Intent(this, PersonalDietTrainer::class.java)
-        startActivity(intent)
     }
 
     fun goBack(view: View) {
