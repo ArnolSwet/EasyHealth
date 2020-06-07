@@ -69,10 +69,13 @@ class ClientForTrainer : AppCompatActivity() {
                         if (client.foodlist?.size != 0) {
                             var todayFood = client.getFoodListonDay(formatted)
                             var foodNames = ArrayList<String>()
+                            var foodTypes = ArrayList<String>()
+
                             for (food in todayFood) {
                                 foodNames.add(food.name.toString())
+                                foodTypes.add(food.tipus.toString())
                             }
-                            initReyclerView(client, foodNames)
+                            initReyclerView(client, foodNames, foodTypes)
                         }
                         if (client?.suscription != null) {
                             txtSuscription.text = client.suscription
@@ -83,11 +86,15 @@ class ClientForTrainer : AppCompatActivity() {
         })
     }
 
-    fun initReyclerView(client :Client, foodNames: ArrayList<String>) {
+    fun initReyclerView(
+        client: Client,
+        foodNames: ArrayList<String>,
+        foodTypes: ArrayList<String>
+    ) {
         var managerLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food)
         recyclerView.layoutManager = managerLayout
-        var adapter = FoodForClientAdapter(this, foodNames)
+        var adapter = FoodForClientAdapter(this, foodNames, foodTypes)
         recyclerView.adapter = adapter
     }
 
