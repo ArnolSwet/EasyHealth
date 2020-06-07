@@ -136,9 +136,14 @@ class MainClient : AppCompatActivity() {
     }
 
     fun gotochat(view: View) {
-        val intent = Intent(this, Chat::class.java)
-        intent.putExtra("DestinyID",trainerID)
-        ContextCompat.startActivity(this,intent, Bundle())
+        if (trainerID.isNotEmpty()) {
+            val intent = Intent(this, Chat::class.java)
+            intent.putExtra("DestinyID",trainerID)
+            ContextCompat.startActivity(this,intent, Bundle())
+        } else {
+            Toast.makeText(applicationContext,"Add a Trainer First", Toast.LENGTH_LONG).show()
+        }
+
     }
 
     fun settingsClient(view: View) {

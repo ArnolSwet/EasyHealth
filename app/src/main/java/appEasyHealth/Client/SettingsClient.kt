@@ -1,9 +1,11 @@
 package com.example.appEasyHealth
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.TextUtils
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +14,7 @@ import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import java.time.temporal.ValueRange
 
 class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
@@ -153,6 +156,8 @@ class SettingsClient : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenc
                         .getDefaultSharedPreferences(preference.context)
                         .getString(preference.key,""))
         }
+
+
     }
 
     fun goBack(view: View){

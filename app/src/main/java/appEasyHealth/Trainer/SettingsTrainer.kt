@@ -156,11 +156,10 @@ class SettingsTrainer : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
             preference: Preference
         ) {
             PreferenceManager.setDefaultValues(preference.context,R.xml.settings_client_layout,true)
-            preference.onPreferenceChangeListener =
-                SettingsTrainer.sBindPreferenceSummaryToValueListener
+            preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
 
 
-            SettingsTrainer.sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                 PreferenceManager
                     .getDefaultSharedPreferences(preference.context)
                     .getString(preference.key,""))
