@@ -58,7 +58,6 @@ class MainTrainer : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 val trainer = p0.getValue(Trainer::class.java)!!
-                trainer.addClient("5Cby")
                 if (trainer.getClassesOnDay(formatted).isEmpty()) {
                     val gymClass1 = GymClass("08:00",formatted,user?.uid)
                     val gymClass2 = GymClass("11:00",formatted,user?.uid)
@@ -120,7 +119,7 @@ class MainTrainer : AppCompatActivity() {
 
     fun initReyclerView(trainer :Trainer, clientNames: ArrayList<String>) {
         var managerLayout = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
-        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view)
+        var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_trainer)
         recyclerView.layoutManager = managerLayout
         var adapter = ClientForTrainerAdapter(this, clientNames)
         recyclerView.adapter = adapter

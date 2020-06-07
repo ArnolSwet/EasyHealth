@@ -27,6 +27,7 @@ class FoodClient : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dpd : DatePickerDialog
     private lateinit var client: Client
+    private lateinit var date: String
     private lateinit var listFoodClient: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class FoodClient : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
         val userDB = databaseReference.child(user?.uid!!)
+
         setContentView(R.layout.activity_food_client)
         listFoodClient = findViewById(R.id.foodList)
         val currentDate = LocalDateTime.now()
@@ -73,10 +75,13 @@ class FoodClient : AppCompatActivity() {
             listFoodClient.adapter = FoodAdapter(this,foodList)
 
         }, year, month, day)
+
+        this.date = "$formattedDay/$formattedMonth/$formattedYear"
     }
 
-    fun addFood(view: View) {
+    fun addFoodCalendar(view: View) {
         val intent = Intent(this, AddFood::class.java)
+        intent.putExtra("Date", date)
         startActivity(intent)
     }
     fun goBack(view: View) {

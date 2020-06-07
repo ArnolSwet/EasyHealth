@@ -29,7 +29,7 @@ class FoodAdapter(private val context: Context, private val dataSource: List<Foo
 
         nameTextView.text = food.name
         caloriesTextView.text = food.calories.toString()
-        foodImage.setImageURI(food.path?.toUri())
+        //foodImage.setImageURI(food.path?.toUri())
 
         return rowView
     }

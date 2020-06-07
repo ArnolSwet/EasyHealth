@@ -44,7 +44,6 @@ class Signup : AppCompatActivity() {
             txtPassword = findViewById(R.id.txtPass)
             txtRepeatPassword = findViewById(R.id.txtRepeatPass)
 
-
             database = FirebaseDatabase.getInstance()
             auth = FirebaseAuth.getInstance()
             dbReference = database.reference.child("User")
@@ -56,6 +55,8 @@ class Signup : AppCompatActivity() {
         val email:String = txtEmail.text.toString()
         val pass:String = txtPassword.text.toString()
         val repeatPass:String = txtRepeatPassword.text.toString()
+
+
 
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && pass == repeatPass) {
@@ -78,6 +79,11 @@ class Signup : AppCompatActivity() {
                             val userDB = Trainer(name,username,email, user?.uid?.subSequence(0,4).toString())
                             dbReference.child(user!!.uid).setValue(userDB)
                         }
+                        txtName.setText("")
+                        txtUser.setText("")
+                        txtEmail.setText("")
+                        txtPassword.setText("")
+                        txtRepeatPassword.setText("")
                         var intent = Intent(this, Login::class.java)
                         startActivity(intent)
 
