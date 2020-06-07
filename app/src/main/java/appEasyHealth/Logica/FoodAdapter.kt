@@ -48,7 +48,6 @@ class FoodAdapter(private val context: Context, private val dataSource: List<Foo
 
         deleteFood.setOnClickListener{
             client.deleteFood(food)
-
         }
 
         return rowView
