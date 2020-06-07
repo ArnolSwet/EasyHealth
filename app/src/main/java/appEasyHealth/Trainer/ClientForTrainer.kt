@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Logica.FoodForClientAdapter
+import appEasyHealth.Logica.Usuari
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -54,33 +55,37 @@ class ClientForTrainer : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 for (snapshot : DataSnapshot in p0.children) {
-                    val client = snapshot.getValue(Client::class.java)
-                    if (client?.id == clientID) {
-                        clientID = snapshot.key!!
-                        if (client?.name != null) {
-                            txtName.text = client.name
-                        }
-                        if (client?.weight != null) {
-                            txtWeight.text = client.weight.toString()
-                        }
-                        if (client?.height != null) {
-                            txtHeight.text = client.height.toString()
-                        }
-                        if (client.foodlist?.size != 0) {
-                            var todayFood = client.getFoodListonDay(formatted)
-                            var foodNames = ArrayList<String>()
-                            var foodTypes = ArrayList<String>()
-
-                            for (food in todayFood) {
-                                foodNames.add(food.name.toString())
-                                foodTypes.add(food.tipus.toString())
+                    val user = snapshot.getValue(Usuari::class.java)
+                    if (user!!.type == "Client") {
+                        val client = snapshot.getValue(Client::class.java)
+                        if (client?.id == clientID) {
+                            clientID = snapshot.key!!.toString()
+                            if (client.name != null) {
+                                txtName.text = client.name
                             }
-                            initReyclerView(client, foodNames, foodTypes)
-                        }
-                        if (client?.suscription != null) {
-                            txtSuscription.text = client.suscription
+                            if (client.weight != null) {
+                                txtWeight.text = client.weight.toString()
+                            }
+                            if (client.height != null) {
+                                txtHeight.text = client.height.toString()
+                            }
+                            if (client.foodlist?.size != 0) {
+                                var todayFood = client.getFoodListonDay(formatted)
+                                var foodNames = ArrayList<String>()
+                                var foodTypes = ArrayList<String>()
+
+                                for (food in todayFood) {
+                                    foodNames.add(food.name.toString())
+                                    foodTypes.add(food.tipus.toString())
+                                }
+                                initReyclerView(client, foodNames, foodTypes)
+                            }
+                            if (client?.suscription != null) {
+                                txtSuscription.text = client.suscription
+                            }
                         }
                     }
+
                 }
             }
         })

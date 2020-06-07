@@ -27,7 +27,7 @@ class MessageAdapter(private val context: Context,private val dataSource: ArrayL
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var rowView = inflater.inflate(R.layout.their_message,parent,false)
         database = FirebaseDatabase.getInstance()
-        databaseReference = database.getReference("User")
+        databaseReference = database.getReference("messages")
         auth = FirebaseAuth.getInstance()
         val message = getItem(position) as Message
         val user:FirebaseUser? = auth.currentUser
@@ -35,7 +35,8 @@ class MessageAdapter(private val context: Context,private val dataSource: ArrayL
             rowView = inflater.inflate(R.layout.my_message,parent,false)
 
         } else if (user.uid == message.destinyID) {
-            message.visto = true
+            databaseReference.child(message.timestamp.toString()).child("visto").setValue(true)
+
         }
         val messageView = rowView.findViewById(R.id.message_body) as TextView
         messageView.text = message.text
