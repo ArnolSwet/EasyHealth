@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import appEasyHealth.Client.FoodClient
-import appEasyHealth.Logica.ClientForTrainerAdapter
 import appEasyHealth.Logica.FoodForClientAdapter
 import com.example.easyhealth.R
 import com.google.firebase.auth.FirebaseAuth
@@ -99,20 +98,27 @@ class MainClient : AppCompatActivity() {
                 if (client.foodlist?.size != 0) {
                     var todayFood = client.getFoodListonDay(formatted)
                     var foodNames = ArrayList<String>()
+                    var foodTypes = ArrayList<String>()
+
                     for (food in todayFood) {
                         foodNames.add(food.name.toString())
+                        foodTypes.add(food.tipus.toString())
                     }
-                    initReyclerView(client, foodNames)
+                    initReyclerView(client, foodNames, foodTypes)
                 }
             }
         })
     }
 
-    fun initReyclerView(client :Client, foodNames: ArrayList<String>) {
+    fun initReyclerView(
+        client: Client,
+        foodNames: ArrayList<String>,
+        foodTypes: ArrayList<String>
+    ) {
         var managerLayout = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         var recyclerView =findViewById<RecyclerView>(R.id.recycler_view_food)
         recyclerView.layoutManager = managerLayout
-        var adapter = FoodForClientAdapter(this, foodNames)
+        var adapter = FoodForClientAdapter(this, foodNames, foodTypes)
         recyclerView.adapter = adapter
     }
 
