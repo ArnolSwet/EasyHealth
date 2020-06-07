@@ -3,17 +3,23 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.cardview.widget.CardView
+        android:layout_marginLeft="20dp"
         android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#8B39A8D1"
+        android:padding="2dp"
+        app:cardBackgroundColor="#8B39A8D1"
         app:cardCornerRadius="4dp"
-        app:cardMaxElevation="2dp"
         app:cardElevation="1dp"
-        android:layout_centerInParent="true">
+        app:cardMaxElevation="2dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/imageFoodMeals"
@@ -26,17 +32,17 @@
             <TextView
                 android:id="@+id/nameFood"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:text="Canada"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/imageFoodMeals"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:textColor="#000"
-                android:autoSizeTextType="uniform"
                 android:autoSizeMaxTextSize="15sp"
-                android:autoSizeMinTextSize="8sp" />
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:text="Canada"
+                android:textColor="#000" />
 
         </RelativeLayout>
 
