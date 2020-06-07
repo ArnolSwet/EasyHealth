@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import com.example.appEasyHealth.Food
 import com.example.easyhealth.R
-import javax.sql.DataSource
 
 class FoodAdapter(private val context: Context, private val dataSource: List<Food>) : BaseAdapter() {
 
@@ -19,18 +17,31 @@ class FoodAdapter(private val context: Context, private val dataSource: List<Foo
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val rowView = inflater.inflate(R.layout.food_layout,parent,false)
 
-        val nameTextView = rowView.findViewById(R.id.txtName) as TextView
-
-        val caloriesTextView = rowView.findViewById(R.id.txtCal) as TextView
-
-        val foodImage = rowView.findViewById(R.id.imageFood) as ImageView
-
-        val food = getItem(position) as Food
+        var nameTextView = rowView.findViewById(R.id.txtNameMeal) as TextView
+        var caloriesTextView = rowView.findViewById(R.id.txtCalMeal) as TextView
+        var foodImage = rowView.findViewById(R.id.imageFoodMeal) as ImageView
+        var food = getItem(position) as Food
 
         nameTextView.text = food.name
         caloriesTextView.text = food.calories.toString()
-        //foodImage.setImageURI(food.path?.toUri())
 
+        val img_bfst: Int = R.drawable.breakfast
+        val img_lun: Int = R.drawable.lunch
+        val img_din: Int = R.drawable.dinner
+        val img_sna: Int = R.drawable.snack
+
+        if (food.tipus == "Breakfast") {
+            foodImage.setImageResource(img_bfst)
+        }
+        if (food.tipus == "Lunch") {
+            foodImage.setImageResource(img_lun)
+        }
+        if (food.tipus == "Dinner") {
+            foodImage.setImageResource(img_din)
+        }
+        if (food.tipus == "Snack") {
+            foodImage.setImageResource(img_sna)
+        }
         return rowView
     }
 

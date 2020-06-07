@@ -77,7 +77,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEdBreak"
+            android:id="@+id/nameEdBreakMeal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/nameHint"
@@ -103,7 +103,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/calEdBreak"
+            android:id="@+id/calEdBreakMeal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="5"
