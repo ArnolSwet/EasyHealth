@@ -88,7 +88,9 @@ class Chat : AppCompatActivity() {
     private fun setupAdapter(data: ArrayList<Message>){
         var yourChat: ArrayList<Message> = ArrayList()
         for (message in data) {
-            if ((message.destinyID == user?.uid!!) || (message.originID == user?.uid)) {
+            if ((message.destinyID == originID) && (message.originID == destinyID)) {
+                yourChat.plusAssign(message)
+            } else if ((message.destinyID == destinyID) && (message.originID == originID)) {
                 yourChat.plusAssign(message)
             }
         }
