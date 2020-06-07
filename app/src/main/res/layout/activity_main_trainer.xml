@@ -217,7 +217,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/recycler_view_trainer"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
